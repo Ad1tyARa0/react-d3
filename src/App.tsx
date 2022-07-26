@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+// Components.
+import { HelloSVG } from "./components/HelloSVG/HelloSVG";
+import { HelloD3Data } from "./components/HelloD3Data/HelloD3Data";
+
+// SCSS.
+import "./App.scss";
+import {
+  SimpleChart,
+  SimpleChartFunctional,
+} from "./components/examples/simple-chart/SimpleChart";
+
+const css_prefix = "app__";
+
+// Component props.
+interface AppProps {}
+
+const AppComponent: React.FunctionComponent<AppProps> = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${css_prefix}main`}>
+      <SimpleChartFunctional />
     </div>
   );
-}
+};
 
-export default App;
+export const App = AppComponent;

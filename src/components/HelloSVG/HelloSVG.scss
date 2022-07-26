@@ -1,0 +1,10 @@
+$css_prefix: "c--h-svg__";
+$class_css_prefix: ".#{$css_prefix}";
+
+#{$class_css_prefix}main {
+  margin: 10px;
+}
+
+#{$class_css_prefix}rect {
+  fill: #ba2121;
+}
