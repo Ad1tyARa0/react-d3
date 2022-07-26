@@ -1,7 +1,7 @@
 import React from "react";
 
 // Components.
-import { SimpleChartFunctional } from "./components/examples/simple-chart/SimpleChart";
+import { CircleWithEvents } from "./components/examples/circle-with-events/CircleWithEvents";
 
 // SCSS.
 import "./App.scss";
@@ -14,7 +14,7 @@ interface AppProps {}
 const AppComponent: React.FunctionComponent<AppProps> = () => {
   return (
     <div className={`${css_prefix}main`}>
-      <SimpleChartFunctional />
+      <CircleWithEvents />
     </div>
   );
 };

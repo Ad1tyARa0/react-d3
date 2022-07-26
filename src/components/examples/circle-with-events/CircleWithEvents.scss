@@ -1,0 +1,9 @@
+$css_prefix: "c--e--c-w-e__";
+$class_css_prefix: ".#{$css_prefix}";
+
+#{$class_css_prefix}circle {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  fill: #6666;
+}
