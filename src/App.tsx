@@ -1,7 +1,7 @@
 import React from "react";
 
 // Components.
-import { CircleWithEvents } from "./components/examples/circle-with-events/CircleWithEvents";
+import { BasicLineChart } from "./components/charts/basic-line-chart/BasicLineChart";
 
 // SCSS.
 import "./App.scss";
@@ -14,7 +14,15 @@ interface AppProps {}
 const AppComponent: React.FunctionComponent<AppProps> = () => {
   return (
     <div className={`${css_prefix}main`}>
-      <CircleWithEvents />
+      <BasicLineChart
+        top={10}
+        right={50}
+        bottom={50}
+        left={50}
+        width={920}
+        height={420}
+        fill="tomato"
+      />
     </div>
   );
 };

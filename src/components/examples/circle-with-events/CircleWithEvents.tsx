@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as d3 from "d3";
 
 // SCSS.
 import "./CircleWithEvents.scss";
@@ -11,6 +12,7 @@ interface CircleWithEventsProps {}
 class CircleWithEventsComponent extends React.PureComponent<CircleWithEventsProps> {
   componentDidMount() {
     // TODO
+    // this.draw();
   }
 
   onMouseOverHandler(e: React.MouseEvent<SVGCircleElement, MouseEvent>) {
@@ -20,6 +22,24 @@ class CircleWithEventsComponent extends React.PureComponent<CircleWithEventsProp
   onMouseOutHandler() {
     // TODO
   }
+
+  draw = () => {
+    d3.select("svg")
+      .append("g")
+      .append("circle")
+      .attr("transform", "translare(150, 150)")
+      .attr("r", 100)
+      .attr("class", `${css_prefix}circle`)
+      .on("click", () => {
+        alert("onClick");
+      })
+      .on("mouseover", e => {
+        this.onMouseOverHandler(e);
+      })
+      .on("mouseout", e => {
+        this.onMouseOutHandler();
+      });
+  };
 
   render() {
     return (
