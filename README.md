@@ -11,3 +11,9 @@
 ## Steps
     - Run npx generate-react-cli component followed by name of the compoenent.
     - If you wish to start with a new template delete generate-react-cli.json.
+
+
+## Charts
+    ### Line chart (basic)
+
+    ![alt text](./public/images/line-chart-basic.png?raw=true "Title")
