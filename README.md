@@ -16,4 +16,4 @@
 ## Charts
     ### Line chart (basic)
 
-    ![alt text](./public/images/line-chart-basic.png?raw=true "Title")
+    ![Basic line chart](./public/images/line-chart-basic.png "Basic line chart")
