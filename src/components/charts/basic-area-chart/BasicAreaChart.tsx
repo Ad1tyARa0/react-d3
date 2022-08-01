@@ -1,20 +1,17 @@
 import React, { useCallback, useLayoutEffect } from "react";
 import * as d3 from "d3";
-import { BasicChartDataType } from "../../../utils/types/data";
 
 // SCSS.
-import "./BasicLineChart.scss";
+import "./BasicAreaChart.scss";
+import { BasicChartDataType } from "../../../utils/types/data";
 
 const URL =
-  "https://gist.githubusercontent.com/Ad1tyARa0/838f68337cbb9d9a64ecdff114216284/raw/line.csv";
+  "https://gist.githubusercontent.com/Ad1tyARa0/098d6579f640f133d0054db0fc635ebc/raw/BTC-USD.csv";
 
-// Components -- charts -- basic - line - chart
-const css_prefix = "c--c--b-l-c__";
-
-const OFFSET_X = 20;
+const css_prefix = "c--c--b-a-c__";
 
 // Component props.
-interface BasicLineChartProps {
+interface BasicAreaChartProps {
   width: number;
   height: number;
   left: number;
@@ -24,7 +21,7 @@ interface BasicLineChartProps {
   fill: string;
 }
 
-const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
+const BasicAreaChartComponent: React.FunctionComponent<BasicAreaChartProps> = ({
   width,
   height,
   left,
@@ -39,23 +36,22 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
     const newHeight = height - top - bottom;
 
     const svg = d3
-      .select(`.${css_prefix}main`)
+      .select(`${css_prefix}main`)
       .append("svg")
       .attr("width", newWidth + left + right)
       .attr("height", newHeight + top + bottom)
       .append("g")
-      .attr("transofrm", `translate(${left}, ${top})`);
+      .attr("transform", `translate(${left}, ${top})`);
 
     d3.dsv(",", URL, d => {
       const res = d as unknown as BasicChartDataType;
-
       const date = d3.timeParse("%Y-%m-%d")(res.date);
 
       return {
         date,
         value: res.value,
       };
-    }).then(data => {
+    }).then(function results(data) {
       const x = d3
         .scaleTime()
         .domain(
@@ -63,56 +59,44 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
             return d.date;
           }) as [Date, Date]
         )
-        .range([OFFSET_X, newWidth]);
+        .range([0, newWidth]);
 
       svg
         .append("g")
-        .attr("transform", `translate(30, ${newHeight})`)
-        .attr("class", `${css_prefix}x-axis`)
+        .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(x));
 
       const y = d3
         .scaleLinear()
+        // @ts-ignore
         .domain([
           0,
           d3.max(data, d => {
-            return Math.max(
-              ...data.map(dt => (dt as unknown as BasicChartDataType).value),
-              0
-            );
+            return +d.value;
           }),
         ] as number[])
-        .range([newHeight, 10]);
+        .range([newHeight, 0]);
 
-      svg
-        .append("g")
-        .attr("transform", `translate(${left}, 0)`)
-        .attr("class", `${css_prefix}y-axis`)
-        .call(d3.axisLeft(y));
+      svg.append("g").call(d3.axisLeft(y));
 
       svg
         .append("path")
         .datum(data)
-        .attr("fill", "none")
-        .attr("stroke", fill)
-        .attr("stroke-width", 1)
-        .attr("transform", `translate(30, 0)`)
+        .attr("fill", fill)
+        .attr("stroke", "white")
+        .attr("stroke-width", 1.5)
         .attr(
           "d",
           //@ts-ignore
           d3
-            .line()
+            .area()
+            .curve(d3.curveLinear)
             .x(d => {
-              return x(
-                (
-                  d as unknown as {
-                    date: number;
-                  }
-                ).date
-              );
+              return x((d as unknown as { date: number }).date);
             })
-            .y(d => {
-              return y((d as unknown as BasicChartDataType).value);
+            .y0(y(0))
+            .y1(d => {
+              return y((d as unknown as { value: number }).value);
             })
         );
     });
@@ -125,4 +109,4 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
   return <div className={`${css_prefix}main`} />;
 };
 
-export const BasicLineChart = BasicLineChartComponent;
+export const BasicAreaChart = BasicAreaChartComponent;

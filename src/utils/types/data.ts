@@ -1,4 +1,4 @@
-export type BasicLineChartDataType = {
+export type BasicChartDataType = {
   date: string;
   value: number;
 };
