@@ -12,7 +12,6 @@ const URL =
 const css_prefix = "c--c--b-l-c__";
 
 const OFFSET_Y = 20;
-
 const OFFSET_X = 20;
 
 // Component props.
@@ -46,8 +45,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
       .attr("width", newWidth + left + right)
       .attr("height", newHeight + top + bottom)
       .append("g")
-      .attr("transofrm", `translate(${left}, ${top})`)
-      .attr("preserveAspectRatio", "xMinYMin");
+      .attr("transofrm", `translate(${left}, ${top})`);
 
     d3.dsv(",", URL, d => {
       const res = d as unknown as BasicLineChartDataType;
@@ -70,7 +68,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
 
       svg
         .append("g")
-        .attr("transform", `translate(0, ${newHeight})`)
+        .attr("transform", `translate(30, ${newHeight})`)
         .attr("class", `${css_prefix}x-axis`)
         .call(d3.axisBottom(x));
 
@@ -91,7 +89,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
 
       svg
         .append("g")
-        .attr("transform", `translate(${OFFSET_Y}, 0)`)
+        .attr("transform", `translate(${left}, 0)`)
         .attr("class", `${css_prefix}y-axis`)
         .call(d3.axisLeft(y));
 
@@ -100,7 +98,8 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
         .datum(data)
         .attr("fill", "none")
         .attr("stroke", fill)
-        .attr("stroke-width", 0.5)
+        .attr("stroke-width", 1)
+        .attr("transform", `translate(30, 0)`)
         .attr(
           "d",
           //@ts-ignore
