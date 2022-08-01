@@ -14,6 +14,6 @@
 
 
 ## Charts
-    ### Line chart (basic)
-
-    ![Basic line chart](./public/images/line-chart-basic.png "Basic line chart")
+    ### Line chart (basic).
+        - Used Boeing Company stock data upto 2022 July to create line chart.
+        - Link to original data: https://finance.yahoo.com/quote/BA/history?guccounter=1
