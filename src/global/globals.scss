@@ -1,0 +1,58 @@
+@import "src/global/colors";
+
+* {
+  //   font-family: "NotoSans-Regular", sans-serif;
+}
+
+html {
+  height: 100vh;
+  font-family: "Noto Regular";
+}
+
+html,
+body,
+#root {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:focus {
+  outline: none;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+textarea {
+  border: none;
+  outline: none;
+  background-color: inherit;
+}
+
+input:disabled,
+textarea:disabled {
+  background-color: inherit;
+  background: inherit;
+}
+
+button {
+  all: unset;
+}
+
+table {
+  border-collapse: collapse;
+}

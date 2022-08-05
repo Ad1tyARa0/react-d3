@@ -1,30 +1,18 @@
 import React from "react";
 
-// Components.
-import { BasicLineChart } from "./components/charts/basic-line-chart/BasicLineChart";
+import { Home } from "./pages/home/Home";
 
 // SCSS.
-import "./App.scss";
-import { BasicAreaChart } from "./components/charts/basic-area-chart/BasicAreaChart";
-
-const css_prefix = "app__";
+import "./global";
 
 // Component props.
 interface AppProps {}
 
 const AppComponent: React.FunctionComponent<AppProps> = () => {
   return (
-    <div className={`${css_prefix}main`}>
-      <BasicAreaChart
-        top={10}
-        right={50}
-        bottom={50}
-        left={50}
-        width={900}
-        height={400}
-        fill="#E67E22"
-      />
-    </div>
+    <>
+      <Home />
+    </>
   );
 };
 

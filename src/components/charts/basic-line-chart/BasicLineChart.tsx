@@ -5,9 +5,6 @@ import { BasicChartDataType } from "../../../utils/types/data";
 // SCSS.
 import "./BasicLineChart.scss";
 
-const URL =
-  "https://gist.githubusercontent.com/Ad1tyARa0/838f68337cbb9d9a64ecdff114216284/raw/line.csv";
-
 // Components -- charts -- basic - line - chart
 const css_prefix = "c--c--b-l-c__";
 
@@ -22,6 +19,7 @@ interface BasicLineChartProps {
   top: number;
   bottom: number;
   fill: string;
+  url: string;
 }
 
 const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
@@ -32,8 +30,13 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
   top,
   bottom,
   fill,
+  url,
 }) => {
   const draw = useCallback(() => {
+    if (url.length === 0) {
+      return;
+    }
+
     const newWidth = width - left - right;
 
     const newHeight = height - top - bottom;
@@ -46,7 +49,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
       .append("g")
       .attr("transofrm", `translate(${left}, ${top})`);
 
-    d3.dsv(",", URL, d => {
+    d3.dsv(",", url, d => {
       const res = d as unknown as BasicChartDataType;
 
       const date = d3.timeParse("%Y-%m-%d")(res.date);
@@ -116,7 +119,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
             })
         );
     });
-  }, [bottom, fill, height, left, right, top, width]);
+  }, [bottom, fill, height, left, right, top, url, width]);
 
   useLayoutEffect(() => {
     draw();
