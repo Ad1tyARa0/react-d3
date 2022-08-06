@@ -7,9 +7,6 @@ import "./Home.scss";
 // Pages -- home
 const css_prefix = "p--h__";
 
-const BOEING_DATA =
-  "https://gist.githubusercontent.com/Ad1tyARa0/838f68337cbb9d9a64ecdff114216284/raw/line.csv";
-
 // Component props.
 interface HomeProps {}
 
@@ -17,7 +14,6 @@ const HomeComponent: React.FunctionComponent<HomeProps> = () => {
   return (
     <div className={`${css_prefix}main`}>
       <BasicLineChart
-        url={BOEING_DATA}
         top={10}
         right={50}
         bottom={50}
