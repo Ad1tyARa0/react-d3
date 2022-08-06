@@ -42,12 +42,13 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
     const newHeight = height - top - bottom;
 
     const svg = d3
-      .select(`.${css_prefix}main`)
-      .append("svg")
+      .select(`.${css_prefix}svg`)
       .attr("width", newWidth + left + right)
       .attr("height", newHeight + top + bottom)
-      .append("g")
+      .select(`.${css_prefix}main-g`)
       .attr("transofrm", `translate(${left}, ${top})`);
+
+    // svg.selectAll("*").remove();
 
     d3.dsv(",", url, d => {
       const res = d as unknown as BasicChartDataType;
@@ -69,10 +70,14 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
         .range([OFFSET_X, newWidth]);
 
       svg
-        .append("g")
+        .select(`.${css_prefix}x-g`)
         .attr("transform", `translate(30, ${newHeight})`)
-        .attr("class", `${css_prefix}x-axis`)
-        .call(d3.axisBottom(x));
+        .call(
+          d3.axisBottom(x) as unknown as (
+            selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
+            ...args: any[]
+          ) => void
+        );
 
       const y = d3
         .scaleLinear()
@@ -88,13 +93,17 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
         .range([newHeight, 10]);
 
       svg
-        .append("g")
+        .select(`.${css_prefix}y-g`)
         .attr("transform", `translate(${left}, 0)`)
-        .attr("class", `${css_prefix}y-axis`)
-        .call(d3.axisLeft(y));
+        .call(
+          d3.axisLeft(y) as unknown as (
+            selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
+            ...args: any[]
+          ) => void
+        );
 
       svg
-        .append("path")
+        .select(`.${css_prefix}path`)
         .datum(data)
         .attr("fill", "none")
         .attr("stroke", fill)
@@ -120,18 +129,24 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
         );
     });
 
-    return () => {
-      const ssvg = svg.select("svg").remove();
-
-      console.log(ssvg);
-    };
+    return () => d3.select(`.${css_prefix}svg`).selectAll("*").remove();
   }, [bottom, fill, height, left, right, top, url, width]);
 
   useLayoutEffect(() => {
     draw();
   }, [draw]);
 
-  return <div className={`${css_prefix}main`} />;
+  return (
+    <div className={`${css_prefix}main`}>
+      <svg className={`${css_prefix}svg`}>
+        <g className={`${css_prefix}main-g`}>
+          <g className={`${css_prefix}x-g`} />
+          <g className={`${css_prefix}y-g`} />
+          <path className={`${css_prefix}path`} />
+        </g>
+      </svg>
+    </div>
+  );
 };
 
 export const BasicLineChart = BasicLineChartComponent;
