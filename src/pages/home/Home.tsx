@@ -1,5 +1,7 @@
 import React from "react";
-import { BasicLineChart } from "../../components/charts/basic-line-chart/BasicLineChart";
+import { BasicBarChart } from "../../components/charts/basic-bar-chart/BasicBarChart";
+// import { BasicLineChart } from "../../components/charts/basic-line-chart/BasicLineChart";
+import { data } from "../../utils/constants/barchart-data";
 
 // SCSS.
 import "./Home.scss";
@@ -7,8 +9,8 @@ import "./Home.scss";
 // Pages -- home
 const css_prefix = "p--h__";
 
-const BOEING_DATA =
-  "https://gist.githubusercontent.com/Ad1tyARa0/838f68337cbb9d9a64ecdff114216284/raw/line.csv";
+// const BOEING_DATA =
+//   "https://gist.githubusercontent.com/Ad1tyARa0/838f68337cbb9d9a64ecdff114216284/raw/line.csv";
 
 // Component props.
 interface HomeProps {}
@@ -18,8 +20,8 @@ const HomeComponent: React.FunctionComponent<HomeProps> = () => {
     <div className={`${css_prefix}main`}>
       <div className={`${css_prefix}title`}>Basic charts</div>
 
-      <BasicLineChart
-        url={""}
+      {/* <BasicLineChart
+        url={BOEING_DATA}
         top={10}
         right={50}
         bottom={50}
@@ -27,7 +29,9 @@ const HomeComponent: React.FunctionComponent<HomeProps> = () => {
         width={900}
         height={400}
         fill="#E67E22"
-      />
+      /> */}
+
+      <BasicBarChart data={data} />
     </div>
   );
 };

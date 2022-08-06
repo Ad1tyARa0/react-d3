@@ -119,6 +119,12 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
             })
         );
     });
+
+    return () => {
+      const ssvg = svg.select("svg").remove();
+
+      console.log(ssvg);
+    };
   }, [bottom, fill, height, left, right, top, url, width]);
 
   useLayoutEffect(() => {
