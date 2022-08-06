@@ -8,4 +8,6 @@ $class_css_prefix: ".#{$css_prefix}";
   font-size: 2.4em !important;
   font-size: 12px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }

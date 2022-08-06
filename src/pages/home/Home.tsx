@@ -16,8 +16,6 @@ interface HomeProps {}
 const HomeComponent: React.FunctionComponent<HomeProps> = () => {
   return (
     <div className={`${css_prefix}main`}>
-      <div className={`${css_prefix}title`}>Basic charts</div>
-
       <BasicLineChart
         url={BOEING_DATA}
         top={10}
@@ -25,7 +23,7 @@ const HomeComponent: React.FunctionComponent<HomeProps> = () => {
         bottom={50}
         left={50}
         width={900}
-        height={400}
+        height={500}
         fill="#E67E22"
       />
     </div>

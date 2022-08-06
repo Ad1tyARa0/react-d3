@@ -129,6 +129,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
         );
     });
 
+    // Clean up function.
     return () => d3.select(`.${css_prefix}svg`).selectAll("*").remove();
   }, [bottom, fill, height, left, right, top, url, width]);
 
@@ -138,6 +139,8 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`}>
+      <div className={`${css_prefix}title`}>Boeing Stock data (2022)</div>
+
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}>
           <g className={`${css_prefix}x-g`} />
