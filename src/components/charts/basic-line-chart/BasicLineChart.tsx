@@ -135,7 +135,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
   }, [draw]);
 
   return (
-    <div className={`${css_prefix}main ${css_prefix}main-${accentColor.title}`}>
+    <div className={`${css_prefix}main`}>
       <div
         className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
       >

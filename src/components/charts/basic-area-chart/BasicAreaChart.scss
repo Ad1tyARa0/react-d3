@@ -1,6 +1,46 @@
+@import "src/global/colors";
+@import "src/global/variables";
+
 $css_prefix: "c--c--b-a-c__";
 $class_css_prefix: ".#{$css_prefix}";
 
 #{$class_css_prefix}main {
-  background-color: white;
+  margin: 15px;
+  width: fit-content;
+}
+
+#{$class_css_prefix}title {
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 10px 20px 20px;
+  font-size: 2.4em;
+}
+
+#{$class_css_prefix}title-green {
+  color: $color-green;
+  transition: color border-bottom 500ms linear;
+}
+
+#{$class_css_prefix}title-blue {
+  color: $color-blue;
+  transition: color 500ms linear;
+}
+
+#{$class_css_prefix}title-yellow {
+  color: $color-yellow;
+  transition: color 500ms linear;
+}
+
+#{$class_css_prefix}title-red {
+  color: $color-red;
+  transition: color 500ms linear;
+}
+
+#{$class_css_prefix}x-g {
+  color: #fff;
+}
+
+#{$class_css_prefix}y-g {
+  stroke: none;
+  color: #fff;
 }
