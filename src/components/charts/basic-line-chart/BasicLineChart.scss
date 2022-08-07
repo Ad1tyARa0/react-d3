@@ -9,26 +9,6 @@ $class_css_prefix: ".#{$css_prefix}";
   width: fit-content;
 }
 
-// #{$class_css_prefix}main-green {
-//   border: 1px solid $color-green;
-//   transition: border 500ms linear;
-// }
-
-// #{$class_css_prefix}main-blue {
-//   border: 1px solid $color-blue;
-//   transition: border 500ms linear;
-// }
-
-// #{$class_css_prefix}main-yellow {
-//   border: 1px solid $color-yellow;
-//   transition: border 500ms linear;
-// }
-
-// #{$class_css_prefix}main-red {
-//   border: 1px solid $color-red;
-//   transition: border 500ms linear;
-// }
-
 #{$class_css_prefix}title {
   text-align: center;
   padding: 10px 0;
@@ -38,25 +18,21 @@ $class_css_prefix: ".#{$css_prefix}";
 
 #{$class_css_prefix}title-green {
   color: $color-green;
-  // border-bottom: 1px solid $color-green;
   transition: color border-bottom 500ms linear;
 }
 
 #{$class_css_prefix}title-blue {
   color: $color-blue;
-  // border-bottom: 1px solid $color-blue;
   transition: color 500ms linear;
 }
 
 #{$class_css_prefix}title-yellow {
   color: $color-yellow;
-  // border-bottom: 1px solid $color-yellow;
   transition: color 500ms linear;
 }
 
 #{$class_css_prefix}title-red {
   color: $color-red;
-  // border-bottom: 1px solid $color-red;
   transition: color 500ms linear;
 }
 
