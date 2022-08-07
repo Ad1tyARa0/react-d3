@@ -1,12 +1,14 @@
 @import "src/global/colors";
 
-* {
-  //   font-family: "NotoSans-Regular", sans-serif;
-}
+// * {
+//   font-family: "NotoSans-Regular", sans-serif;
+// }
 
 html {
   height: 100vh;
   font-family: "Noto Regular";
+  background-color: $color-background-dark;
+  color: $color-background-light;
 }
 
 html,

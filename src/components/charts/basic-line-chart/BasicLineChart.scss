@@ -1,29 +1,80 @@
+@import "src/global/colors";
+@import "src/global/variables";
+
 $css_prefix: "c--c--b-l-c__";
 $class_css_prefix: ".#{$css_prefix}";
 
 #{$class_css_prefix}main {
-  flex: 1;
-  background-color: #2c3e50;
+  margin: 15px;
+  width: fit-content;
+}
+
+#{$class_css_prefix}main-green {
+  border: 1px solid $color-green;
+  transition: border 500ms linear;
+}
+
+#{$class_css_prefix}main-blue {
+  border: 1px solid $color-blue;
+  transition: border 500ms linear;
+}
+
+#{$class_css_prefix}main-yellow {
+  border: 1px solid $color-yellow;
+  transition: border 500ms linear;
+}
+
+#{$class_css_prefix}main-red {
+  border: 1px solid $color-red;
+  transition: border 500ms linear;
 }
 
 #{$class_css_prefix}title {
-  color: #f1c40f;
-  margin-left: 50px;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 10px 20px 20px;
+  font-size: 2.4em;
+}
+
+#{$class_css_prefix}title-green {
+  color: $color-green;
+  // border-bottom: 1px solid $color-green;
+  transition: color border-bottom 500ms linear;
+}
+
+#{$class_css_prefix}title-blue {
+  color: $color-blue;
+  // border-bottom: 1px solid $color-blue;
+  transition: color 500ms linear;
+}
+
+#{$class_css_prefix}title-yellow {
+  color: $color-yellow;
+  // border-bottom: 1px solid $color-yellow;
+  transition: color 500ms linear;
+}
+
+#{$class_css_prefix}title-red {
+  color: $color-red;
+  // border-bottom: 1px solid $color-red;
+  transition: color 500ms linear;
 }
 
 #{$class_css_prefix}x-g {
-  color: #f1c40f;
+  color: #fff;
 }
 
 #{$class_css_prefix}y-g {
-  color: #f1c40f;
+  stroke: none;
+  color: #fff;
 }
 
 #{$class_css_prefix}path {
-  stroke: #e74c3c;
+  // stroke: #e4405f;
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
   animation: dash 3s linear forwards;
+  transition: stroke 500ms linear;
 }
 
 @keyframes dash {
