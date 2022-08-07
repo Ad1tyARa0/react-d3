@@ -44,3 +44,7 @@ $class_css_prefix: ".#{$css_prefix}";
   stroke: none;
   color: #fff;
 }
+
+#{$class_css_prefix}path {
+  transition: fill 1000ms linear;
+}
