@@ -9,25 +9,25 @@ $class_css_prefix: ".#{$css_prefix}";
   width: fit-content;
 }
 
-#{$class_css_prefix}main-green {
-  border: 1px solid $color-green;
-  transition: border 500ms linear;
-}
+// #{$class_css_prefix}main-green {
+//   border: 1px solid $color-green;
+//   transition: border 500ms linear;
+// }
 
-#{$class_css_prefix}main-blue {
-  border: 1px solid $color-blue;
-  transition: border 500ms linear;
-}
+// #{$class_css_prefix}main-blue {
+//   border: 1px solid $color-blue;
+//   transition: border 500ms linear;
+// }
 
-#{$class_css_prefix}main-yellow {
-  border: 1px solid $color-yellow;
-  transition: border 500ms linear;
-}
+// #{$class_css_prefix}main-yellow {
+//   border: 1px solid $color-yellow;
+//   transition: border 500ms linear;
+// }
 
-#{$class_css_prefix}main-red {
-  border: 1px solid $color-red;
-  transition: border 500ms linear;
-}
+// #{$class_css_prefix}main-red {
+//   border: 1px solid $color-red;
+//   transition: border 500ms linear;
+// }
 
 #{$class_css_prefix}title {
   text-align: center;

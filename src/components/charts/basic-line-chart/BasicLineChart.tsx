@@ -1,6 +1,8 @@
 import React, { useCallback, useLayoutEffect } from "react";
 import * as d3 from "d3";
 
+import { BOEING_COMPANY_DATA as URL } from "../../../utils/constants/data";
+
 // SCSS.
 import "./BasicLineChart.scss";
 
@@ -9,8 +11,6 @@ import { BasicChartDataType } from "../../../utils/types/data";
 
 // Constants.
 const OFFSET_X = 20;
-const URL =
-  "https://gist.githubusercontent.com/Ad1tyARa0/838f68337cbb9d9a64ecdff114216284/raw/line.csv";
 
 // Components -- charts -- basic - line - chart
 const css_prefix = "c--c--b-l-c__";
