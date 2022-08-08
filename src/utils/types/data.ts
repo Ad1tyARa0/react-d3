@@ -3,8 +3,7 @@ export type BasicChartDataType = {
   value: number;
 };
 
-export type BarChartDataType = {
-  year: number;
-  efficiency: number;
-  sales: number;
+export type BarChartType = {
+  language: string;
+  value: number;
 };

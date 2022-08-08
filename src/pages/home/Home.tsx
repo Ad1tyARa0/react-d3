@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 
 // Components.
-import { BasicLineChart } from "../../components/charts/basic-line-chart/BasicLineChart";
 import { AccentColor } from "./components/AccentColor";
+// import { BasicLineChart } from "../../components/charts/basic-line-chart/BasicLineChart";
+// import { BasicAreaChart } from "../../components/charts/basic-area-chart/BasicAreaChart";
 
 // Constants.
 import { COLORS } from "../../utils/constants/colors";
 
 // SCSS.
 import "./Home.scss";
-import { BasicAreaChart } from "../../components/charts/basic-area-chart/BasicAreaChart";
+import { BasicBarChart } from "../../components/charts/basic-bar-chart/BasicBarChart";
 
 // Pages -- home
 const css_prefix = "p--h__";
@@ -35,7 +36,27 @@ const HomeComponent: React.FunctionComponent<HomeProps> = () => {
         title="Set accent color"
       />
 
+      {/* <BasicLineChart
+        top={10}
+        right={50}
+        bottom={50}
+        left={50}
+        width={800}
+        height={400}
+        accentColor={accentColor}
+      />
+
       <BasicAreaChart
+        top={10}
+        right={50}
+        bottom={50}
+        left={50}
+        width={800}
+        height={400}
+        accentColor={accentColor}
+      /> */}
+
+      <BasicBarChart
         top={10}
         right={50}
         bottom={50}

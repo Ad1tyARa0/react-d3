@@ -1,0 +1,17 @@
+@import "src/global/colors";
+@import "src/global/variables";
+
+$css_prefix: "c--c--b-b-c__";
+$class_css_prefix: ".#{$css_prefix}";
+
+#{$class_css_prefix}main {
+}
+
+#{$class_css_prefix}x-g {
+  color: #fff;
+}
+
+#{$class_css_prefix}y-g {
+  stroke: none;
+  color: #fff;
+}
