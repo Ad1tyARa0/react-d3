@@ -8,10 +8,26 @@ $class_css_prefix: ".#{$css_prefix}";
 }
 
 #{$class_css_prefix}x-g {
-  color: #fff;
+  color: $color-background-light;
+  // transform: translate(0, 10);
+  // stroke: red;
+  // color: red;
+}
+
+#{$class_css_prefix}x-g path {
+  stroke: none;
+}
+
+.tick line {
+  visibility: hidden;
 }
 
 #{$class_css_prefix}y-g {
   stroke: none;
   color: #fff;
+}
+
+.bar {
+  // fill: red;
+  transition: fill 500ms linear;
 }

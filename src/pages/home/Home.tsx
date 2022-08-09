@@ -57,12 +57,12 @@ const HomeComponent: React.FunctionComponent<HomeProps> = () => {
       /> */}
 
       <BasicBarChart
-        top={10}
+        top={50}
         right={50}
         bottom={50}
         left={50}
-        width={800}
-        height={400}
+        width={1200}
+        height={450}
         accentColor={accentColor}
       />
     </div>

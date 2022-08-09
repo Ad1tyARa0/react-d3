@@ -36,15 +36,15 @@ const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
 
     const newHeight = height - top - bottom;
 
-    const x = d3.scaleBand().range([0, width]).padding(0.1);
+    const x = d3.scaleBand().range([0, newWidth]).padding(0.2);
 
-    const y = d3.scaleLinear().range([height, 0]);
+    const y = d3.scaleLinear().range([newHeight, 0]);
 
     const svg = d3
-      .select(`${css_prefix}svg`)
+      .select(`.${css_prefix}svg`)
       .attr("width", newWidth + left + right)
       .attr("height", newHeight + top + bottom)
-      .select(`${css_prefix}main-g`)
+      .select(`.${css_prefix}main-g`)
       .attr("transform", `translate(${left}, ${top})`);
 
     d3.dsv(",", URL, d => {
@@ -59,12 +59,14 @@ const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
       y.domain([
         0,
         d3.max(data, d => {
-          return Math.max(...data.map(dt => (dt as BarChartType).value), 0);
+          return 3 + Math.max(...data.map(dt => (dt as BarChartType).value), 0);
         }),
       ] as number[]);
 
+      console.log(accentColor.value);
+
       svg
-        .selectAll("bar")
+        .selectAll(".bar")
         .data(data)
         .enter()
         .append("rect")
@@ -77,20 +79,28 @@ const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
         .attr("y", d => {
           return y(d.value);
         })
+        .transition()
+        .duration(800)
         .attr("height", d => {
-          return height - y(d.value);
+          return newHeight - y(d.value);
+        })
+        .delay((d, i) => {
+          return i * 100;
         });
 
       svg
-        .select(`${css_prefix}x-g`)
-        .attr("transfrom", `translate(0, ${height})`)
+        .select(`.${css_prefix}x-g`)
+        .attr("transform", `translate(0, ${newHeight + 5})`)
         .call(
           d3.axisBottom(x) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
             ...args: any[]
           ) => void
-        )
-        .select(`${css_prefix}y-g`)
+        );
+
+      svg
+        .select(`.${css_prefix}y-g`)
+        // .attr("transform", `translate(${left}, 0)`)
         .call(
           d3.axisLeft(y) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
