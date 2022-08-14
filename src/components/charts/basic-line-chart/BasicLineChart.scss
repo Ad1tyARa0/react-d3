@@ -1,8 +1,8 @@
-@import "src/global/colors";
-@import "src/global/variables";
+@import 'src/global/colors';
+@import 'src/global/variables';
 
-$css_prefix: "c--c--b-l-c__";
-$class_css_prefix: ".#{$css_prefix}";
+$css_prefix: 'c--c--b-l-c__';
+$class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
   margin: 15px;
@@ -13,7 +13,7 @@ $class_css_prefix: ".#{$css_prefix}";
   text-align: center;
   padding: 10px 0;
   margin: 0 10px 20px 20px;
-  font-size: 2.4em;
+  font-size: 1.4em;
 }
 
 #{$class_css_prefix}title-green {

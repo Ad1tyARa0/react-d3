@@ -1,19 +1,19 @@
-import React, { useCallback, useLayoutEffect } from "react";
-import * as d3 from "d3";
+import React, { useCallback, useLayoutEffect } from 'react';
+import * as d3 from 'd3';
 
-import { BOEING_COMPANY_DATA as URL } from "../../../utils/constants/data";
+import { BOEING_COMPANY_DATA as URL } from '../../../utils/constants/data';
 
 // SCSS.
-import "./BasicLineChart.scss";
+import './BasicLineChart.scss';
 
 // Types and interfaces.
-import { BasicChartDataType } from "../../../utils/types/data";
+import { BasicChartDataType } from '../../../utils/types/data';
 
 // Constants.
 const OFFSET_X = 20;
 
 // Components -- charts -- basic - line - chart
-const css_prefix = "c--c--b-l-c__";
+const css_prefix = 'c--c--b-l-c__';
 
 // Component props.
 interface BasicLineChartProps {
@@ -26,7 +26,7 @@ interface BasicLineChartProps {
   accentColor: { title: string; value: string };
 }
 
-const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
+const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
   width,
   height,
   left,
@@ -42,15 +42,15 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
 
     const svg = d3
       .select(`.${css_prefix}svg`)
-      .attr("width", newWidth + left + right)
-      .attr("height", newHeight + top + bottom)
+      .attr('width', newWidth + left + right)
+      .attr('height', newHeight + top + bottom)
       .select(`.${css_prefix}main-g`)
-      .attr("transofrm", `translate(${left}, ${top})`);
+      .attr('transofrm', `translate(${left}, ${top})`);
 
-    d3.dsv(",", URL, d => {
+    d3.dsv(',', URL, d => {
       const res = d as unknown as BasicChartDataType;
 
-      const date = d3.timeParse("%Y-%m-%d")(res.date);
+      const date = d3.timeParse('%Y-%m-%d')(res.date);
 
       return {
         date,
@@ -68,7 +68,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
 
       svg
         .select(`.${css_prefix}x-g`)
-        .attr("transform", `translate(30, ${newHeight})`)
+        .attr('transform', `translate(30, ${newHeight})`)
         .call(
           d3.axisBottom(x) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
@@ -91,7 +91,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
 
       svg
         .select(`.${css_prefix}y-g`)
-        .attr("transform", `translate(${left}, 0)`)
+        .attr('transform', `translate(${left}, 0)`)
         .call(
           d3.axisLeft(y) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
@@ -102,12 +102,12 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
       svg
         .select(`.${css_prefix}path`)
         .datum(data)
-        .attr("fill", "none")
-        .attr("stroke", `${accentColor.value}`)
-        .attr("stroke-width", 3)
-        .attr("transform", `translate(33, 0)`)
+        .attr('fill', 'none')
+        .attr('stroke', `${accentColor.value}`)
+        .attr('stroke-width', 3)
+        .attr('transform', `translate(33, 0)`)
         .attr(
-          "d",
+          'd',
           //@ts-ignore
           d3
             .line()
@@ -127,7 +127,7 @@ const BasicLineChartComponent: React.FunctionComponent<BasicLineChartProps> = ({
     });
 
     // Clean up function.
-    return () => d3.select(`.${css_prefix}svg`).selectAll("*").remove();
+    return () => d3.select(`.${css_prefix}svg`).selectAll('*').remove();
   }, [accentColor, bottom, height, left, right, top, width]);
 
   useLayoutEffect(() => {

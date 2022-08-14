@@ -1,15 +1,15 @@
-import React, { useCallback, useLayoutEffect } from "react";
-import * as d3 from "d3";
+import React, { useCallback, useLayoutEffect } from 'react';
+import * as d3 from 'd3';
 
 // Data.
-import { PROGRAMMING_LANGUAGES_DATA as URL } from "../../../utils/constants/data";
+import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../../utils/constants/data';
 
 // SCSS.
-import "./BasicBarChart.scss";
-import { BarChartType } from "../../../utils/types/data";
+import './BasicBarChart.scss';
+import { BarChartType } from '../../../utils/types/data';
 
 // Components -- charts -- basic - bar - chart
-const css_prefix = "c--c--b-b-c__";
+const css_prefix = 'c--c--b-b-c__';
 
 // Component props.
 interface BasicBarChartProps {
@@ -22,7 +22,7 @@ interface BasicBarChartProps {
   accentColor: { title: string; value: string };
 }
 
-const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
+const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
   width,
   height,
   left,
@@ -42,12 +42,12 @@ const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
 
     const svg = d3
       .select(`.${css_prefix}svg`)
-      .attr("width", newWidth + left + right)
-      .attr("height", newHeight + top + bottom)
+      .attr('width', newWidth + left + right)
+      .attr('height', newHeight + top + bottom)
       .select(`.${css_prefix}main-g`)
-      .attr("transform", `translate(${left}, ${top})`);
+      .attr('transform', `translate(${left}, ${top})`);
 
-    d3.dsv(",", URL, d => {
+    d3.dsv(',', URL, d => {
       return d as unknown as BarChartType;
     }).then(data => {
       x.domain(
@@ -63,25 +63,24 @@ const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
         }),
       ] as number[]);
 
-      console.log(accentColor.value);
-
       svg
-        .selectAll(".bar")
+        .selectAll('.bar')
         .data(data)
         .enter()
-        .append("rect")
-        .attr("fill", `${accentColor.value}`)
-        .attr("class", "bar")
-        .attr("x", d => {
+        .append('rect')
+        .attr('fill', `${accentColor.value}`)
+        // .attr('fill', 'white')
+        .attr('class', 'bar')
+        .attr('x', d => {
           return x(d.language) || 0;
         })
-        .attr("width", x.bandwidth())
-        .attr("y", d => {
+        .attr('width', x.bandwidth())
+        .attr('y', d => {
           return y(d.value);
         })
         .transition()
         .duration(800)
-        .attr("height", d => {
+        .attr('height', d => {
           return newHeight - y(d.value);
         })
         .delay((d, i) => {
@@ -90,7 +89,7 @@ const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
 
       svg
         .select(`.${css_prefix}x-g`)
-        .attr("transform", `translate(0, ${newHeight + 5})`)
+        .attr('transform', `translate(0, ${newHeight + 5})`)
         .call(
           d3.axisBottom(x) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
@@ -108,7 +107,7 @@ const BasicBarChartComponent: React.FunctionComponent<BasicBarChartProps> = ({
           ) => void
         );
     });
-  }, [accentColor.value, bottom, height, left, right, top, width]);
+  }, [bottom, height, left, right, top, width]);
 
   useLayoutEffect(() => {
     draw();

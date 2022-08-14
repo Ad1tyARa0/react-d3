@@ -1,14 +1,14 @@
-import React, { useCallback, useLayoutEffect } from "react";
-import * as d3 from "d3";
+import React, { useCallback, useLayoutEffect } from 'react';
+import * as d3 from 'd3';
 
 // SCSS.
-import "./BasicAreaChart.scss";
-import { BasicChartDataType } from "../../../utils/types/data";
+import './BasicAreaChart.scss';
+import { BasicChartDataType } from '../../../utils/types/data';
 
 const URL =
-  "https://gist.githubusercontent.com/Ad1tyARa0/098d6579f640f133d0054db0fc635ebc/raw/BTC-USD.csv";
+  'https://gist.githubusercontent.com/Ad1tyARa0/098d6579f640f133d0054db0fc635ebc/raw/BTC-USD.csv';
 
-const css_prefix = "c--c--b-a-c__";
+const css_prefix = 'c--c--b-a-c__';
 
 // Component props.
 interface BasicAreaChartProps {
@@ -21,7 +21,7 @@ interface BasicAreaChartProps {
   accentColor: { value: string; title: string };
 }
 
-const BasicAreaChartComponent: React.FunctionComponent<BasicAreaChartProps> = ({
+const BasicAreaChartComponent: React.FC<BasicAreaChartProps> = ({
   width,
   height,
   left,
@@ -37,14 +37,14 @@ const BasicAreaChartComponent: React.FunctionComponent<BasicAreaChartProps> = ({
 
     const svg = d3
       .select(`.${css_prefix}svg`)
-      .attr("width", newWidth + left + right)
-      .attr("height", newHeight + top + bottom)
+      .attr('width', newWidth + left + right)
+      .attr('height', newHeight + top + bottom)
       .select(`.${css_prefix}main-g`)
-      .attr("transofrm", `translate(${left}, ${top})`);
+      .attr('transofrm', `translate(${left}, ${top})`);
 
-    d3.dsv(",", URL, d => {
+    d3.dsv(',', URL, d => {
       const res = d as unknown as BasicChartDataType;
-      const date = d3.timeParse("%Y-%m-%d")(res.date);
+      const date = d3.timeParse('%Y-%m-%d')(res.date);
 
       return {
         date,
@@ -62,7 +62,7 @@ const BasicAreaChartComponent: React.FunctionComponent<BasicAreaChartProps> = ({
 
       svg
         .select(`.${css_prefix}x-g`)
-        .attr("transform", `translate(50, ${newHeight})`)
+        .attr('transform', `translate(50, ${newHeight})`)
         .call(
           d3.axisBottom(x) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
@@ -83,7 +83,7 @@ const BasicAreaChartComponent: React.FunctionComponent<BasicAreaChartProps> = ({
 
       svg
         .select(`.${css_prefix}y-g`)
-        .attr("transform", `translate(${left}, 0)`)
+        .attr('transform', `translate(${left}, 0)`)
         .call(
           d3.axisLeft(y) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
@@ -94,12 +94,12 @@ const BasicAreaChartComponent: React.FunctionComponent<BasicAreaChartProps> = ({
       svg
         .select(`.${css_prefix}path`)
         .datum(data)
-        .attr("fill", `${accentColor.value}`)
-        .attr("transform", `translate(50, 0)`)
-        .attr("stroke", `${accentColor.value}`)
-        .attr("stroke-width", 0.3)
+        .attr('fill', `${accentColor.value}`)
+        .attr('transform', `translate(50, 0)`)
+        .attr('stroke', `${accentColor.value}`)
+        .attr('stroke-width', 0.3)
         .attr(
-          "d",
+          'd',
           //@ts-ignore
           d3
             .area()

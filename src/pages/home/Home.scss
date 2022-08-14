@@ -1,11 +1,10 @@
-@import "src/global/fonts";
+@import 'src/global/fonts';
 
-$css_prefix: "p--h__";
-$class_css_prefix: ".#{$css_prefix}";
+$css_prefix: 'p--h__';
+$class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 15px;
 }

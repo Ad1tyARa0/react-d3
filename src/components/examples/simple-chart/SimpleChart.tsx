@@ -1,11 +1,11 @@
-import React, { useCallback, useLayoutEffect, useState } from "react";
-import * as d3 from "d3";
+import React, { useCallback, useLayoutEffect, useState } from 'react';
+import * as d3 from 'd3';
 
 // SCSS.
-import "./SimpleChart.scss";
+import './SimpleChart.scss';
 
 // Components -- examples -- simple - chart
-const css_prefix = "c--e--s-c__";
+const css_prefix = 'c--e--s-c__';
 
 // Component props.
 interface SimpleChartProps {}
@@ -44,20 +44,20 @@ class SimpleChartComponent extends React.PureComponent<
 
     const svg = d3
       .select(this.ref.current)
-      .append("svg")
-      .attr("width", size)
-      .attr("height", size);
+      .append('svg')
+      .attr('width', size)
+      .attr('height', size);
 
     svg
-      .selectAll("rect")
+      .selectAll('rect')
       .data(this.data)
       .enter()
-      .append("rect")
-      .attr("x", (d, i) => 5 + i * (rectWidth + 5))
-      .attr("y", d => size - d)
-      .attr("width", rectWidth)
-      .attr("height", d => d)
-      .attr("fill", "tomato");
+      .append('rect')
+      .attr('x', (d, i) => 5 + i * (rectWidth + 5))
+      .attr('y', d => size - d)
+      .attr('width', rectWidth)
+      .attr('height', d => d)
+      .attr('fill', 'tomato');
   };
 
   componentDidMount() {
@@ -72,7 +72,7 @@ class SimpleChartComponent extends React.PureComponent<
 /**
  * Using functional components.
  */
-const SimpleChartComponent2: React.FunctionComponent<SimpleChartProps> = () => {
+const SimpleChartComponent2: React.FC<SimpleChartProps> = () => {
   // Create reference.
   const ref: React.RefObject<HTMLDivElement> = React.createRef();
 
@@ -87,20 +87,20 @@ const SimpleChartComponent2: React.FunctionComponent<SimpleChartProps> = () => {
 
     let svg = d3
       .select(ref.current)
-      .append("svg")
-      .attr("width", size)
-      .attr("height", size);
+      .append('svg')
+      .attr('width', size)
+      .attr('height', size);
 
     svg
-      .selectAll("rect")
+      .selectAll('rect')
       .data(data)
       .enter()
-      .append("rect")
-      .attr("x", (d: number, i: number) => 5 + i * (rectWidth + 5))
-      .attr("y", (d: number) => size - d)
-      .attr("width", rectWidth)
-      .attr("height", (d: number) => d)
-      .attr("fill", "tomato");
+      .append('rect')
+      .attr('x', (d: number, i: number) => 5 + i * (rectWidth + 5))
+      .attr('y', (d: number) => size - d)
+      .attr('width', rectWidth)
+      .attr('height', (d: number) => d)
+      .attr('fill', 'tomato');
 
     // TODO - react is causing the svg to render twice.
   }, [data, ref]);

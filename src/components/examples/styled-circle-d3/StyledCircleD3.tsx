@@ -1,38 +1,36 @@
-import React, { useEffect } from "react";
-import * as d3 from "d3";
+import React, { useEffect } from 'react';
+import * as d3 from 'd3';
 
 // SCSS.
-import "./StyledCircleD3.scss";
+import './StyledCircleD3.scss';
 
-const css_prefix = "c--e--s-c-d3__";
+const css_prefix = 'c--e--s-c-d3__';
 
 // Component props.
 interface StyledCircleD3Props {}
 
-const StyledCircleD3Component: React.FunctionComponent<
-  StyledCircleD3Props
-> = () => {
+const StyledCircleD3Component: React.FC<StyledCircleD3Props> = () => {
   useEffect(() => {
     drawPulsatingCircle();
   }, []);
 
   const drawPulsatingCircle = () => {
     (function repeat() {
-      d3.selectAll(".circle")
+      d3.selectAll('.circle')
         .transition()
         .duration(300)
-        .attr("stroke-width", 0)
-        .attr("stroke-opacity", 0)
+        .attr('stroke-width', 0)
+        .attr('stroke-opacity', 0)
         .transition()
         .duration(300)
-        .attr("stroke-width", 0)
-        .attr("stroke-opacity", 0.5)
+        .attr('stroke-width', 0)
+        .attr('stroke-opacity', 0.5)
         .transition()
         .duration(1000)
-        .attr("stroke-width", 25)
-        .attr("stroke-opacity", 0)
+        .attr('stroke-width', 25)
+        .attr('stroke-opacity', 0)
         .ease(d3.easeSin)
-        .on("end", repeat);
+        .on('end', repeat);
     })();
   };
 
@@ -40,12 +38,12 @@ const StyledCircleD3Component: React.FunctionComponent<
     <div className={`${css_prefix}main`}>
       <svg>
         <circle
-          className="circle"
-          cx="50"
-          cy="50"
-          stroke="orange"
-          fill="orange"
-          r="8"
+          className='circle'
+          cx='50'
+          cy='50'
+          stroke='orange'
+          fill='orange'
+          r='8'
         />
       </svg>
     </div>
