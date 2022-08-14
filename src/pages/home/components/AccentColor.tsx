@@ -1,14 +1,14 @@
-import React from "react";
-import { BsPaletteFill } from "react-icons/bs";
+import React from 'react';
+import { MdInvertColors } from 'react-icons/md';
 
 // Components.
-import { ColorsType } from "../../../utils/types/colors";
+import { ColorsType } from '../../../utils/types/colors';
 
 // SCSS.
-import "./AccentColor.scss";
+import './AccentColor.scss';
 
 // pages -- home -- components -- accent - color
-const css_prefix = "p--h--c--a-c__";
+const css_prefix = 'p--h--c--a-c__';
 
 // Component props.
 interface AccentColorProps {
@@ -24,24 +24,26 @@ const AccentColorComponent: React.FC<AccentColorProps> = ({
 }) => {
   return (
     <div className={`${css_prefix}main`}>
-      {colors.map(e => {
-        return (
-          <div
-            key={e.id}
-            onClick={() =>
-              onClickSetAccentColor({ value: e.value, title: e.title })
-            }
-            className={`${css_prefix}item-main ${css_prefix}item-main-${e.title}`}
-          />
-        );
-      })}
-
       <div className={`${css_prefix}title`}>
         <div className={`${css_prefix}icon`}>
-          <BsPaletteFill />
+          <MdInvertColors />
         </div>
 
         <div className={`${css_prefix}heading`}>{title}</div>
+      </div>
+
+      <div className={`${css_prefix}inner-main`}>
+        {colors.map(e => {
+          return (
+            <div
+              key={e.id}
+              onClick={() =>
+                onClickSetAccentColor({ value: e.value, title: e.title })
+              }
+              className={`${css_prefix}item-main ${css_prefix}item-main-${e.title}`}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -1,17 +1,18 @@
-import React, { useCallback, useLayoutEffect, useState } from 'react';
+import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
-import { BOEING_COMPANY_DATA as URL } from '../../../utils/constants/data';
+// Constants.
+import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
 
-// SCSS.
-import './BasicLineChart.scss';
+// Data.
+import { BOEING_COMPANY_DATA as URL } from '../../../utils/constants/data';
 
 // Types and interfaces.
 import { BasicChartDataType } from '../../../utils/types/data';
+import { DimensionsType } from '../../../utils/types/charts';
 
-// Constants.
-const OFFSET_X = 20;
-const DEFAULT_HEIGHT = 400;
+// SCSS.
+import './BasicLineChart.scss';
 
 // Components -- charts -- basic - line - chart
 const css_prefix = 'c--c--b-l-c__';
@@ -19,23 +20,19 @@ const css_prefix = 'c--c--b-l-c__';
 // Component props.
 interface BasicLineChartProps {
   width: number;
-  left: number;
-  right: number;
-  top: number;
-  bottom: number;
+  dimensions: DimensionsType;
   accentColor: { title: string; value: string };
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
 const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
   width,
-  left,
-  right,
-  top,
-  bottom,
+  dimensions,
   accentColor,
   svgContainer,
 }) => {
+  const { top, bottom, left, right } = dimensions;
+
   const draw = useCallback(() => {
     const newWidth = width! - left - right;
 
@@ -66,7 +63,7 @@ const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
             return d.date;
           }) as [Date, Date]
         )
-        .range([OFFSET_X, newWidth]);
+        .range([20, newWidth]);
 
       svg
         .select(`.${css_prefix}x-g`)

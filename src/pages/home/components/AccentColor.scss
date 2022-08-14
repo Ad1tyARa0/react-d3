@@ -6,8 +6,9 @@ $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
   // margin-bottom: 100px;
   // padding: 10px 15px;
 
@@ -25,7 +26,7 @@ $class_css_prefix: '.#{$css_prefix}';
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
+    font-size: 1em;
     margin-right: 10px;
   }
 
@@ -55,5 +56,6 @@ $class_css_prefix: '.#{$css_prefix}';
 
   #{$class_css_prefix}item-main-red {
     background-color: $color-red;
+    margin-right: 0;
   }
 }

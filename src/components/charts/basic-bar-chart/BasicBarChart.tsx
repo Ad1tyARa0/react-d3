@@ -1,40 +1,42 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
+// Constants.
+import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
+
 // Data.
 import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../../utils/constants/data';
 
+// Types and interfaces.
+import { BarChartType } from '../../../utils/types/data';
+import { DimensionsType } from '../../../utils/types/charts';
+
 // SCSS.
 import './BasicBarChart.scss';
-import { BarChartType } from '../../../utils/types/data';
 
 // Components -- charts -- basic - bar - chart
 const css_prefix = 'c--c--b-b-c__';
 
 // Component props.
 interface BasicBarChartProps {
+  dimensions: DimensionsType;
   width: number;
-  height: number;
-  left: number;
-  right: number;
-  top: number;
-  bottom: number;
   accentColor: { title: string; value: string };
+  svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
 const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
   width,
-  height,
-  left,
-  right,
-  top,
-  bottom,
+  dimensions,
   accentColor,
+  svgContainer,
 }) => {
+  const { top, bottom, left, right } = dimensions;
+
   const draw = useCallback(() => {
     const newWidth = width - left - right;
 
-    const newHeight = height - top - bottom;
+    const newHeight = DEFAULT_HEIGHT - top - bottom;
 
     const x = d3.scaleBand().range([0, newWidth]).padding(0.2);
 
@@ -107,14 +109,14 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
           ) => void
         );
     });
-  }, [bottom, height, left, right, top, width]);
+  }, [accentColor.value, bottom, left, right, top, width]);
 
   useLayoutEffect(() => {
     draw();
   }, [draw]);
 
   return (
-    <div className={`${css_prefix}main`}>
+    <div className={`${css_prefix}main`} ref={svgContainer}>
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}>
           <g className={`${css_prefix}x-g`} />

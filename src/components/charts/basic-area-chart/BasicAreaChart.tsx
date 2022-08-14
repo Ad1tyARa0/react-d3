@@ -1,36 +1,38 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
-// SCSS.
-import './BasicAreaChart.scss';
+// Constants.
+import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
+
+// Data.
+import { BITCOIN_PRICE_DATA as URL } from '../../../utils/constants/data';
+
+// Types and interfaces.
+import { DimensionsType } from '../../../utils/types/charts';
 import { BasicChartDataType } from '../../../utils/types/data';
 
-const URL =
-  'https://gist.githubusercontent.com/Ad1tyARa0/098d6579f640f133d0054db0fc635ebc/raw/BTC-USD.csv';
-const DEFAULT_HEIGHT = 400;
+// SCSS.
+import './BasicAreaChart.scss';
 
+// Components -- charts -- basic - area - chart
 const css_prefix = 'c--c--b-a-c__';
 
 // Component props.
 interface BasicAreaChartProps {
   width: number;
-  left: number;
-  right: number;
-  top: number;
-  bottom: number;
+  dimensions: DimensionsType;
   accentColor: { value: string; title: string };
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
 const BasicAreaChartComponent: React.FC<BasicAreaChartProps> = ({
   width,
-  left,
-  right,
-  top,
-  bottom,
+  dimensions,
   accentColor,
   svgContainer,
 }) => {
+  const { top, bottom, left, right } = dimensions;
+
   const draw = useCallback(() => {
     const newWidth = width! - left - right;
 

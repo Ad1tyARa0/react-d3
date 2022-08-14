@@ -1,11 +1,12 @@
-@import "src/global/colors";
-@import "src/global/variables";
+@import 'src/global/colors';
+@import 'src/global/variables';
 
-$css_prefix: "c--c--b-b-c__";
-$class_css_prefix: ".#{$css_prefix}";
+$css_prefix: 'c--c--b-b-c__';
+$class_css_prefix: '.#{$css_prefix}';
 
-// #{$class_css_prefix}main {
-// }
+#{$class_css_prefix}main {
+  margin: 15px;
+}
 
 #{$class_css_prefix}x-g {
   color: $color-background-light;
