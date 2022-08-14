@@ -45,6 +45,10 @@ $class_css_prefix: '.#{$css_prefix}';
   color: #fff;
 }
 
+#{$class_css_prefix}svg {
+  max-width: 100%;
+}
+
 #{$class_css_prefix}path {
   transition: fill 1000ms linear;
 }

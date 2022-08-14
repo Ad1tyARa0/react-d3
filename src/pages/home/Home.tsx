@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Components.
 import { AccentColor } from './components/AccentColor';
@@ -29,6 +29,23 @@ const HomeComponent: React.FC<HomeProps> = () => {
     setAccentColor(payload);
   };
 
+  const svgContainer = useRef<HTMLDivElement | null>(null);
+
+  const [width, setWidth] = useState<number>();
+
+  const getWidth = () => {
+    let width = window.innerWidth;
+    setWidth(width);
+  };
+
+  useEffect(() => {
+    getWidth();
+
+    window.addEventListener('resize', getWidth);
+
+    return () => window.removeEventListener('resize', getWidth);
+  }, []);
+
   return (
     <div className={`${css_prefix}main`}>
       <Layout
@@ -42,12 +59,12 @@ const HomeComponent: React.FC<HomeProps> = () => {
       >
         <>
           <BasicLineChart
+            svgContainer={svgContainer}
             top={10}
             right={50}
             bottom={50}
             left={50}
-            width={800}
-            height={400}
+            width={width!}
             accentColor={accentColor}
           />
 
@@ -56,12 +73,12 @@ const HomeComponent: React.FC<HomeProps> = () => {
             right={50}
             bottom={50}
             left={50}
-            width={800}
-            height={400}
+            width={width!}
             accentColor={accentColor}
+            svgContainer={svgContainer}
           />
 
-          <BasicBarChart
+          {/* <BasicBarChart
             top={50}
             right={50}
             bottom={50}
@@ -69,7 +86,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
             width={1200}
             height={450}
             accentColor={accentColor}
-          />
+          /> */}
         </>
       </Layout>
     </div>

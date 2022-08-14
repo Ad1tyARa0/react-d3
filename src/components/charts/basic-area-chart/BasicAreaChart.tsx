@@ -7,33 +7,34 @@ import { BasicChartDataType } from '../../../utils/types/data';
 
 const URL =
   'https://gist.githubusercontent.com/Ad1tyARa0/098d6579f640f133d0054db0fc635ebc/raw/BTC-USD.csv';
+const DEFAULT_HEIGHT = 400;
 
 const css_prefix = 'c--c--b-a-c__';
 
 // Component props.
 interface BasicAreaChartProps {
   width: number;
-  height: number;
   left: number;
   right: number;
   top: number;
   bottom: number;
   accentColor: { value: string; title: string };
+  svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
 const BasicAreaChartComponent: React.FC<BasicAreaChartProps> = ({
   width,
-  height,
   left,
   right,
   top,
   bottom,
   accentColor,
+  svgContainer,
 }) => {
   const draw = useCallback(() => {
-    const newWidth = width - left - right;
+    const newWidth = width! - left - right;
 
-    const newHeight = height - top - bottom;
+    const newHeight = DEFAULT_HEIGHT - top - bottom;
 
     const svg = d3
       .select(`.${css_prefix}svg`)
@@ -113,14 +114,14 @@ const BasicAreaChartComponent: React.FC<BasicAreaChartProps> = ({
             })
         );
     });
-  }, [accentColor.value, bottom, height, left, right, top, width]);
+  }, [accentColor.value, bottom, left, right, top, width]);
 
   useLayoutEffect(() => {
     draw();
   }, [draw]);
 
   return (
-    <div className={`${css_prefix}main`}>
+    <div className={`${css_prefix}main`} ref={svgContainer}>
       <div
         className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
       >

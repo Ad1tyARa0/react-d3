@@ -46,11 +46,14 @@ $class_css_prefix: '.#{$css_prefix}';
 }
 
 #{$class_css_prefix}path {
-  // stroke: #e4405f;
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
   animation: dash 3s linear forwards;
   transition: stroke 500ms linear;
+}
+
+#{$class_css_prefix}svg {
+  max-width: 100%;
 }
 
 @keyframes dash {
