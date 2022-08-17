@@ -12,20 +12,20 @@ import { DimensionsType } from '../../../utils/types/charts';
 import { BasicChartDataType } from '../../../utils/types/data';
 
 // SCSS.
-import './BasicAreaChart.scss';
+import './AreaChart.scss';
 
-// Components -- charts -- basic - area - chart
-const css_prefix = 'c--c--b-a-c__';
+// Components -- charts -- area - chart
+const css_prefix = 'c--c--a-c__';
 
 // Component props.
-interface BasicAreaChartProps {
+interface AreaChartProps {
   width: number;
   dimensions: DimensionsType;
   accentColor: { value: string; title: string };
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
-const BasicAreaChartComponent: React.FC<BasicAreaChartProps> = ({
+const AreaChartComponent: React.FC<AreaChartProps> = ({
   width,
   dimensions,
   accentColor,
@@ -145,4 +145,4 @@ const BasicAreaChartComponent: React.FC<BasicAreaChartProps> = ({
   );
 };
 
-export const BasicAreaChart = BasicAreaChartComponent;
+export const AreaChart = AreaChartComponent;

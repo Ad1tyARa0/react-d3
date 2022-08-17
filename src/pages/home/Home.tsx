@@ -3,9 +3,9 @@ import React, { Fragment, useEffect, useRef, useState } from 'react';
 // Components.
 import { Layout } from '../../layout/Layout';
 import { AccentColor } from './components/AccentColor';
-import { BasicBarChart } from '../../components/charts/basic-bar-chart/BasicBarChart';
-import { BasicLineChart } from '../../components/charts/basic-line-chart/BasicLineChart';
-import { BasicAreaChart } from '../../components/charts/basic-area-chart/BasicAreaChart';
+import { BarChart } from '../../components/charts/bar-chart/BarChart';
+import { LineChart } from '../../components/charts/line-chart/LineChart';
+import { AreaChart } from '../../components/charts/area-chart/AreaChart';
 
 // Constants.
 import { COLORS } from '../../utils/constants/colors';
@@ -78,21 +78,21 @@ const HomeComponent: React.FC<HomeProps> = () => {
         }
       >
         <Fragment>
-          <BasicLineChart
+          <LineChart
             svgContainer={svgContainer}
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
           />
 
-          <BasicAreaChart
+          <AreaChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
             svgContainer={svgContainer}
           />
 
-          <BasicBarChart
+          <BarChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}

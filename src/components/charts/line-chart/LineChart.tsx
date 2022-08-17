@@ -12,20 +12,20 @@ import { BasicChartDataType } from '../../../utils/types/data';
 import { DimensionsType } from '../../../utils/types/charts';
 
 // SCSS.
-import './BasicLineChart.scss';
+import './LineChart.scss';
 
-// Components -- charts -- basic - line - chart
-const css_prefix = 'c--c--b-l-c__';
+// Components -- charts -- line - chart
+const css_prefix = 'c--c--l-c__';
 
 // Component props.
-interface BasicLineChartProps {
+interface LineChartProps {
   width: number;
   dimensions: DimensionsType;
   accentColor: { title: string; value: string };
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
-const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
+const LineChartComponent: React.FC<LineChartProps> = ({
   width,
   dimensions,
   accentColor,
@@ -157,4 +157,4 @@ const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
   );
 };
 
-export const BasicLineChart = BasicLineChartComponent;
+export const LineChart = LineChartComponent;

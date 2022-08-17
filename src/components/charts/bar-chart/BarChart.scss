@@ -1,7 +1,7 @@
 @import 'src/global/colors';
 @import 'src/global/variables';
 
-$css_prefix: 'c--c--b-a-c__';
+$css_prefix: 'c--c--b-c__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
@@ -42,19 +42,21 @@ $class_css_prefix: '.#{$css_prefix}';
   transition: color 500ms linear;
 }
 
-#{$class_css_prefix}x-g {
+#{$class_css_prefix}y-g path {
+  stroke: none;
   color: #fff;
+}
+
+#{$class_css_prefix}x-g path {
+  stroke: none;
+  color: #fff;
+}
+
+.tick line {
+  visibility: hidden;
 }
 
 #{$class_css_prefix}y-g {
   stroke: none;
   color: #fff;
-}
-
-#{$class_css_prefix}svg {
-  max-width: 100%;
-}
-
-#{$class_css_prefix}path {
-  transition: fill 1000ms linear;
 }

@@ -9,20 +9,20 @@ import { BarChartType } from '../../../utils/types/data';
 import { DimensionsType } from '../../../utils/types/charts';
 
 // SCSS.
-import './BasicBarChart.scss';
+import './BarChart.scss';
 
-// Components -- charts -- basic - bar - chart
-const css_prefix = 'c--c--b-b-c__';
+// Components -- charts -- bar - chart
+const css_prefix = 'c--c--b-c__';
 
 // Component props.
-interface BasicBarChartProps {
+interface BarChartProps {
   dimensions: DimensionsType;
   width: number;
   accentColor: { title: string; value: string };
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
-const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
+const BarChartComponent: React.FC<BarChartProps> = ({
   width,
   dimensions,
   accentColor,
@@ -130,4 +130,4 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
   );
 };
 
-export const BasicBarChart = BasicBarChartComponent;
+export const BarChart = BarChartComponent;
