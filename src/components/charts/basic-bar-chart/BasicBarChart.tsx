@@ -113,6 +113,16 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
+      <div className={`${css_prefix}title-main`}>
+        <div
+          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
+        >
+          Most Popular Programming Languages - 2021
+        </div>
+
+        <div>Stack Overflow Survey</div>
+      </div>
+
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}>
           <g className={`${css_prefix}x-g`} />

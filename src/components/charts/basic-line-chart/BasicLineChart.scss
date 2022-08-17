@@ -8,11 +8,19 @@ $class_css_prefix: '.#{$css_prefix}';
   margin: 15px;
 }
 
+#{$class_css_prefix}title-main {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px 20px 10px;
+  padding: 10px 20px;
+}
+
 #{$class_css_prefix}title {
-  text-align: center;
-  padding: 10px 0;
-  margin: 0 10px 20px 20px;
   font-size: 1.4em;
+  margin-bottom: 5px;
 }
 
 #{$class_css_prefix}title-green {
@@ -42,17 +50,6 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}y-g {
   stroke: none;
   color: #fff;
-}
-
-#{$class_css_prefix}path {
-  // stroke-dasharray: 2000;
-  // stroke-dashoffset: 2000;
-  // animation: dash 3s linear forwards;
-  // transition: stroke 500ms linear;
-}
-
-#{$class_css_prefix}svg {
-  // max-width: 100%;
 }
 
 @keyframes dash {

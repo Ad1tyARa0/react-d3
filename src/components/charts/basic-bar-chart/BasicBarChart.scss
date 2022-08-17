@@ -8,11 +8,38 @@ $class_css_prefix: '.#{$css_prefix}';
   margin: 15px;
 }
 
-#{$class_css_prefix}x-g {
-  // color: $color-background-light;
-  // transform: translate(0, 10);
-  // stroke: red;
-  // color: red;
+#{$class_css_prefix}title-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px 20px 10px;
+  padding: 10px 20px;
+}
+
+#{$class_css_prefix}title {
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+
+#{$class_css_prefix}title-green {
+  color: $color-green;
+  transition: color border-bottom 500ms linear;
+}
+
+#{$class_css_prefix}title-blue {
+  color: $color-blue;
+  transition: color 500ms linear;
+}
+
+#{$class_css_prefix}title-yellow {
+  color: $color-yellow;
+  transition: color 500ms linear;
+}
+
+#{$class_css_prefix}title-red {
+  color: $color-red;
+  transition: color 500ms linear;
 }
 
 #{$class_css_prefix}y-g path {

@@ -124,10 +124,14 @@ const BasicAreaChartComponent: React.FC<BasicAreaChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
-      <div
-        className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
-      >
-        Bitcoin price data ( July 2022 )
+      <div className={`${css_prefix}title-main`}>
+        <div
+          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
+        >
+          Bitcoin USD (BTC-USD) - 2022
+        </div>
+
+        <div>CCC - CoinMarketCap. Currency in USD</div>
       </div>
 
       <svg className={`${css_prefix}svg`}>

@@ -136,10 +136,14 @@ const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
-      <div
-        className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
-      >
-        Boeing Stock data ( July 2022 )
+      <div className={`${css_prefix}title-main`}>
+        <div
+          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
+        >
+          The Boeing Company (BA) - 2022
+        </div>
+
+        <div>NYSE - Currency in USD</div>
       </div>
 
       <svg className={`${css_prefix}svg`}>
