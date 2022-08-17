@@ -34,17 +34,15 @@ const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
   const { top, bottom, left, right } = dimensions;
 
   const draw = useCallback(() => {
-    const newWidth = width! - left - right;
+    const newWidth = width - left - right;
 
     const newHeight = DEFAULT_HEIGHT - top - bottom;
 
     const svg = d3
       .select(`.${css_prefix}svg`)
-      // .attr('viewBox', `0 0 800 600`)
       .attr('width', newWidth + left + right)
       .attr('height', newHeight + top + bottom)
       .select(`.${css_prefix}main-g`);
-    // .attr('transofrm', `translate(${left}, ${top})`);
 
     d3.dsv(',', URL, d => {
       const res = d as unknown as BasicChartDataType;
@@ -69,7 +67,10 @@ const BasicLineChartComponent: React.FC<BasicLineChartProps> = ({
         .select(`.${css_prefix}x-g`)
         .attr('transform', `translate(10, ${newHeight})`)
         .call(
-          d3.axisBottom(x) as unknown as (
+          d3.axisBottom(x).tickFormat(d => {
+            const formatTime = d3.timeFormat('%b');
+            return formatTime(d as Date);
+          }) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
             ...args: any[]
           ) => void

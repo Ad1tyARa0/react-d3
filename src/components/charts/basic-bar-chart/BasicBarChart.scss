@@ -20,6 +20,11 @@ $class_css_prefix: '.#{$css_prefix}';
   color: #fff;
 }
 
+#{$class_css_prefix}x-g path {
+  stroke: none;
+  color: #fff;
+}
+
 .tick line {
   visibility: hidden;
 }

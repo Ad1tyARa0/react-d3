@@ -52,6 +52,8 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
     d3.dsv(',', URL, d => {
       return d as unknown as BarChartType;
     }).then(data => {
+      data = data.sort((a, b) => b.value - a.value);
+
       x.domain([
         d3.max(data, d => {
           return 3 + Math.max(...data.map(dt => (dt as BarChartType).value), 0);
@@ -87,7 +89,7 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
         .select(`.${css_prefix}x-g`)
         .attr('transform', `translate(15, 30)`)
         .call(
-          d3.axisTop(x) as unknown as (
+          d3.axisTop(x).ticks(20) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
             ...args: any[]
           ) => void
