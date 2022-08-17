@@ -1,9 +1,6 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
-// Constants.
-import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
-
 // Data.
 import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../../utils/constants/data';
 
