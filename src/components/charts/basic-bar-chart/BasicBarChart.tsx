@@ -36,11 +36,11 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
   const draw = useCallback(() => {
     const newWidth = width - left - right;
 
-    const newHeight = DEFAULT_HEIGHT - top - bottom;
+    const newHeight = 700 - top - bottom;
 
-    const x = d3.scaleBand().range([0, newWidth]).padding(0.2);
+    const y = d3.scaleBand().range([0, newHeight]).padding(0.2);
 
-    const y = d3.scaleLinear().range([newHeight, 0]);
+    const x = d3.scaleLinear().range([newWidth, 0]);
 
     const svg = d3
       .select(`.${css_prefix}svg`)
@@ -52,48 +52,42 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
     d3.dsv(',', URL, d => {
       return d as unknown as BarChartType;
     }).then(data => {
-      x.domain(
+      x.domain([
+        d3.max(data, d => {
+          return 3 + Math.max(...data.map(dt => (dt as BarChartType).value), 0);
+        }),
+        0,
+      ] as Iterable<d3.NumberValue>);
+
+      y.domain(
         data.map(d => {
           return d.language;
         })
       );
-
-      y.domain([
-        0,
-        d3.max(data, d => {
-          return 3 + Math.max(...data.map(dt => (dt as BarChartType).value), 0);
-        }),
-      ] as number[]);
 
       svg
         .selectAll('.bar')
         .data(data)
         .enter()
         .append('rect')
+        .attr('transform', `translate(15, 30)`)
         .attr('fill', `${accentColor.value}`)
-        // .attr('fill', 'white')
-        .attr('class', 'bar')
-        .attr('x', d => {
-          return x(d.language) || 0;
-        })
-        .attr('width', x.bandwidth())
-        .attr('y', d => {
-          return y(d.value);
-        })
+        .attr('class', `${css_prefix}bar`)
+        .attr('x', x(0))
+        .attr('y', d => y(d.language)!)
         .transition()
         .duration(800)
-        .attr('height', d => {
-          return newHeight - y(d.value);
-        })
+        .attr('width', d => x(d.value))
         .delay((d, i) => {
           return i * 100;
-        });
+        })
+        .attr('height', y.bandwidth());
 
       svg
         .select(`.${css_prefix}x-g`)
-        .attr('transform', `translate(0, ${newHeight + 5})`)
+        .attr('transform', `translate(15, 30)`)
         .call(
-          d3.axisBottom(x) as unknown as (
+          d3.axisTop(x) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
             ...args: any[]
           ) => void
@@ -101,7 +95,7 @@ const BasicBarChartComponent: React.FC<BasicBarChartProps> = ({
 
       svg
         .select(`.${css_prefix}y-g`)
-        // .attr("transform", `translate(${left}, 0)`)
+        .attr('transform', `translate(15, 30)`)
         .call(
           d3.axisLeft(y) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,

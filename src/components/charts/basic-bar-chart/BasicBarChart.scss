@@ -9,14 +9,15 @@ $class_css_prefix: '.#{$css_prefix}';
 }
 
 #{$class_css_prefix}x-g {
-  color: $color-background-light;
+  // color: $color-background-light;
   // transform: translate(0, 10);
   // stroke: red;
   // color: red;
 }
 
-#{$class_css_prefix}x-g path {
+#{$class_css_prefix}y-g path {
   stroke: none;
+  color: #fff;
 }
 
 .tick line {
@@ -26,9 +27,4 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}y-g {
   stroke: none;
   color: #fff;
-}
-
-.bar {
-  // fill: red;
-  transition: fill 500ms linear;
 }
