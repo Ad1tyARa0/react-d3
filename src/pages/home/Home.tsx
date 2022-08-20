@@ -15,6 +15,7 @@ import './Home.scss';
 
 // Types and interfaces.
 import { DimensionsType } from '../../utils/types/charts';
+import { PieChart } from '../../components/charts/pie-chart/PieChart';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -78,6 +79,12 @@ const HomeComponent: React.FC<HomeProps> = () => {
         }
       >
         <Fragment>
+          <PieChart
+            dimensions={dimensions}
+            width={width!}
+            accentColor={accentColor}
+          />
+
           <LineChart
             svgContainer={svgContainer}
             dimensions={dimensions}

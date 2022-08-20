@@ -65,7 +65,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
 
       svg
         .select(`.${css_prefix}x-g`)
-        .attr('transform', `translate(50, ${newHeight})`)
+        .attr('transform', `translate(51, ${newHeight})`)
         .call(
           d3.axisBottom(x) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
@@ -98,7 +98,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
         .select(`.${css_prefix}path`)
         .datum(data)
         .attr('fill', `${accentColor.value}`)
-        .attr('transform', `translate(50, 0)`)
+        .attr('transform', `translate(51, -1)`)
         .attr('stroke', `${accentColor.value}`)
         .attr('stroke-width', 0.3)
         .attr(

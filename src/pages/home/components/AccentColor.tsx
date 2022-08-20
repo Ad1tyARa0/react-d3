@@ -24,14 +24,6 @@ const AccentColorComponent: React.FC<AccentColorProps> = ({
 }) => {
   return (
     <div className={`${css_prefix}main`}>
-      <div className={`${css_prefix}title`}>
-        <div className={`${css_prefix}icon`}>
-          <MdInvertColors />
-        </div>
-
-        <div className={`${css_prefix}heading`}>{title}</div>
-      </div>
-
       <div className={`${css_prefix}inner-main`}>
         {colors.map(e => {
           return (
@@ -44,6 +36,14 @@ const AccentColorComponent: React.FC<AccentColorProps> = ({
             />
           );
         })}
+      </div>
+
+      <div className={`${css_prefix}title`}>
+        <div className={`${css_prefix}icon`}>
+          <MdInvertColors />
+        </div>
+
+        <div className={`${css_prefix}heading`}>{title}</div>
       </div>
     </div>
   );

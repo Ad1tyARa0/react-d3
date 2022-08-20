@@ -52,8 +52,6 @@ $class_css_prefix: '.#{$css_prefix}';
   color: #fff;
 }
 
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
+#{$class_css_prefix}path {
+  transition: stroke 300ms linear;
 }

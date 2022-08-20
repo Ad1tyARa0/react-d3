@@ -1,0 +1,31 @@
+[
+  {
+    "expense": "Rent",
+    "amount": 12000
+  },
+
+  {
+    "expense": "Groceries",
+    "amount": 3570
+  },
+
+  {
+    "expense": "Fuel",
+    "amount": 800
+  },
+
+  {
+    "expense": "Electricity",
+    "amount": 1300
+  },
+
+  {
+    "expense": "Savings",
+    "amount": 20000
+  },
+
+  {
+    "expense": "Investments",
+    "amount": 15000
+  }
+]
