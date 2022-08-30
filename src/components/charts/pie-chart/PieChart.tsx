@@ -1,18 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import {
-  DimensionsType,
-  PieChartType,
-  PieTypeGeneric,
-} from '../../../utils/types/charts';
-import { PieArcDatum } from 'd3-shape';
-import data from '../../../data/pie-chart.json';
-import { EXPENSES_DATA as URL } from '../../../utils/constants/data';
-
+import React, { useCallback, useEffect } from 'react';
 import * as d3 from 'd3';
+import { PieArcDatum } from 'd3-shape';
+
+// Types.
+import { DimensionsType } from '../../../utils/types/charts';
+
+// Data.
+import raw_data from '../../../data/pie-chart.json';
 
 // SCSS.
 import './PieChart.scss';
-import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
+import {
+  PIECHART_PALETTE,
+  PIECHART_PALETTE_MAPPING,
+} from '../../../utils/constants/charts';
 
 // Components -- charts -- pie - chart
 const css_prefix = 'c--c--p-c__';
@@ -29,63 +30,67 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
   dimensions,
   accentColor,
 }) => {
+  type PieChartType = {
+    name: string;
+    value: number;
+  };
+
   const { left, right, top, bottom } = dimensions;
 
   const draw = useCallback(() => {
-    const newWidth = 500 - left - right;
-    const newHeight = DEFAULT_HEIGHT - top - bottom;
+    const newWidth = width - left - right;
+    const newHeight = 300 - top - bottom;
     const radius = Math.min(width, newHeight) / 2;
+
+    const data: PieChartType[] = raw_data.map(e => {
+      return {
+        name: e.expense,
+        value: e.amount,
+      };
+    });
 
     const svg = d3
       .select(`.${css_prefix}svg`)
       .attr('width', newWidth)
       .attr('height', newHeight)
       .select(`.${css_prefix}main-g`)
-      .attr('transform', `translate(${newWidth} / 2, ${newHeight} / 2)`);
+      .attr('transform', `translate(${newWidth / 2}, ${newHeight / 2})`);
 
-    d3.dsv(',', URL, d => {
-      const res = d as unknown as PieChartType;
+    svg.selectAll('*').remove();
 
-      return {
-        name: res.expense,
-        value: res.amount,
-      };
-    }).then(data => {
-      const color = d3
-        .scaleOrdinal()
-        .domain(
-          d3.extent(data as { name: string; value: number }[], d => {
-            return d.name;
-          }) as unknown as string
-        )
-        .range(d3.schemeCategory10);
+    const color = d3
+      .scaleOrdinal()
+      .domain(
+        d3.extent(data, d => {
+          return d.name;
+        }) as unknown as string
+      )
+      .range(PIECHART_PALETTE);
+    // .range(d3.schemeCategory10);
 
-      const pie = d3
-        .pie<PieTypeGeneric>()
-        .sort(null)
-        .value(record => {
-          return record.value;
-        });
+    const pie = d3
+      .pie<PieChartType>()
+      .sort(null)
+      .value(record => record.value);
 
-      const path = d3
-        .arc<PieArcDatum<any>>()
-        .innerRadius(0)
-        .outerRadius(radius);
+    const path = d3
+      .arc<PieArcDatum<PieChartType>>()
+      .innerRadius(50)
+      .outerRadius(radius);
 
-      const pieData = pie(data);
+    const pieData = pie(data);
 
-      const arch = svg
-        .selectAll('.arc')
-        .data(pieData)
-        .enter()
-        .append('g')
-        .attr('class', 'arc')
-        .attr('fill', d => {
-          return color(d.data.name) as string;
-        });
+    const arch = svg
+      .selectAll('.arc')
+      .data(pieData)
+      .enter()
+      .append('g')
+      .attr('class', 'arc')
+      .attr('fill', d => {
+        return color(d.data.name) as string;
+      });
 
-      arch.append('path').attr('d', path);
-    });
+    arch.append('path').attr('d', path);
   }, [bottom, left, right, top, width]);
 
   useEffect(() => {
@@ -94,6 +99,35 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`}>
+      <div className={`${css_prefix}title-main`}>
+        <div
+          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
+        >
+          Expenses
+        </div>
+
+        <div>Aug 1st 2022 - Sept 1st 2022</div>
+      </div>
+
+      <div className={`${css_prefix}value-main`}>
+        {PIECHART_PALETTE.map(e => {
+          return (
+            <div key={e} className={`${css_prefix}item`}>
+              <div
+                style={{
+                  backgroundColor: `${e}`,
+                  height: '18px',
+                  width: '18px',
+                  borderRadius: '3px',
+                  marginRight: '5px',
+                }}
+              />
+              <span>{PIECHART_PALETTE_MAPPING[e]}</span>
+            </div>
+          );
+        })}
+      </div>
+
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}></g>
       </svg>

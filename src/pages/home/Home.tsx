@@ -34,6 +34,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
   const svgContainer = useRef<HTMLDivElement | null>(null);
 
   const [width, setWidth] = useState<number>();
+
   const [accentColor, setAccentColor] = useState<{
     title: string;
     value: string;
@@ -51,7 +52,9 @@ const HomeComponent: React.FC<HomeProps> = () => {
    * Get width
    */
   const getWidth = () => {
-    let newWidth = svgContainer.current?.clientWidth;
+    let newWidth = svgContainer.current?.getBoundingClientRect().width;
+
+    // let newWidth = window.innerWidth;
     setWidth(newWidth);
   };
 

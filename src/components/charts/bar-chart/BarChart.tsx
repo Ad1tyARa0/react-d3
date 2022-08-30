@@ -69,7 +69,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({
         .data(data)
         .enter()
         .append('rect')
-        .attr('transform', `translate(15, 30)`)
+        .attr('transform', `translate(16, 30)`)
         .attr('fill', `${accentColor.value}`)
         .attr('class', `${css_prefix}bar`)
         .attr('x', x(0))
