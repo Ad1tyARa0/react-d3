@@ -8,8 +8,8 @@ import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
 import { BOEING_COMPANY_DATA as URL } from '../../../utils/constants/data';
 
 // Types and interfaces.
-import { BasicChartDataType } from '../../../utils/types/data';
 import { DimensionsType } from '../../../utils/types/charts';
+import { BasicChartDataType } from '../../../utils/types/data';
 
 // SCSS.
 import './LineChart.scss';

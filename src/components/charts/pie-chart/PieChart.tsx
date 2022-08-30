@@ -2,6 +2,12 @@ import React, { useCallback, useEffect } from 'react';
 import * as d3 from 'd3';
 import { PieArcDatum } from 'd3-shape';
 
+// Constants.
+import {
+  PIECHART_PALETTE,
+  PIECHART_PALETTE_MAPPING,
+} from '../../../utils/constants/charts';
+
 // Types.
 import { DimensionsType } from '../../../utils/types/charts';
 
@@ -10,10 +16,6 @@ import raw_data from '../../../data/pie-chart.json';
 
 // SCSS.
 import './PieChart.scss';
-import {
-  PIECHART_PALETTE,
-  PIECHART_PALETTE_MAPPING,
-} from '../../../utils/constants/charts';
 
 // Components -- charts -- pie - chart
 const css_prefix = 'c--c--p-c__';

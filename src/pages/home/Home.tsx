@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useRef, useState } from 'react';
 // Components.
 import { Layout } from '../../layout/Layout';
 import { AccentColor } from './components/AccentColor';
+import { PieChart } from '../../components/charts/pie-chart/PieChart';
 import { BarChart } from '../../components/charts/bar-chart/BarChart';
 import { LineChart } from '../../components/charts/line-chart/LineChart';
 import { AreaChart } from '../../components/charts/area-chart/AreaChart';
@@ -15,7 +16,6 @@ import './Home.scss';
 
 // Types and interfaces.
 import { DimensionsType } from '../../utils/types/charts';
-import { PieChart } from '../../components/charts/pie-chart/PieChart';
 
 // Pages -- home
 const css_prefix = 'p--h__';
