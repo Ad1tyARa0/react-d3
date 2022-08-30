@@ -7,6 +7,7 @@ import { PieChart } from '../../components/charts/pie-chart/PieChart';
 import { BarChart } from '../../components/charts/bar-chart/BarChart';
 import { LineChart } from '../../components/charts/line-chart/LineChart';
 import { AreaChart } from '../../components/charts/area-chart/AreaChart';
+import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Constants.
 import { COLORS } from '../../utils/constants/colors';
@@ -16,7 +17,6 @@ import './Home.scss';
 
 // Types and interfaces.
 import { DimensionsType } from '../../utils/types/charts';
-import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Pages -- home
 const css_prefix = 'p--h__';
