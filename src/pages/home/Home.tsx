@@ -16,6 +16,7 @@ import './Home.scss';
 
 // Types and interfaces.
 import { DimensionsType } from '../../utils/types/charts';
+import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -82,6 +83,8 @@ const HomeComponent: React.FC<HomeProps> = () => {
         }
       >
         <Fragment>
+          <ScatterPlot />
+
           <PieChart
             dimensions={dimensions}
             width={width!}
