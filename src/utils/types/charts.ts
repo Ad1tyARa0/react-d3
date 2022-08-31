@@ -14,3 +14,8 @@ export type PieTypeGeneric = {
   name: string;
   value: number;
 };
+
+export type ScatterPlotType = {
+  price: number;
+  carat: number;
+};

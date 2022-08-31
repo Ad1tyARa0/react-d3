@@ -68,7 +68,10 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
         .select(`.${css_prefix}x-g`)
         .attr('transform', `translate(51, ${newHeight})`)
         .call(
-          d3.axisBottom(x) as unknown as (
+          d3.axisBottom(x).tickFormat(d => {
+            const formatTime = d3.timeFormat('%b');
+            return formatTime(d as Date);
+          }) as unknown as (
             selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
             ...args: any[]
           ) => void
