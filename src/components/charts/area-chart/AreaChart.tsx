@@ -13,6 +13,7 @@ import { BasicChartDataType } from '../../../utils/types/data';
 
 // SCSS.
 import './AreaChart.scss';
+import { Title } from '../../common/title/Title';
 
 // Components -- charts -- area - chart
 const css_prefix = 'c--c--a-c__';
@@ -124,15 +125,11 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
-      <div className={`${css_prefix}title-main`}>
-        <div
-          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
-        >
-          Bitcoin USD (BTC-USD) - 2022
-        </div>
-
-        <div>CCC - CoinMarketCap. Currency in USD</div>
-      </div>
+      <Title
+        title='Bitcoin USD (BTC-USD) - 2022'
+        subTitle='CCC - CoinMarketCap. Currency in USD'
+        accentColor={accentColor}
+      />
 
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}>

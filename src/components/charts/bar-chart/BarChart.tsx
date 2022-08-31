@@ -1,6 +1,9 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
+// Components.
+import { Title } from '../../common/title/Title';
+
 // Data.
 import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../../utils/constants/data';
 
@@ -110,15 +113,11 @@ const BarChartComponent: React.FC<BarChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
-      <div className={`${css_prefix}title-main`}>
-        <div
-          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
-        >
-          Most Popular Programming Languages - 2021
-        </div>
-
-        <div>Stack Overflow Survey</div>
-      </div>
+      <Title
+        title='Most Popular Programming Languages - 2021'
+        subTitle='Stack Overflow Survey'
+        accentColor={accentColor}
+      />
 
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}>

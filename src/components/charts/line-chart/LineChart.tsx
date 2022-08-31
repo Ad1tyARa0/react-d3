@@ -1,6 +1,9 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
+// Components.
+import { Title } from '../../common/title/Title';
+
 // Constants.
 import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
 
@@ -136,15 +139,11 @@ const LineChartComponent: React.FC<LineChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
-      <div className={`${css_prefix}title-main`}>
-        <div
-          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
-        >
-          The Boeing Company (BA) - 2022
-        </div>
-
-        <div>NYSE - Currency in USD</div>
-      </div>
+      <Title
+        title='The Boeing Company (BA) - 2022'
+        subTitle='NYSE - Currency in USD'
+        accentColor={accentColor}
+      />
 
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}>

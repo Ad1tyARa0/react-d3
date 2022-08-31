@@ -1,6 +1,9 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useLayoutEffect, useMemo } from 'react';
 import * as d3 from 'd3';
 import { PieArcDatum } from 'd3-shape';
+
+// Components.
+import { Title } from '../../common/title/Title';
 
 // Constants.
 import {
@@ -9,7 +12,7 @@ import {
 } from '../../../utils/constants/charts';
 
 // Types.
-import { DimensionsType } from '../../../utils/types/charts';
+import { DimensionsType, PieTypeGeneric } from '../../../utils/types/charts';
 
 // Data.
 import raw_data from '../../../data/pie-chart.json';
@@ -32,24 +35,23 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
   dimensions,
   accentColor,
 }) => {
-  type PieChartType = {
-    name: string;
-    value: number;
-  };
-
   const { left, right, top, bottom } = dimensions;
+
+  const data: PieTypeGeneric[] = useMemo(
+    () =>
+      raw_data.map(e => {
+        return {
+          name: e.expense,
+          value: e.amount,
+        };
+      }),
+    []
+  );
 
   const draw = useCallback(() => {
     const newWidth = width - left - right;
-    const newHeight = 300 - top - bottom;
+    const newHeight = 500 - top - bottom;
     const radius = Math.min(width, newHeight) / 2;
-
-    const data: PieChartType[] = raw_data.map(e => {
-      return {
-        name: e.expense,
-        value: e.amount,
-      };
-    });
 
     const svg = d3
       .select(`.${css_prefix}svg`)
@@ -71,12 +73,12 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
     // .range(d3.schemeCategory10);
 
     const pie = d3
-      .pie<PieChartType>()
+      .pie<PieTypeGeneric>()
       .sort(null)
       .value(record => record.value);
 
     const path = d3
-      .arc<PieArcDatum<PieChartType>>()
+      .arc<PieArcDatum<PieTypeGeneric>>()
       .innerRadius(50)
       .outerRadius(radius);
 
@@ -93,23 +95,19 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
       });
 
     arch.append('path').attr('d', path);
-  }, [bottom, left, right, top, width]);
+  }, [bottom, data, left, right, top, width]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     draw();
   }, [draw]);
 
   return (
     <div className={`${css_prefix}main`}>
-      <div className={`${css_prefix}title-main`}>
-        <div
-          className={`${css_prefix}title ${css_prefix}title-${accentColor.title}`}
-        >
-          Expenses
-        </div>
-
-        <div>Aug 1st 2022 - Sept 1st 2022</div>
-      </div>
+      <Title
+        title='Expenses'
+        subTitle='Aug 1st 2022 - Sept 1st 2022'
+        accentColor={accentColor}
+      />
 
       <div className={`${css_prefix}value-main`}>
         {PIECHART_PALETTE.map(e => {
