@@ -27,6 +27,8 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
 }) => {
   const { right, left, top, bottom } = dimensions;
 
+
+  // draw
   const draw = useCallback(() => {
     const newWidth = width - left - right;
     const newHeight = DEFAULT_HEIGHT - top - bottom;
