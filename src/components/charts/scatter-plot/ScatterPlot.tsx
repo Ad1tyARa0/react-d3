@@ -30,8 +30,6 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
 }) => {
   const { right, left, top, bottom } = dimensions;
 
-  const [loading, setLoading] = useState<boolean>(true);
-
   // draw
   const draw = useCallback(() => {
     const newWidth = DEFAULT_WIDTH - left - right;
@@ -92,17 +90,13 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
         .attr('r', 3)
         .style('fill', accentColor.value);
 
-      setLoading(false);
+      // setLoading(false);
     });
   }, [accentColor.value, bottom, left, right, top]);
 
   useLayoutEffect(() => {
     draw();
   }, [draw]);
-
-  if (loading) {
-    return null;
-  }
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
