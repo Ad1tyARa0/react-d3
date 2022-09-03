@@ -5,4 +5,12 @@ $css_prefix: 'c--c--s-p__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#{$class_css_prefix}circle {
+  opacity: 0.3;
 }

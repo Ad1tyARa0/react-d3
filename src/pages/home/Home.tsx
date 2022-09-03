@@ -83,12 +83,11 @@ const HomeComponent: React.FC<HomeProps> = () => {
         }
       >
         <Fragment>
-          {/* <ScatterPlot
+          <ScatterPlot
             svgContainer={svgContainer}
             dimensions={dimensions}
-            width={width!}
             accentColor={accentColor}
-          /> */}
+          />
 
           <PieChart
             dimensions={dimensions}

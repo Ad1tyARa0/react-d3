@@ -1,4 +1,5 @@
 export const DEFAULT_HEIGHT = 400;
+export const DEFAULT_WIDTH = 800;
 
 export const PIECHART_PALETTE = [
   '#27AE60',
