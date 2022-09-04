@@ -1,17 +1,20 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
+
+// Components.
+import { Title } from '../../common/title/Title';
+
+// Constants.
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../../../utils/constants/charts';
+
+// data
 import { DIAMONDS_DATA as URL } from '../../../utils/constants/data';
+
+// Types.
+import { DimensionsType, ScatterPlotType } from '../../../utils/types/charts';
 
 // SCSS.
 import './ScatterPlot.scss';
-import { DimensionsType, ScatterPlotType } from '../../../utils/types/charts';
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../../../utils/constants/charts';
-import { Title } from '../../common/title/Title';
 
 // Components -- charts -- scatter - plot
 const css_prefix = 'c--c--s-p__';
