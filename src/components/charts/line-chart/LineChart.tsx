@@ -13,10 +13,10 @@ import { BOEING_COMPANY_DATA as URL } from '../../../utils/constants/data';
 // Types and interfaces.
 import { DimensionsType } from '../../../utils/types/charts';
 import { BasicChartDataType } from '../../../utils/types/data';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // SCSS.
 import './LineChart.scss';
-import { AccentColorType } from '../../../utils/types/accent-color';
 
 // Components -- charts -- line - chart
 const css_prefix = 'c--c--l-c__';

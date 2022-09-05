@@ -11,11 +11,12 @@ import {
   PIECHART_PALETTE_MAPPING,
 } from '../../../utils/constants/charts';
 
-// Types.
-import { DimensionsType, PieTypeGeneric } from '../../../utils/types/charts';
-
 // Data.
 import raw_data from '../../../data/pie-chart.json';
+
+// Types.
+import { AccentColorType } from '../../../utils/types/accent-color';
+import { DimensionsType, PieTypeGeneric } from '../../../utils/types/charts';
 
 // SCSS.
 import './PieChart.scss';
@@ -27,7 +28,7 @@ const css_prefix = 'c--c--p-c__';
 interface PieChartProps {
   width: number;
   dimensions: DimensionsType;
-  accentColor: { title: string; value: string };
+  accentColor: AccentColorType;
 }
 
 const PieChartComponent: React.FunctionComponent<PieChartProps> = ({

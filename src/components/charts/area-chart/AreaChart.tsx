@@ -1,6 +1,9 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
+// Components.
+import { Title } from '../../common/title/Title';
+
 // Constants.
 import { DEFAULT_HEIGHT } from '../../../utils/constants/charts';
 
@@ -10,11 +13,10 @@ import { BITCOIN_PRICE_DATA as URL } from '../../../utils/constants/data';
 // Types and interfaces.
 import { DimensionsType } from '../../../utils/types/charts';
 import { BasicChartDataType } from '../../../utils/types/data';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // SCSS.
 import './AreaChart.scss';
-import { Title } from '../../common/title/Title';
-import { AccentColorType } from '../../../utils/types/accent-color';
 
 // Components -- charts -- area - chart
 const css_prefix = 'c--c--a-c__';

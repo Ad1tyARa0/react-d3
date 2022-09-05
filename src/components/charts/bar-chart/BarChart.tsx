@@ -10,10 +10,10 @@ import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../../utils/constants/data
 // Types and interfaces.
 import { BarChartType } from '../../../utils/types/data';
 import { DimensionsType } from '../../../utils/types/charts';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // SCSS.
 import './BarChart.scss';
-import { AccentColorType } from '../../../utils/types/accent-color';
 
 // Components -- charts -- bar - chart
 const css_prefix = 'c--c--b-c__';
