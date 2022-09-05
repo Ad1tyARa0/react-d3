@@ -8,3 +8,8 @@ $class_css_prefix: '.#{$css_prefix}';
   display: flex;
   flex-direction: column;
 }
+
+#{$class_css_prefix}graph-item {
+  // margin: 20px 0;
+  margin-bottom: 50px;
+}

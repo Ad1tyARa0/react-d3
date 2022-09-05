@@ -1,0 +1,49 @@
+@import 'src/global/colors';
+@import 'src/global/variables';
+
+$css_prefix: 'c--c--d__';
+$class_css_prefix: '.#{$css_prefix}';
+
+#{$class_css_prefix}main {
+  //   position: absolute;
+
+  display: flex;
+}
+
+#{$class_css_prefix}title-main {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid $color-green;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+#{$class_css_prefix}title-icon {
+  @include display-flex-center-center;
+
+  margin-left: 15px;
+  font-size: 22px;
+  transition: transform 500ms linear;
+  transform: rotate(0deg);
+}
+
+#{$class_css_prefix}title-icon-active {
+  transform: rotate(90deg);
+  transition: transform 500ms linear;
+}
+
+#{$class_css_prefix}title {
+  font-family: 'Noto Regular';
+}
+
+#{$class_css_prefix}item-main {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+}
+
+#{$class_css_prefix}item {
+  display: flex;
+}

@@ -1,8 +1,15 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import * as d3 from 'd3';
 
 // Components.
 import { Layout } from '../../layout/Layout';
-import { AccentColor } from './components/AccentColor';
+import { AccentColor } from './components/accent-color/AccentColor';
 import { PieChart } from '../../components/charts/pie-chart/PieChart';
 import { BarChart } from '../../components/charts/bar-chart/BarChart';
 import { LineChart } from '../../components/charts/line-chart/LineChart';
@@ -17,6 +24,9 @@ import './Home.scss';
 
 // Types and interfaces.
 import { DimensionsType } from '../../utils/types/charts';
+import { BITCOIN_PRICE_DATA } from '../../utils/constants/data';
+import { Loader } from '../../components/common/loader/Loader';
+import { Data } from './components/data/Data';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -32,6 +42,8 @@ const HomeComponent: React.FC<HomeProps> = () => {
     left: 50,
   };
 
+  const [btcData, setBtcData] = useState<d3.DSVRowArray<string> | null>(null);
+
   const svgContainer = useRef<HTMLDivElement | null>(null);
 
   const [width, setWidth] = useState<number>();
@@ -41,6 +53,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
     value: string;
   }>({ value: '#2ECC71', title: 'green' });
 
+  const [loading, setLoading] = useState<boolean>(false);
   /**
    * Set accent color.
    * @param payload - accent color.
@@ -71,6 +84,24 @@ const HomeComponent: React.FC<HomeProps> = () => {
     return () => window.removeEventListener('resize', getWidth);
   }, []);
 
+  const fetchBitcoinPriceData = useCallback(async () => {
+    setLoading(true);
+
+    try {
+      let response = await d3.dsv(',', BITCOIN_PRICE_DATA);
+
+      setBtcData(response);
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchBitcoinPriceData();
+  }, [fetchBitcoinPriceData]);
+
   return (
     <div className={`${css_prefix}main`}>
       <Layout
@@ -83,13 +114,19 @@ const HomeComponent: React.FC<HomeProps> = () => {
         }
       >
         <Fragment>
-          <ScatterPlot
-            svgContainer={svgContainer}
-            dimensions={dimensions}
-            accentColor={accentColor}
-          />
+          {/* <Loader /> */}
 
-          <PieChart
+          <Data />
+
+          {/* <div className={`${css_prefix}graph-item`}>
+            <ScatterPlot
+              svgContainer={svgContainer}
+              dimensions={dimensions}
+              accentColor={accentColor}
+            />
+          </div> */}
+
+          {/* <PieChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
@@ -100,21 +137,21 @@ const HomeComponent: React.FC<HomeProps> = () => {
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
-          />
+          /> */}
 
-          <AreaChart
+          {/* <AreaChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
             svgContainer={svgContainer}
-          />
+          /> */}
 
-          <BarChart
+          {/* <BarChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
             svgContainer={svgContainer}
-          />
+          /> */}
         </Fragment>
       </Layout>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { MdInvertColors } from 'react-icons/md';
 
 // Components.
-import { ColorsType } from '../../../utils/types/colors';
+import { ColorsType } from '../../../../utils/types/colors';
 
 // SCSS.
 import './AccentColor.scss';
