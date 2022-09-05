@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { DropdownOptionsType } from '../../../utils/types/dropdown';
 import { BsCaretDown } from 'react-icons/bs';
 
 // SCSS.
 import './Dropdown.scss';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 // Components -- common -- dropdown
 const css_prefix = 'c--c--d__';
@@ -20,6 +21,8 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
 }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
   const onClickShowDropdown = () => {
     setShowDropdown(true);
   };
@@ -28,9 +31,15 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
     setShowDropdown(false);
   };
 
+  useOnClickOutside(dropdownRef, onClickHideDropdown);
+
   return (
     <div className={`${css_prefix}main`}>
-      <div className={`${css_prefix}title-main`} onClick={onClickShowDropdown}>
+      <div
+        className={`${css_prefix}title-main`}
+        onClick={onClickShowDropdown}
+        ref={dropdownRef}
+      >
         <div className={`${css_prefix}title`}>{title}</div>
 
         <div

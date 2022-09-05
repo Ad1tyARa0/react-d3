@@ -13,6 +13,7 @@ import { DimensionsType } from '../../../utils/types/charts';
 
 // SCSS.
 import './BarChart.scss';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // Components -- charts -- bar - chart
 const css_prefix = 'c--c--b-c__';
@@ -21,7 +22,7 @@ const css_prefix = 'c--c--b-c__';
 interface BarChartProps {
   dimensions: DimensionsType;
   width: number;
-  accentColor: { title: string; value: string };
+  accentColor: AccentColorType;
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 

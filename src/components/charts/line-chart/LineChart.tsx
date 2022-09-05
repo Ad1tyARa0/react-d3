@@ -16,6 +16,7 @@ import { BasicChartDataType } from '../../../utils/types/data';
 
 // SCSS.
 import './LineChart.scss';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // Components -- charts -- line - chart
 const css_prefix = 'c--c--l-c__';
@@ -24,7 +25,7 @@ const css_prefix = 'c--c--l-c__';
 interface LineChartProps {
   width: number;
   dimensions: DimensionsType;
-  accentColor: { title: string; value: string };
+  accentColor: AccentColorType;
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 

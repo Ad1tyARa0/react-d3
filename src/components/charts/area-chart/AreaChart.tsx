@@ -14,6 +14,7 @@ import { BasicChartDataType } from '../../../utils/types/data';
 // SCSS.
 import './AreaChart.scss';
 import { Title } from '../../common/title/Title';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // Components -- charts -- area - chart
 const css_prefix = 'c--c--a-c__';
@@ -22,7 +23,7 @@ const css_prefix = 'c--c--a-c__';
 interface AreaChartProps {
   width: number;
   dimensions: DimensionsType;
-  accentColor: { value: string; title: string };
+  accentColor: AccentColorType;
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
 }
 
