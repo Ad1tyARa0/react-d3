@@ -7,3 +7,34 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}main {
   padding: 10px 15px;
 }
+
+#{$class_css_prefix}item-main {
+  @include select-none;
+
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+#{$class_css_prefix}item {
+  margin-right: 20px;
+}
+
+#{$class_css_prefix}item-button {
+  @include select-none;
+
+  background-color: white;
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  font-family: 'Noto Bold';
+}
+
+#{$class_css_prefix}item-button-icon {
+  @include display-flex-center-center;
+
+  margin-left: 15px;
+  margin-top: 2.5px;
+}

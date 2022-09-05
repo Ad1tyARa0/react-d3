@@ -1,3 +1,5 @@
+import { DropdownOptionsType } from '../types/dropdown';
+
 export const DEFAULT_HEIGHT = 400;
 export const DEFAULT_WIDTH = 800;
 
@@ -18,3 +20,29 @@ export const PIECHART_PALETTE_MAPPING: { [m: string]: string } = {
   '#9B59B6': 'Fuel',
   '#7F8C8D': 'Investments',
 };
+
+export const AVAILABLE_CHARTS: DropdownOptionsType[] = [
+  {
+    id: 1,
+    title: 'Area Chart',
+    value: 'area',
+  },
+
+  {
+    id: 2,
+    title: 'Line Chart',
+    value: 'line',
+  },
+
+  {
+    id: 3,
+    title: 'Scatter Plot',
+    value: 'scatter',
+  },
+
+  {
+    id: 4,
+    title: 'Bar Chart',
+    value: 'bar',
+  },
+];
