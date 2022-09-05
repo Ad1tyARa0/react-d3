@@ -14,8 +14,9 @@ $class_css_prefix: '.#{$css_prefix}';
   display: flex;
   align-items: center;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 25px;
   padding: 5px 15px;
+  transition: background-color 500ms linear;
 }
 
 #{$class_css_prefix}title-icon {
@@ -28,11 +29,12 @@ $class_css_prefix: '.#{$css_prefix}';
 }
 
 #{$class_css_prefix}title-icon-active {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
   transition: transform 500ms linear;
 }
 
 #{$class_css_prefix}title {
+  color: black;
   font-family: 'Noto Regular';
 }
 
@@ -40,10 +42,22 @@ $class_css_prefix: '.#{$css_prefix}';
   display: flex;
   flex-direction: column;
 
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
   position: absolute;
-  background-color: $color-red;
+  //   border-bottom: 1px solid $color-background-light;
+  //   background-color: $color-red;
+  top: 100px;
+  //   right: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   width: 250px;
+  //   height: 200px;
 }
 
 #{$class_css_prefix}item {
   display: flex;
+  padding: 2px 5px;
+  border-bottom: 1px solid white;
 }

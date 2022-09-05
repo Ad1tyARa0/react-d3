@@ -1,10 +1,15 @@
 import React, { useState, useRef } from 'react';
+import { BsFillCaretDownFill } from 'react-icons/bs';
+
+// Custom hooks.
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
+
+// Types.
+import { AccentColorType } from '../../../utils/types/accent-color';
 import { DropdownOptionsType } from '../../../utils/types/dropdown';
-import { BsCaretDown } from 'react-icons/bs';
 
 // SCSS.
 import './Dropdown.scss';
-import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 // Components -- common -- dropdown
 const css_prefix = 'c--c--d__';
@@ -13,11 +18,13 @@ const css_prefix = 'c--c--d__';
 interface DropdownProps {
   items: DropdownOptionsType[];
   title: string;
+  accentColor: AccentColorType;
 }
 
 const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
   items,
   title,
+  accentColor,
 }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
@@ -39,6 +46,7 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
         className={`${css_prefix}title-main`}
         onClick={onClickShowDropdown}
         ref={dropdownRef}
+        style={{ backgroundColor: `${accentColor.value}` }}
       >
         <div className={`${css_prefix}title`}>{title}</div>
 
@@ -47,12 +55,15 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
             showDropdown ? css_prefix + 'title-icon-active' : ''
           }`}
         >
-          <BsCaretDown />
+          <BsFillCaretDownFill />
         </div>
       </div>
 
       {showDropdown ? (
-        <div className={`${css_prefix}item-main`}>
+        <div
+          className={`${css_prefix}item-main`}
+          style={{ border: `1px solid ${accentColor.value}` }}
+        >
           {items.map(e => {
             return (
               <div className={`${css_prefix}item`} key={e.id}>

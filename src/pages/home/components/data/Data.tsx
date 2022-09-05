@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown } from '../../../../components/common/dropdown/Dropdown';
 import { AVAILABLE_DATASETS } from '../../../../utils/constants/datasets';
+import { AccentColorType } from '../../../../utils/types/accent-color';
 
 // SCSS.
 import './Data.scss';
@@ -9,14 +10,20 @@ import './Data.scss';
 const css_prefix = 'p--h--c--d__';
 
 // Component props.
-interface DataProps {}
+interface DataProps {
+  accentColor: AccentColorType;
+}
 
-const DataComponent: React.FunctionComponent<DataProps> = () => {
+const DataComponent: React.FunctionComponent<DataProps> = ({ accentColor }) => {
   return (
     <div className={`${css_prefix}main`}>
       {/* <div></div> */}
 
-      <Dropdown title='Available Datasets' items={AVAILABLE_DATASETS} />
+      <Dropdown
+        accentColor={accentColor}
+        title='Available Datasets'
+        items={AVAILABLE_DATASETS}
+      />
     </div>
   );
 };

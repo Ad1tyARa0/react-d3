@@ -116,7 +116,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
         <Fragment>
           {/* <Loader /> */}
 
-          <Data />
+          <Data accentColor={accentColor} />
 
           {/* <div className={`${css_prefix}graph-item`}>
             <ScatterPlot
