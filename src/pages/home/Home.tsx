@@ -116,6 +116,13 @@ const HomeComponent: React.FC<HomeProps> = () => {
         <Fragment>
           {/* <Loader /> */}
 
+          {/* <div className={`${css_prefix}options-main`}>
+            <div className={`${css_prefix}option-title`}>
+              Step 1: Select dataset
+            </div>
+
+          </div> */}
+
           <Data accentColor={accentColor} />
 
           {/* <div className={`${css_prefix}graph-item`}>

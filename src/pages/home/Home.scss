@@ -13,3 +13,13 @@ $class_css_prefix: '.#{$css_prefix}';
   // margin: 20px 0;
   margin-bottom: 50px;
 }
+
+#{$class_css_prefix}options-main {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+#{$class_css_prefix}options-title {
+  font-family: 'Noto Light';
+}

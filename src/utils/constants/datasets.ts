@@ -3,25 +3,25 @@ import { DropdownOptionsType } from '../types/dropdown';
 export const AVAILABLE_DATASETS: DropdownOptionsType[] = [
   {
     id: 1,
-    title: 'Boeing Company Prices',
+    title: 'Boeing Company',
     value: 'ba',
   },
 
   {
     id: 2,
-    title: 'Bitcoin Prices',
+    title: 'Bitcoin',
     value: 'btc',
   },
 
   {
     id: 3,
-    title: 'Diamond Prices',
+    title: 'Diamond',
     value: 'diamonds',
   },
 
   {
     id: 4,
-    title: 'Programming Languages',
+    title: 'Popular Programming Languages',
     value: 'programming_languages',
   },
 ];

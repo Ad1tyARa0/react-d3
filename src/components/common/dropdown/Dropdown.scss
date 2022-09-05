@@ -8,14 +8,14 @@ $class_css_prefix: '.#{$css_prefix}';
   //   position: absolute;
 
   display: flex;
+  width: fit-content;
 }
 
 #{$class_css_prefix}title-main {
   display: flex;
   align-items: center;
   cursor: pointer;
-  border-radius: 25px;
-  padding: 5px 15px;
+  padding: 5px 3px;
   transition: background-color 500ms linear;
 }
 
@@ -23,41 +23,56 @@ $class_css_prefix: '.#{$css_prefix}';
   @include display-flex-center-center;
 
   margin-left: 15px;
-  font-size: 22px;
   transition: transform 500ms linear;
-  transform: rotate(0deg);
 }
 
 #{$class_css_prefix}title-icon-active {
-  transform: rotate(-90deg);
+  transform: rotate(90deg);
   transition: transform 500ms linear;
 }
 
 #{$class_css_prefix}title {
-  color: black;
   font-family: 'Noto Regular';
+  text-transform: uppercase;
 }
 
 #{$class_css_prefix}item-main {
   display: flex;
   flex-direction: column;
-
-  margin-top: 5px;
-  padding: 5px;
-  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 40px;
+  padding: 8px;
+  border-radius: 2px;
   position: absolute;
-  //   border-bottom: 1px solid $color-background-light;
-  //   background-color: $color-red;
-  top: 100px;
-  //   right: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   width: 250px;
-  //   height: 200px;
 }
 
 #{$class_css_prefix}item {
   display: flex;
-  padding: 2px 5px;
+  align-items: center;
   border-bottom: 1px solid white;
+  padding: 3px 0;
+  max-width: 150px;
+
+  &:last-of-type {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+}
+
+#{$class_css_prefix}item-title {
+  font-family: 'Noto Light';
+  font-size: 0.8em;
+  flex: 1;
+  margin-right: 10px;
+  text-overflow: ellipsis;
+}
+
+#{$class_css_prefix}item-icon {
+  @include display-flex-center-center;
+
+  font-size: 1.5em;
 }

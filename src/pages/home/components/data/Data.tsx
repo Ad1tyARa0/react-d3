@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown } from '../../../../components/common/dropdown/Dropdown';
 import { AVAILABLE_DATASETS } from '../../../../utils/constants/datasets';
 import { AccentColorType } from '../../../../utils/types/accent-color';
@@ -15,14 +15,22 @@ interface DataProps {
 }
 
 const DataComponent: React.FunctionComponent<DataProps> = ({ accentColor }) => {
+  const [option, setOption] = useState<string>('');
+
+  const onClickSelectOption = (payload: string) => {
+    setOption(payload);
+  };
+
   return (
     <div className={`${css_prefix}main`}>
       {/* <div></div> */}
 
       <Dropdown
         accentColor={accentColor}
-        title='Available Datasets'
+        title='Datasets'
         items={AVAILABLE_DATASETS}
+        selectedOption={option}
+        onClickSelectOption={onClickSelectOption}
       />
     </div>
   );
