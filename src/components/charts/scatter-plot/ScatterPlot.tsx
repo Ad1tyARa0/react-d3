@@ -66,14 +66,14 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
       svg
         .append('g')
         // .select(`.${css_prefix}x-g`)
-        .attr('transform', `translate(50, ${newHeight})`)
+        .attr('transform', `translate(50, ${newHeight + 10})`)
         .call(d3.axisBottom(x));
 
       const y = d3.scaleLinear().domain([0, maxCarat]).range([newHeight, 0]);
 
       svg
         .append('g')
-        .attr('transform', `translate(50, 0)`)
+        .attr('transform', `translate(50, 10)`)
         .call(d3.axisLeft(y));
 
       svg
@@ -90,12 +90,12 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
         .attr('cy', d => {
           return y((d as unknown as ScatterPlotType).carat);
         })
-        .attr('r', 3)
-        .style('fill', accentColor.value);
+        .attr('r', 0.5)
+        .style('fill', '#F39C12');
 
       // setLoading(false);
     });
-  }, [accentColor.value, bottom, left, right, top]);
+  }, [bottom, left, right, top]);
 
   useLayoutEffect(() => {
     draw();
