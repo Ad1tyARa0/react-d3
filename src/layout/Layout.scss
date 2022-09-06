@@ -1,8 +1,14 @@
 @import 'src/global/colors';
 @import 'src/global/variables';
 
-$css_prefix: 'l__';
+$css_prefix: 'l--l__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
+  display: flex;
+  flex-direction: column;
+}
+
+#{$class_css_prefix}inner-main {
+  height: calc(100vh - 70px);
 }

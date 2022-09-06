@@ -21,7 +21,7 @@ const LayoutComponent: React.FunctionComponent<LayoutProps> = ({
     <div className={`${css_prefix}main`}>
       <Header title='Welcome'>{accentColor}</Header>
 
-      {children}
+      <div className={`${css_prefix}inner-main`}>{children}</div>
     </div>
   );
 };

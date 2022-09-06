@@ -124,35 +124,24 @@ const HomeComponent: React.FC<HomeProps> = () => {
           />
         }
       >
-        <div className={`${css_prefix}inner-main`}>
-          {/* <Loader /> */}
-
-          {/* <div className={`${css_prefix}options-main`}>
-            <div className={`${css_prefix}option-title`}>
-              Step 1: Select dataset
-            </div>
-
-          </div> */}
-
+        <>
           <Data accentColor={accentColor} />
 
           <div className={`${css_prefix}graph-item`}>
-            {loading ? (
-              <div className={`${css_prefix}graph-item-loading`}>
-                <Loader />
-              </div>
-            ) : (
-              <AreaChart
-                data={btcData!}
-                dimensions={dimensions}
-                width={width!}
-                accentColor={accentColor}
-                svgContainer={svgContainer}
-              />
+            {loading ? null : (
+              <Loader />
+              // <AreaChart
+              //   data={btcData!}
+              //   dimensions={dimensions}
+              //   width={width!}
+              //   accentColor={accentColor}
+              //   svgContainer={svgContainer}
+              // />
             )}
           </div>
+        </>
 
-          {/* <div className={`${css_prefix}graph-item`}>
+        {/* <div className={`${css_prefix}graph-item`}>
             <ScatterPlot
               svgContainer={svgContainer}
               dimensions={dimensions}
@@ -160,7 +149,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
             />
           </div> */}
 
-          {/* <PieChart
+        {/* <PieChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
@@ -173,13 +162,13 @@ const HomeComponent: React.FC<HomeProps> = () => {
             accentColor={accentColor}
           /> */}
 
-          {/* <BarChart
+        {/* <BarChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
             svgContainer={svgContainer}
           /> */}
-        </div>
+        {/* </div> */}
       </Layout>
     </div>
   );
