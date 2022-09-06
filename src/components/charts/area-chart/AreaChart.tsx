@@ -24,6 +24,7 @@ const css_prefix = 'c--c--a-c__';
 // Component props.
 interface AreaChartProps {
   width: number;
+  height: number;
   dimensions: DimensionsType;
   accentColor: AccentColorType;
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
@@ -32,6 +33,7 @@ interface AreaChartProps {
 
 const AreaChartComponent: React.FC<AreaChartProps> = ({
   width,
+  height,
   dimensions,
   accentColor,
   svgContainer,
@@ -42,7 +44,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
   const draw = useCallback(() => {
     const newWidth = width! - left - right;
 
-    const newHeight = DEFAULT_HEIGHT! - top - bottom;
+    const newHeight = height! - top - bottom;
 
     const svg = d3
       .select(`.${css_prefix}svg`)

@@ -6,6 +6,9 @@ $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
   margin: 15px;
+  // background-color: red;
+  width: 100%;
+  height: 70%;
 }
 
 #{$class_css_prefix}x-g {

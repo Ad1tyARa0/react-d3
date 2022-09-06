@@ -49,6 +49,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
   const svgContainer = useRef<HTMLDivElement | null>(null);
 
   const [width, setWidth] = useState<number>();
+  const [height, setHeight] = useState<number>();
 
   const [accentColor, setAccentColor] = useState<{
     title: string;
@@ -71,7 +72,9 @@ const HomeComponent: React.FC<HomeProps> = () => {
   const getWidth = () => {
     let newWidth = svgContainer.current?.getBoundingClientRect().width;
 
-    // let newWidth = window.innerWidth;
+    let newHeight = svgContainer.current?.getBoundingClientRect().height;
+
+    setHeight(newHeight);
     setWidth(newWidth);
   };
 
@@ -128,15 +131,17 @@ const HomeComponent: React.FC<HomeProps> = () => {
           <Data accentColor={accentColor} />
 
           <div className={`${css_prefix}graph-item`}>
-            {loading ? null : (
+            {loading ? (
               <Loader />
-              // <AreaChart
-              //   data={btcData!}
-              //   dimensions={dimensions}
-              //   width={width!}
-              //   accentColor={accentColor}
-              //   svgContainer={svgContainer}
-              // />
+            ) : (
+              <AreaChart
+                height={height!}
+                data={btcData!}
+                dimensions={dimensions}
+                width={width!}
+                accentColor={accentColor}
+                svgContainer={svgContainer}
+              />
             )}
           </div>
         </>
