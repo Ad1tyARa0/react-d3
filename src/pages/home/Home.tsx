@@ -1,14 +1,18 @@
 import React, {
-  Fragment,
-  useCallback,
-  useEffect,
   useRef,
   useState,
+  Fragment,
+  useEffect,
+  useReducer,
+  useCallback,
 } from 'react';
 import * as d3 from 'd3';
 
 // Components.
 import { Layout } from '../../layout/Layout';
+import { Data } from './components/data/Data';
+import { Title } from '../../components/common/title/Title';
+import { Loader } from '../../components/common/loader/Loader';
 import { AccentColor } from './components/accent-color/AccentColor';
 import { PieChart } from '../../components/charts/pie-chart/PieChart';
 import { BarChart } from '../../components/charts/bar-chart/BarChart';
@@ -18,16 +22,34 @@ import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Constants.
 import { COLORS } from '../../utils/constants/colors';
+import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
+
+// Data.
+import { BITCOIN_PRICE_DATA } from '../../utils/constants/data';
+
+// Reducer.
+import {
+  // Reducer.
+  HomeReducer,
+  HOME_REDUCER_INITIAL_STATE,
+
+  // Types.
+  HOME_SET_BTC_DATA,
+  HOME_BTC_DATA_STOP_LOADING,
+  HOME_BTC_DATA_START_LOADING,
+  HOME_ON_CLICK_SET_DATA_OPTION,
+  HOME_ON_CLICK_SET_CHART_OPTION,
+  HOME_SET_WIDTH,
+  HOME_SET_HEIGHT,
+  HOME_SET_ACCENT_COLOR,
+} from './HomeReducer';
+
+// Types and interfaces.
+import { BasicChartDataType } from '../../utils/types/data';
 
 // SCSS.
 import './Home.scss';
-
-// Types and interfaces.
-import { DimensionsType } from '../../utils/types/charts';
-import { BITCOIN_PRICE_DATA } from '../../utils/constants/data';
-import { Loader } from '../../components/common/loader/Loader';
-import { Data } from './components/data/Data';
-import { BasicChartDataType } from '../../utils/types/data';
+import { AccentColorType } from '../../utils/types/accent-color';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -36,46 +58,52 @@ const css_prefix = 'p--h__';
 interface HomeProps {}
 
 const HomeComponent: React.FC<HomeProps> = () => {
-  const dimensions: DimensionsType = {
-    top: 10,
-    bottom: 50,
-    right: 50,
-    left: 50,
-  };
-
-  const [btcData, setBtcData] =
-    useState<{ date: Date | null; value: number }[]>();
-
   const svgContainer = useRef<HTMLDivElement | null>(null);
 
-  const [width, setWidth] = useState<number>();
-  const [height, setHeight] = useState<number>();
+  const [state, dispatch] = useReducer(HomeReducer, HOME_REDUCER_INITIAL_STATE);
 
-  const [accentColor, setAccentColor] = useState<{
-    title: string;
-    value: string;
-  }>({ value: '#2ECC71', title: 'green' });
+  const onClickSelectDataOption = (payload: string) => {
+    dispatch({
+      type: HOME_ON_CLICK_SET_DATA_OPTION,
+      payload,
+    });
+  };
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const onClickSelectChartOption = (payload: string) => {
+    dispatch({
+      type: HOME_ON_CLICK_SET_CHART_OPTION,
+      payload,
+    });
+  };
 
   /**
    * Set accent color.
    * @param payload - accent color.
    */
-  const onClickSetAccentColor = (payload: { title: string; value: string }) => {
-    setAccentColor(payload);
+  const onClickSetAccentColor = (payload: AccentColorType) => {
+    dispatch({
+      type: HOME_SET_ACCENT_COLOR,
+      payload,
+    });
   };
 
   /**
-   * Get width
+   * Get dimensions
    */
-  const getWidth = () => {
+  const getDimensions = () => {
     let newWidth = svgContainer.current?.getBoundingClientRect().width;
 
     let newHeight = svgContainer.current?.getBoundingClientRect().height;
 
-    setHeight(newHeight);
-    setWidth(newWidth);
+    dispatch({
+      type: HOME_SET_WIDTH,
+      payload: newWidth!,
+    });
+
+    dispatch({
+      type: HOME_SET_HEIGHT,
+      payload: newHeight!,
+    });
   };
 
   /**
@@ -83,15 +111,17 @@ const HomeComponent: React.FC<HomeProps> = () => {
    * - Clean up fn - remove even listener.
    */
   useEffect(() => {
-    getWidth();
+    getDimensions();
 
-    window.addEventListener('resize', getWidth);
+    window.addEventListener('resize', getDimensions);
 
-    return () => window.removeEventListener('resize', getWidth);
+    return () => window.removeEventListener('resize', getDimensions);
   }, []);
 
   const fetchBitcoinPriceData = useCallback(async () => {
-    setLoading(true);
+    dispatch({
+      type: HOME_BTC_DATA_START_LOADING,
+    });
 
     try {
       let response = await d3.dsv(',', BITCOIN_PRICE_DATA, d => {
@@ -104,11 +134,14 @@ const HomeComponent: React.FC<HomeProps> = () => {
         };
       });
 
-      setBtcData([...response]);
-
-      setLoading(false);
+      dispatch({
+        type: HOME_SET_BTC_DATA,
+        payload: [...response],
+      });
     } catch (error) {
-      setLoading(false);
+      dispatch({
+        type: HOME_BTC_DATA_STOP_LOADING,
+      });
     }
   }, []);
 
@@ -128,18 +161,21 @@ const HomeComponent: React.FC<HomeProps> = () => {
         }
       >
         <>
-          <Data accentColor={accentColor} />
+          <Data
+            state={state}
+            onClickSelectDataOption={onClickSelectDataOption}
+            onClickSelectChartOption={onClickSelectChartOption}
+          />
+
+          {/* <Title title={} subTitle='' accentColor={accentColor} /> */}
 
           <div className={`${css_prefix}graph-item`}>
-            {loading ? (
+            {state.btcIsLoading ? (
               <Loader />
             ) : (
               <AreaChart
-                height={height!}
-                data={btcData!}
-                dimensions={dimensions}
-                width={width!}
-                accentColor={accentColor}
+                state={state}
+                dimensions={DEFAULT_DIMENSIONS}
                 svgContainer={svgContainer}
               />
             )}

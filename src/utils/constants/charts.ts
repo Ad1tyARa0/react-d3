@@ -1,7 +1,14 @@
+import { DimensionsType } from '../types/charts';
 import { DropdownOptionsType } from '../types/dropdown';
 
 export const DEFAULT_HEIGHT = 400;
 export const DEFAULT_WIDTH = 800;
+export const DEFAULT_DIMENSIONS: DimensionsType = {
+  top: 10,
+  bottom: 50,
+  right: 50,
+  left: 50,
+};
 
 export const PIECHART_PALETTE = [
   '#27AE60',
@@ -19,6 +26,10 @@ export const PIECHART_PALETTE_MAPPING: { [m: string]: string } = {
   '#E74C3C': 'Groceries',
   '#9B59B6': 'Fuel',
   '#7F8C8D': 'Investments',
+};
+
+export const CHART_TITLE_MAPPING: { [m: string]: string[] } = {
+  btc: ['Bitcoin USD (BTC-USD) - 2022', 'CCC - CoinMarketCap. Currency in USD'],
 };
 
 export const AVAILABLE_CHARTS: DropdownOptionsType[] = [

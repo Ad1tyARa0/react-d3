@@ -7,47 +7,43 @@ import { FaArrowRight } from 'react-icons/fa';
 
 // SCSS.
 import './Data.scss';
+import { HomeReducerStateInterface } from '../../HomeReducer';
 
 // Pages -- home -- components -- data
 const css_prefix = 'p--h--c--d__';
 
 // Component props.
 interface DataProps {
-  accentColor: AccentColorType;
+  state: HomeReducerStateInterface;
+  onClickSelectDataOption: (payload: string) => void;
+  onClickSelectChartOption: (payload: string) => void;
 }
 
-const DataComponent: React.FunctionComponent<DataProps> = ({ accentColor }) => {
-  const [option, setOption] = useState<string>('');
-  const [chartOptions, setChartOptions] = useState<string>('');
-
-  const onClickSelectChartOptions = (payload: string) => {
-    setChartOptions(payload);
-  };
-
-  const onClickSelectOption = (payload: string) => {
-    setOption(payload);
-  };
-
+const DataComponent: React.FunctionComponent<DataProps> = ({
+  state,
+  onClickSelectDataOption,
+  onClickSelectChartOption,
+}) => {
   return (
     <div className={`${css_prefix}main`}>
       <div className={`${css_prefix}item-main`}>
         <div className={`${css_prefix}item`}>
           <Dropdown
-            accentColor={accentColor}
+            accentColor={state.accentColor}
             title='Datasets'
             items={AVAILABLE_DATASETS}
-            selectedOption={option}
-            onClickSelectOption={onClickSelectOption}
+            selectedOption={state.dataOption}
+            onClickSelectOption={onClickSelectDataOption}
           />
         </div>
 
         <div className={`${css_prefix}item`}>
           <Dropdown
-            accentColor={accentColor}
+            accentColor={state.accentColor}
             title='Charts'
             items={AVAILABLE_CHARTS}
-            selectedOption={option}
-            onClickSelectOption={onClickSelectOption}
+            selectedOption={state.chartOption}
+            onClickSelectOption={onClickSelectChartOption}
           />
         </div>
 
