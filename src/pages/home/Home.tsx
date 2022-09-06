@@ -1,6 +1,5 @@
 import React, {
   useRef,
-  useState,
   Fragment,
   useEffect,
   useReducer,
@@ -11,21 +10,24 @@ import * as d3 from 'd3';
 // Components.
 import { Layout } from '../../layout/Layout';
 import { Data } from './components/data/Data';
-import { Title } from '../../components/common/title/Title';
+// import { Title } from '../../components/common/title/Title';
 import { Loader } from '../../components/common/loader/Loader';
 import { AccentColor } from './components/accent-color/AccentColor';
-import { PieChart } from '../../components/charts/pie-chart/PieChart';
-import { BarChart } from '../../components/charts/bar-chart/BarChart';
-import { LineChart } from '../../components/charts/line-chart/LineChart';
+// import { PieChart } from '../../components/charts/pie-chart/PieChart';
+// import { BarChart } from '../../components/charts/bar-chart/BarChart';
+// import { LineChart } from '../../components/charts/line-chart/LineChart';
 import { AreaChart } from '../../components/charts/area-chart/AreaChart';
-import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
+// import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Constants.
 import { COLORS } from '../../utils/constants/colors';
 import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
 
 // Data.
-import { BITCOIN_PRICE_DATA } from '../../utils/constants/data';
+import {
+  BITCOIN_PRICE_DATA,
+  OPTION_TO_URL_MAPPING,
+} from '../../utils/constants/data';
 
 // Reducer.
 import {
@@ -34,22 +36,22 @@ import {
   HOME_REDUCER_INITIAL_STATE,
 
   // Types.
-  HOME_SET_BTC_DATA,
-  HOME_BTC_DATA_STOP_LOADING,
-  HOME_BTC_DATA_START_LOADING,
-  HOME_ON_CLICK_SET_DATA_OPTION,
-  HOME_ON_CLICK_SET_CHART_OPTION,
   HOME_SET_WIDTH,
   HOME_SET_HEIGHT,
+  HOME_SET_LINEAREA_CHART_DATA,
   HOME_SET_ACCENT_COLOR,
+  HOME_LINEAREA_CHART_DATA_STOP_LOADING,
+  HOME_LINEAREA_CHART_DATA_START_LOADING,
+  HOME_ON_CLICK_SET_DATA_OPTION,
+  HOME_ON_CLICK_SET_CHART_OPTION,
 } from './HomeReducer';
 
 // Types and interfaces.
 import { BasicChartDataType } from '../../utils/types/data';
+import { AccentColorType } from '../../utils/types/accent-color';
 
 // SCSS.
 import './Home.scss';
-import { AccentColorType } from '../../utils/types/accent-color';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -118,13 +120,22 @@ const HomeComponent: React.FC<HomeProps> = () => {
     return () => window.removeEventListener('resize', getDimensions);
   }, []);
 
-  const fetchBitcoinPriceData = useCallback(async () => {
+  /**
+   * Fetch bitcoin price data.
+   * - API call.
+   * - Use d3 to parse the data into required format.
+   * - Start and stop loading.
+   * - Save data to state.
+   */
+  const fetchLineAndAreaChartData = useCallback(async (URL: string) => {
+    // Start loading.
     dispatch({
-      type: HOME_BTC_DATA_START_LOADING,
+      type: HOME_LINEAREA_CHART_DATA_START_LOADING,
     });
 
     try {
-      let response = await d3.dsv(',', BITCOIN_PRICE_DATA, d => {
+      // API call.
+      let response = await d3.dsv(',', URL, d => {
         const res = d as unknown as BasicChartDataType;
         const date = d3.timeParse('%Y-%m-%d')(res.date);
 
@@ -134,20 +145,22 @@ const HomeComponent: React.FC<HomeProps> = () => {
         };
       });
 
+      // Save data to state.
       dispatch({
-        type: HOME_SET_BTC_DATA,
+        type: HOME_SET_LINEAREA_CHART_DATA,
         payload: [...response],
       });
     } catch (error) {
+      // Stop loading.
       dispatch({
-        type: HOME_BTC_DATA_STOP_LOADING,
+        type: HOME_LINEAREA_CHART_DATA_STOP_LOADING,
       });
     }
   }, []);
 
   useEffect(() => {
-    fetchBitcoinPriceData();
-  }, [fetchBitcoinPriceData]);
+    fetchLineAndAreaChartData(OPTION_TO_URL_MAPPING[state.dataOption]);
+  }, [fetchLineAndAreaChartData, state.dataOption]);
 
   return (
     <div className={`${css_prefix}main`}>
@@ -170,7 +183,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
           {/* <Title title={} subTitle='' accentColor={accentColor} /> */}
 
           <div className={`${css_prefix}graph-item`}>
-            {state.btcIsLoading ? (
+            {state.lineAreaChartIsLoading ? (
               <Loader />
             ) : (
               <AreaChart

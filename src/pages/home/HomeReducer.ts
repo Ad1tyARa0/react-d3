@@ -12,9 +12,11 @@ export const HOME_SET_HEIGHT = 'HOME_SET_HEIGHT';
 export const HOME_SET_ACCENT_COLOR = 'HOME_SET_ACCENT_COLOR';
 
 // APIs.
-export const HOME_SET_BTC_DATA = 'HOME_SET_BTC_DATA';
-export const HOME_BTC_DATA_START_LOADING = 'HOME_BTC_DATA_START_LOADING';
-export const HOME_BTC_DATA_STOP_LOADING = 'HOME_BTC_DATA_STOP_LOADING';
+export const HOME_SET_LINEAREA_CHART_DATA = 'HOME_SET_LINEAREA_CHART_DATA';
+export const HOME_LINEAREA_CHART_DATA_START_LOADING =
+  'HOME_LINEAREA_CHART_DATA_START_LOADING';
+export const HOME_LINEAREA_CHART_DATA_STOP_LOADING =
+  'HOME_LINEAREA_CHART_DATA_STOP_LOADING';
 
 // Actions
 export type HomeReducerActionType =
@@ -27,14 +29,14 @@ export type HomeReducerActionType =
       payload: string;
     }
   | {
-      type: typeof HOME_SET_BTC_DATA;
+      type: typeof HOME_SET_LINEAREA_CHART_DATA;
       payload: { date: Date | null; value: number }[];
     }
   | {
-      type: typeof HOME_BTC_DATA_START_LOADING;
+      type: typeof HOME_LINEAREA_CHART_DATA_START_LOADING;
     }
   | {
-      type: typeof HOME_BTC_DATA_STOP_LOADING;
+      type: typeof HOME_LINEAREA_CHART_DATA_STOP_LOADING;
     }
   | {
       type: typeof HOME_SET_WIDTH;
@@ -60,7 +62,7 @@ export interface HomeReducerStateInterface {
 
   // APIs.
   lineAreaChartData: { date: Date | null; value: number }[];
-  btcIsLoading: boolean;
+  lineAreaChartIsLoading: boolean;
 }
 
 // Initial state
@@ -70,11 +72,14 @@ export const HOME_REDUCER_INITIAL_STATE: HomeReducerStateInterface = {
   height: undefined,
   dataOption: '',
   chartOption: '',
-  accentColor: { value: '#2ECC71', title: 'green' },
+  accentColor: {
+    value: '#2ECC71',
+    title: 'green',
+  },
 
   // APIs.
   lineAreaChartData: [],
-  btcIsLoading: false,
+  lineAreaChartIsLoading: false,
 };
 
 export const HomeReducer = (
@@ -94,23 +99,23 @@ export const HomeReducer = (
         chartOption: action.payload,
       };
 
-    case HOME_SET_BTC_DATA:
+    case HOME_SET_LINEAREA_CHART_DATA:
       return {
         ...state,
         lineAreaChartData: action.payload,
-        btcIsLoading: false,
+        lineAreaChartIsLoading: false,
       };
 
-    case HOME_BTC_DATA_START_LOADING:
+    case HOME_LINEAREA_CHART_DATA_START_LOADING:
       return {
         ...state,
-        btcIsLoading: true,
+        lineAreaChartIsLoading: true,
       };
 
-    case HOME_BTC_DATA_STOP_LOADING:
+    case HOME_LINEAREA_CHART_DATA_STOP_LOADING:
       return {
         ...state,
-        btcIsLoading: false,
+        lineAreaChartIsLoading: false,
       };
 
     case HOME_SET_WIDTH:
@@ -123,6 +128,12 @@ export const HomeReducer = (
       return {
         ...state,
         height: action.payload,
+      };
+
+    case HOME_SET_ACCENT_COLOR:
+      return {
+        ...state,
+        accentColor: action.payload,
       };
 
     default:

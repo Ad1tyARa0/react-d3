@@ -44,6 +44,7 @@ $class_css_prefix: '.#{$css_prefix}';
   padding: 8px;
   border-radius: 2px;
   position: absolute;
+  background-color: $color-background-dark;
 }
 
 #{$class_css_prefix}item {
