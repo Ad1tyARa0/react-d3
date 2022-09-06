@@ -11,21 +11,14 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}inner-main {
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 
 #{$class_css_prefix}graph-item {
   margin-bottom: 50px;
-  height: 100%;
+  height: calc(100% - 60px);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#{$class_css_prefix}graph-item-loading {
-  background-color: red;
-  flex: 1;
-  height: 100%;
 }
 
 #{$class_css_prefix}options-main {
