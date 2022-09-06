@@ -13,15 +13,15 @@ export const AVAILABLE_DATASETS: DropdownOptionsType[] = [
     value: 'btc',
   },
 
-  {
-    id: 3,
-    title: 'Diamond',
-    value: 'diamonds',
-  },
+  // {
+  //   id: 3,
+  //   title: 'Diamond',
+  //   value: 'diamonds',
+  // },
 
-  {
-    id: 4,
-    title: 'Popular Programming Languages',
-    value: 'programming_languages',
-  },
+  // {
+  //   id: 4,
+  //   title: 'Popular Programming Languages',
+  //   value: 'programming_languages',
+  // },
 ];

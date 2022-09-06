@@ -46,15 +46,15 @@ export const AVAILABLE_CHARTS: DropdownOptionsType[] = [
     value: 'line',
   },
 
-  {
-    id: 3,
-    title: 'Scatter Plot',
-    value: 'scatter',
-  },
+  // {
+  //   id: 3,
+  //   title: 'Scatter Plot',
+  //   value: 'scatter',
+  // },
 
-  {
-    id: 4,
-    title: 'Bar Chart',
-    value: 'bar',
-  },
+  // {
+  //   id: 4,
+  //   title: 'Bar Chart',
+  //   value: 'bar',
+  // },
 ];

@@ -48,7 +48,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
 
     svg
       .select(`.${css_prefix}x-g`)
-      .attr('transform', `translate(51, ${newHeight})`)
+      .attr('transform', `translate(50, ${newHeight + 10})`)
       .call(
         d3.axisBottom(x).tickFormat(d => {
           const formatTime = d3.timeFormat('%b');
@@ -72,7 +72,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
 
     svg
       .select(`.${css_prefix}y-g`)
-      .attr('transform', `translate(${left}, 0)`)
+      .attr('transform', `translate(${left}, 10)`)
       .call(
         d3.axisLeft(y) as unknown as (
           selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
@@ -84,7 +84,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
       .select(`.${css_prefix}path`)
       .datum(state.lineAreaChartData)
       .attr('fill', `${state.accentColor.value}`)
-      .attr('transform', `translate(51, -1)`)
+      .attr('transform', `translate(51, 9)`)
       .attr('stroke', `${state.accentColor.value}`)
       .attr('stroke-width', 0.3)
       .attr(
