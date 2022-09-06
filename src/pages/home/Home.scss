@@ -14,8 +14,7 @@ $class_css_prefix: '.#{$css_prefix}';
 }
 
 #{$class_css_prefix}graph-item {
-  margin-bottom: 50px;
-  height: calc(100% - 60px);
+  height: calc(100% - 180px);
   display: flex;
   align-items: center;
   justify-content: center;

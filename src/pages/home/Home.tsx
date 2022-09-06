@@ -10,7 +10,7 @@ import * as d3 from 'd3';
 // Components.
 import { Layout } from '../../layout/Layout';
 import { Data } from './components/data/Data';
-// import { Title } from '../../components/common/title/Title';
+import { Title } from '../../components/common/title/Title';
 import { Loader } from '../../components/common/loader/Loader';
 import { AccentColor } from './components/accent-color/AccentColor';
 // import { PieChart } from '../../components/charts/pie-chart/PieChart';
@@ -21,13 +21,11 @@ import { AreaChart } from '../../components/charts/area-chart/AreaChart';
 
 // Constants.
 import { COLORS } from '../../utils/constants/colors';
-import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
-
-// Data.
 import {
-  BITCOIN_PRICE_DATA,
-  OPTION_TO_URL_MAPPING,
-} from '../../utils/constants/data';
+  CHART_TITLE_MAPPING,
+  DEFAULT_DIMENSIONS,
+} from '../../utils/constants/charts';
+import { OPTION_TO_URL_MAPPING } from '../../utils/constants/data';
 
 // Reducer.
 import {
@@ -180,7 +178,11 @@ const HomeComponent: React.FC<HomeProps> = () => {
             onClickSelectChartOption={onClickSelectChartOption}
           />
 
-          {/* <Title title={} subTitle='' accentColor={accentColor} /> */}
+          <Title
+            title={CHART_TITLE_MAPPING[state.dataOption][0]}
+            subTitle={CHART_TITLE_MAPPING[state.dataOption][1]}
+            accentColor={state.accentColor}
+          />
 
           <div className={`${css_prefix}graph-item`}>
             {state.lineAreaChartIsLoading ? (

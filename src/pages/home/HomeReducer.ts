@@ -70,7 +70,7 @@ export const HOME_REDUCER_INITIAL_STATE: HomeReducerStateInterface = {
   // Config.
   width: undefined,
   height: undefined,
-  dataOption: '',
+  dataOption: 'ba',
   chartOption: '',
   accentColor: {
     value: '#2ECC71',

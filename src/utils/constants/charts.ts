@@ -30,6 +30,7 @@ export const PIECHART_PALETTE_MAPPING: { [m: string]: string } = {
 
 export const CHART_TITLE_MAPPING: { [m: string]: string[] } = {
   btc: ['Bitcoin USD (BTC-USD) - 2022', 'CCC - CoinMarketCap. Currency in USD'],
+  ba: ['The Boeing Company (BA) - 2022', 'NYSE - Currency in USD'],
 };
 
 export const AVAILABLE_CHARTS: DropdownOptionsType[] = [
