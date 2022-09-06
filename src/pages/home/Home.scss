@@ -9,9 +9,18 @@ $class_css_prefix: '.#{$css_prefix}';
   flex-direction: column;
 }
 
+#{$class_css_prefix}inner-main {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 70px);
+}
+
 #{$class_css_prefix}graph-item {
-  // margin: 20px 0;
   margin-bottom: 50px;
+}
+
+#{$class_css_prefix}graph-item-loading {
+  // background-color: red;
 }
 
 #{$class_css_prefix}options-main {

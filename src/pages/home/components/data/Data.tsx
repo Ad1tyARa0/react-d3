@@ -30,8 +30,6 @@ const DataComponent: React.FunctionComponent<DataProps> = ({ accentColor }) => {
 
   return (
     <div className={`${css_prefix}main`}>
-      {/* <div></div> */}
-
       <div className={`${css_prefix}item-main`}>
         <div className={`${css_prefix}item`}>
           <Dropdown
@@ -54,7 +52,8 @@ const DataComponent: React.FunctionComponent<DataProps> = ({ accentColor }) => {
         </div>
 
         <div className={`${css_prefix}item-button`}>
-          Submit
+          <div className={`${css_prefix}item-button-text`}>Submit</div>
+
           <div className={`${css_prefix}item-button-icon`}>
             <FaArrowRight />
           </div>

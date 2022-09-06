@@ -27,6 +27,7 @@ import { DimensionsType } from '../../utils/types/charts';
 import { BITCOIN_PRICE_DATA } from '../../utils/constants/data';
 import { Loader } from '../../components/common/loader/Loader';
 import { Data } from './components/data/Data';
+import { BasicChartDataType } from '../../utils/types/data';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -42,7 +43,8 @@ const HomeComponent: React.FC<HomeProps> = () => {
     left: 50,
   };
 
-  const [btcData, setBtcData] = useState<d3.DSVRowArray<string> | null>(null);
+  const [btcData, setBtcData] =
+    useState<{ date: Date | null; value: number }[]>();
 
   const svgContainer = useRef<HTMLDivElement | null>(null);
 
@@ -54,6 +56,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
   }>({ value: '#2ECC71', title: 'green' });
 
   const [loading, setLoading] = useState<boolean>(false);
+
   /**
    * Set accent color.
    * @param payload - accent color.
@@ -88,9 +91,17 @@ const HomeComponent: React.FC<HomeProps> = () => {
     setLoading(true);
 
     try {
-      let response = await d3.dsv(',', BITCOIN_PRICE_DATA);
+      let response = await d3.dsv(',', BITCOIN_PRICE_DATA, d => {
+        const res = d as unknown as BasicChartDataType;
+        const date = d3.timeParse('%Y-%m-%d')(res.date);
 
-      setBtcData(response);
+        return {
+          date,
+          value: res.value,
+        };
+      });
+
+      setBtcData([...response]);
 
       setLoading(false);
     } catch (error) {
@@ -113,7 +124,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
           />
         }
       >
-        <Fragment>
+        <div className={`${css_prefix}inner-main`}>
           {/* <Loader /> */}
 
           {/* <div className={`${css_prefix}options-main`}>
@@ -124,6 +135,22 @@ const HomeComponent: React.FC<HomeProps> = () => {
           </div> */}
 
           <Data accentColor={accentColor} />
+
+          <div className={`${css_prefix}graph-item`}>
+            {loading ? (
+              <div className={`${css_prefix}graph-item-loading`}>
+                <Loader />
+              </div>
+            ) : (
+              <AreaChart
+                data={btcData!}
+                dimensions={dimensions}
+                width={width!}
+                accentColor={accentColor}
+                svgContainer={svgContainer}
+              />
+            )}
+          </div>
 
           {/* <div className={`${css_prefix}graph-item`}>
             <ScatterPlot
@@ -146,20 +173,13 @@ const HomeComponent: React.FC<HomeProps> = () => {
             accentColor={accentColor}
           /> */}
 
-          {/* <AreaChart
-            dimensions={dimensions}
-            width={width!}
-            accentColor={accentColor}
-            svgContainer={svgContainer}
-          /> */}
-
           {/* <BarChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
             svgContainer={svgContainer}
           /> */}
-        </Fragment>
+        </div>
       </Layout>
     </div>
   );

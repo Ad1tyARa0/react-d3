@@ -32,9 +32,14 @@ $class_css_prefix: '.#{$css_prefix}';
   font-family: 'Noto Bold';
 }
 
+#{$class_css_prefix}item-button-text {
+  padding-right: 7.5px;
+  border-right: 1px solid black;
+}
+
 #{$class_css_prefix}item-button-icon {
   @include display-flex-center-center;
 
-  margin-left: 15px;
   margin-top: 2.5px;
+  padding-left: 7.5px;
 }
