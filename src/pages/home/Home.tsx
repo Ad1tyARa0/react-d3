@@ -191,11 +191,19 @@ const HomeComponent: React.FC<HomeProps> = () => {
           </div>
         ) : (
           <div className={`${css_prefix}graph-main`}>
-            <AreaChart
-              state={state}
-              dimensions={DEFAULT_DIMENSIONS}
-              svgContainer={svgContainer}
-            />
+            {state.chartOption === 'area' ? (
+              <AreaChart
+                state={state}
+                dimensions={DEFAULT_DIMENSIONS}
+                svgContainer={svgContainer}
+              />
+            ) : state.chartOption === 'line' ? (
+              <LineChart
+                state={state}
+                dimensions={DEFAULT_DIMENSIONS}
+                svgContainer={svgContainer}
+              />
+            ) : null}
           </div>
         )}
 
