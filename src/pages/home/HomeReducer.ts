@@ -1,5 +1,3 @@
-import { AccentColor } from './components/accent-color/AccentColor';
-import { BasicChartDataType } from '../../utils/types/data';
 import { AccentColorType } from '../../utils/types/accent-color';
 
 // Types.
@@ -71,7 +69,7 @@ export const HOME_REDUCER_INITIAL_STATE: HomeReducerStateInterface = {
   width: undefined,
   height: undefined,
   dataOption: 'ba',
-  chartOption: '',
+  chartOption: 'line',
   accentColor: {
     value: '#2ECC71',
     title: 'green',

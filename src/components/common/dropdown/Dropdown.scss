@@ -14,8 +14,11 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}title-main {
   display: flex;
   align-items: center;
+  background-color: $color-background-light;
+  color: $color-background-dark;
   cursor: pointer;
-  padding: 5px 3px;
+  border-radius: 5px;
+  padding: 5px 8px;
   transition: background-color 500ms linear;
 }
 
@@ -23,16 +26,16 @@ $class_css_prefix: '.#{$css_prefix}';
   @include display-flex-center-center;
 
   margin-left: 15px;
-  transition: transform 500ms linear;
+  transition: transform 200ms linear;
 }
 
 #{$class_css_prefix}title-icon-active {
   transform: rotate(90deg);
-  transition: transform 500ms linear;
+  transition: transform 200ms linear;
 }
 
 #{$class_css_prefix}title {
-  font-family: 'Noto Regular';
+  font-family: 'Noto Bold';
   text-transform: uppercase;
 }
 
@@ -42,7 +45,7 @@ $class_css_prefix: '.#{$css_prefix}';
   cursor: pointer;
   margin-top: 40px;
   padding: 8px;
-  border-radius: 2px;
+  border-radius: 5px;
   position: absolute;
   background-color: $color-background-dark;
 }
@@ -50,7 +53,7 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}item {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid $color-background-light;
   padding: 3px 0;
   max-width: 150px;
 

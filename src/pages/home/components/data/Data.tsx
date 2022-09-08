@@ -47,13 +47,13 @@ const DataComponent: React.FunctionComponent<DataProps> = ({
           />
         </div>
 
-        <div className={`${css_prefix}item-button`}>
+        {/* <div className={`${css_prefix}item-button`}>
           <div className={`${css_prefix}item-button-text`}>Submit</div>
 
           <div className={`${css_prefix}item-button-icon`}>
             <FaArrowRight />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

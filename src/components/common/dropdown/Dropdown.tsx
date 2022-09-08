@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { BsFillCaretRightFill } from 'react-icons/bs';
-import { BiCheckbox, BiCheckboxSquare } from 'react-icons/bi';
+import { RiCheckboxBlankLine, RiCheckboxLine } from 'react-icons/ri';
 
 // Custom hooks.
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
@@ -50,7 +50,7 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
       <div
         className={`${css_prefix}title-main`}
         onClick={onClickShowDropdown}
-        style={{ borderBottom: `1px solid ${accentColor.value}` }}
+        style={{ borderBottom: `3px solid ${accentColor.value}` }}
       >
         <div className={`${css_prefix}title`}>{title}</div>
 
@@ -66,7 +66,7 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
       {showDropdown ? (
         <div
           className={`${css_prefix}item-main`}
-          style={{ border: `0.5px solid ${accentColor.value}` }}
+          style={{ border: `1px solid ${accentColor.value}` }}
         >
           {items.map(e => {
             return (
@@ -79,9 +79,9 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
 
                 <div className={`${css_prefix}item-icon`}>
                   {e.value === selectedOption ? (
-                    <BiCheckboxSquare />
+                    <RiCheckboxLine />
                   ) : (
-                    <BiCheckbox />
+                    <RiCheckboxBlankLine />
                   )}
                 </div>
               </div>

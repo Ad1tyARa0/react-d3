@@ -11,15 +11,17 @@ const css_prefix = 'l--l__';
 interface LayoutProps {
   children: JSX.Element;
   accentColor: JSX.Element;
+  headerTitle: string;
 }
 
 const LayoutComponent: React.FunctionComponent<LayoutProps> = ({
   children,
   accentColor,
+  headerTitle,
 }) => {
   return (
     <div className={`${css_prefix}main`}>
-      <Header title='Welcome'>{accentColor}</Header>
+      <Header title={headerTitle}>{accentColor}</Header>
 
       <div className={`${css_prefix}inner-main`}>{children}</div>
     </div>

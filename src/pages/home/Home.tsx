@@ -12,7 +12,7 @@ import { Layout } from '../../layout/Layout';
 import { Data } from './components/data/Data';
 import { Title } from '../../components/common/title/Title';
 import { Loader } from '../../components/common/loader/Loader';
-import { AccentColor } from './components/accent-color/AccentColor';
+import { AccentColor } from '../../components/common/accent-color/AccentColor';
 // import { PieChart } from '../../components/charts/pie-chart/PieChart';
 // import { BarChart } from '../../components/charts/bar-chart/BarChart';
 // import { LineChart } from '../../components/charts/line-chart/LineChart';
@@ -20,11 +20,11 @@ import { AreaChart } from '../../components/charts/area-chart/AreaChart';
 // import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Constants.
-import { COLORS } from '../../utils/constants/colors';
 import {
-  CHART_TITLE_MAPPING,
   DEFAULT_DIMENSIONS,
+  CHART_TITLE_MAPPING,
 } from '../../utils/constants/charts';
+import { COLORS } from '../../utils/constants/colors';
 import { OPTION_TO_URL_MAPPING } from '../../utils/constants/data';
 
 // Reducer.
@@ -36,12 +36,12 @@ import {
   // Types.
   HOME_SET_WIDTH,
   HOME_SET_HEIGHT,
-  HOME_SET_LINEAREA_CHART_DATA,
   HOME_SET_ACCENT_COLOR,
-  HOME_LINEAREA_CHART_DATA_STOP_LOADING,
-  HOME_LINEAREA_CHART_DATA_START_LOADING,
+  HOME_SET_LINEAREA_CHART_DATA,
   HOME_ON_CLICK_SET_DATA_OPTION,
   HOME_ON_CLICK_SET_CHART_OPTION,
+  HOME_LINEAREA_CHART_DATA_STOP_LOADING,
+  HOME_LINEAREA_CHART_DATA_START_LOADING,
 } from './HomeReducer';
 
 // Types and interfaces.
@@ -50,6 +50,7 @@ import { AccentColorType } from '../../utils/types/accent-color';
 
 // SCSS.
 import './Home.scss';
+import { LineChart } from '../../components/charts/line-chart/LineChart';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -163,6 +164,7 @@ const HomeComponent: React.FC<HomeProps> = () => {
   return (
     <div className={`${css_prefix}main`}>
       <Layout
+        headerTitle='Line & Area Charts'
         accentColor={
           <AccentColor
             colors={COLORS}
@@ -188,11 +190,21 @@ const HomeComponent: React.FC<HomeProps> = () => {
             {state.lineAreaChartIsLoading ? (
               <Loader />
             ) : (
-              <AreaChart
-                state={state}
-                dimensions={DEFAULT_DIMENSIONS}
-                svgContainer={svgContainer}
-              />
+              <div style={{ width: '90%', height: '100%' }}>
+                {state.chartOption === 'area' ? (
+                  <AreaChart
+                    state={state}
+                    dimensions={DEFAULT_DIMENSIONS}
+                    svgContainer={svgContainer}
+                  />
+                ) : state.chartOption === 'line' ? (
+                  <LineChart
+                    state={state}
+                    dimensions={DEFAULT_DIMENSIONS}
+                    svgContainer={svgContainer}
+                  />
+                ) : null}
+              </div>
             )}
           </div>
         </>
