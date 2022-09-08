@@ -1,4 +1,5 @@
 @import 'src/global/fonts';
+@import 'src/global/variables';
 
 $css_prefix: 'p--h__';
 $class_css_prefix: '.#{$css_prefix}';
@@ -6,18 +7,17 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}main {
   display: flex;
   flex-direction: column;
+  height: calc(100% - 100px);
 }
 
-#{$class_css_prefix}inner-main {
-  display: flex;
-  flex-direction: column;
+#{$class_css_prefix}loader-main {
+  @include display-flex-center-center;
+
+  height: 100%;
 }
 
-#{$class_css_prefix}graph-item {
-  height: calc(100% - 180px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#{$class_css_prefix}graph-main {
+  height: 100%;
 }
 
 #{$class_css_prefix}options-main {

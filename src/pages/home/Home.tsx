@@ -162,52 +162,58 @@ const HomeComponent: React.FC<HomeProps> = () => {
   }, [fetchLineAndAreaChartData, state.dataOption]);
 
   return (
-    <div className={`${css_prefix}main`}>
-      <Layout
-        headerTitle='Line & Area Charts'
-        accentColor={
-          <AccentColor
-            colors={COLORS}
-            onClickSetAccentColor={onClickSetAccentColor}
-            title='Set accent color'
-          />
-        }
-      >
-        <>
-          <Data
-            state={state}
-            onClickSelectDataOption={onClickSelectDataOption}
-            onClickSelectChartOption={onClickSelectChartOption}
-          />
+    <Layout
+      headerTitle='Line & Area Charts'
+      accentColor={
+        <AccentColor
+          colors={COLORS}
+          onClickSetAccentColor={onClickSetAccentColor}
+          title='Set accent color'
+        />
+      }
+    >
+      <div className={`${css_prefix}main`}>
+        <Data
+          state={state}
+          onClickSelectDataOption={onClickSelectDataOption}
+          onClickSelectChartOption={onClickSelectChartOption}
+        />
 
-          <Title
-            title={CHART_TITLE_MAPPING[state.dataOption][0]}
-            subTitle={CHART_TITLE_MAPPING[state.dataOption][1]}
-            accentColor={state.accentColor}
-          />
+        <Title
+          title={CHART_TITLE_MAPPING[state.dataOption][0]}
+          subTitle={CHART_TITLE_MAPPING[state.dataOption][1]}
+          accentColor={state.accentColor}
+        />
 
-          <div className={`${css_prefix}graph-item`}>
-            {state.lineAreaChartIsLoading ? (
-              <Loader />
-            ) : (
-              <div style={{ width: '90%', height: '100%' }}>
-                {state.chartOption === 'area' ? (
-                  <AreaChart
-                    state={state}
-                    dimensions={DEFAULT_DIMENSIONS}
-                    svgContainer={svgContainer}
-                  />
-                ) : state.chartOption === 'line' ? (
-                  <LineChart
-                    state={state}
-                    dimensions={DEFAULT_DIMENSIONS}
-                    svgContainer={svgContainer}
-                  />
-                ) : null}
-              </div>
-            )}
+        {state.lineAreaChartIsLoading ? (
+          <div className={`${css_prefix}loader-main`}>
+            <Loader />
           </div>
-        </>
+        ) : (
+          <div className={`${css_prefix}graph-main`}>
+            <AreaChart
+              state={state}
+              dimensions={DEFAULT_DIMENSIONS}
+              svgContainer={svgContainer}
+            />
+          </div>
+        )}
+
+        {/* <div className={`${css_prefix}graph-item`}>
+          {
+            state.lineAreaChartIsLoading ? <Loader /> : null
+            // <>
+            // {state.chartOption === 'area' ? (
+            // ) : state.chartOption === 'line' ? (
+            //   <LineChart
+            //     state={state}
+            //     dimensions={DEFAULT_DIMENSIONS}
+            //     svgContainer={svgContainer}
+            //   />
+            // ) : null}
+            // </>
+          }
+        </div> */}
 
         {/* <div className={`${css_prefix}graph-item`}>
             <ScatterPlot
@@ -237,8 +243,8 @@ const HomeComponent: React.FC<HomeProps> = () => {
             svgContainer={svgContainer}
           /> */}
         {/* </div> */}
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

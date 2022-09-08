@@ -13,6 +13,12 @@ export const AVAILABLE_DATASETS: DropdownOptionsType[] = [
     value: 'btc',
   },
 
+  {
+    id: 3,
+    title: 'Etherium',
+    value: 'eth',
+  },
+
   // {
   //   id: 3,
   //   title: 'Diamond',

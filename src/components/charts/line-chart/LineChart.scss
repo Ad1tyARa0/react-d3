@@ -5,7 +5,8 @@ $css_prefix: 'c--c--l-c__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
-  margin: 15px;
+  height: 100%;
+  margin-left: 5px;
 }
 
 #{$class_css_prefix}x-g {
