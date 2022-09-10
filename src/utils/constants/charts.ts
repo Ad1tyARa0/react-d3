@@ -37,7 +37,7 @@ export const CHART_TITLE_MAPPING: { [m: string]: string[] } = {
   ],
 };
 
-export const AVAILABLE_CHARTS: DropdownOptionsType[] = [
+export const LINE_AND_AREA_CHARTS: DropdownOptionsType[] = [
   {
     id: 1,
     title: 'Area Chart',

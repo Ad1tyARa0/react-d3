@@ -9,7 +9,7 @@ import * as d3 from 'd3';
 
 // Components.
 import { Layout } from '../../layout/Layout';
-import { Data } from './components/data/Data';
+import { Data } from '../../components/common/data/Data';
 import { Title } from '../../components/common/title/Title';
 import { Loader } from '../../components/common/loader/Loader';
 import { AccentColor } from '../../components/common/accent-color/AccentColor';
@@ -23,6 +23,7 @@ import { AreaChart } from '../../components/charts/area-chart/AreaChart';
 import {
   DEFAULT_DIMENSIONS,
   CHART_TITLE_MAPPING,
+  LINE_AND_AREA_CHARTS,
 } from '../../utils/constants/charts';
 import { COLORS } from '../../utils/constants/colors';
 import { OPTION_TO_URL_MAPPING } from '../../utils/constants/data';
@@ -51,6 +52,7 @@ import { AccentColorType } from '../../utils/types/accent-color';
 // SCSS.
 import './Home.scss';
 import { LineChart } from '../../components/charts/line-chart/LineChart';
+import { DATASETS_LINE_AREA_CHARTS } from '../../utils/constants/datasets';
 
 // Pages -- home
 const css_prefix = 'p--h__';
@@ -174,7 +176,11 @@ const HomeComponent: React.FC<HomeProps> = () => {
     >
       <div className={`${css_prefix}main`}>
         <Data
-          state={state}
+          accentColor={state.accentColor}
+          chartOptions={LINE_AND_AREA_CHARTS}
+          dataOptions={DATASETS_LINE_AREA_CHARTS}
+          dataOption={state.dataOption}
+          chartOption={state.chartOption}
           onClickSelectDataOption={onClickSelectDataOption}
           onClickSelectChartOption={onClickSelectChartOption}
         />
@@ -208,22 +214,6 @@ const HomeComponent: React.FC<HomeProps> = () => {
         )}
 
         {/* <div className={`${css_prefix}graph-item`}>
-          {
-            state.lineAreaChartIsLoading ? <Loader /> : null
-            // <>
-            // {state.chartOption === 'area' ? (
-            // ) : state.chartOption === 'line' ? (
-            //   <LineChart
-            //     state={state}
-            //     dimensions={DEFAULT_DIMENSIONS}
-            //     svgContainer={svgContainer}
-            //   />
-            // ) : null}
-            // </>
-          }
-        </div> */}
-
-        {/* <div className={`${css_prefix}graph-item`}>
             <ScatterPlot
               svgContainer={svgContainer}
               dimensions={dimensions}
@@ -237,19 +227,13 @@ const HomeComponent: React.FC<HomeProps> = () => {
             accentColor={accentColor}
           />
 
-          <LineChart
-            svgContainer={svgContainer}
-            dimensions={dimensions}
-            width={width!}
-            accentColor={accentColor}
-          /> */}
-
-        {/* <BarChart
+  
+         <BarChart
             dimensions={dimensions}
             width={width!}
             accentColor={accentColor}
             svgContainer={svgContainer}
-          /> */}
+          />  */}
         {/* </div> */}
       </div>
     </Layout>

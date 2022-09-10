@@ -1,6 +1,6 @@
 import { DropdownOptionsType } from '../types/dropdown';
 
-export const AVAILABLE_DATASETS: DropdownOptionsType[] = [
+export const DATASETS_LINE_AREA_CHARTS: DropdownOptionsType[] = [
   {
     id: 1,
     title: 'Boeing Company',

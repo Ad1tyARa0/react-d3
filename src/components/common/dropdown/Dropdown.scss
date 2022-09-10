@@ -18,14 +18,14 @@ $class_css_prefix: '.#{$css_prefix}';
   color: $color-background-dark;
   cursor: pointer;
   border-radius: 5px;
-  padding: 5px 8px;
+  padding: 3px 0;
   transition: background-color 500ms linear;
 }
 
 #{$class_css_prefix}title-icon {
   @include display-flex-center-center;
 
-  margin-left: 15px;
+  padding: 0 5px;
   transition: transform 200ms linear;
 }
 
@@ -37,6 +37,9 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}title {
   font-family: 'Noto Bold';
   text-transform: uppercase;
+  padding: 0 8px;
+  margin: 2px 0;
+  border-right: 1px solid $color-background-dark;
 }
 
 #{$class_css_prefix}item-main {

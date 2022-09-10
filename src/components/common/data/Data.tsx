@@ -1,48 +1,56 @@
-import React, { useState } from 'react';
-import { Dropdown } from '../../../../components/common/dropdown/Dropdown';
-import { AVAILABLE_CHARTS } from '../../../../utils/constants/charts';
-import { AVAILABLE_DATASETS } from '../../../../utils/constants/datasets';
-import { AccentColorType } from '../../../../utils/types/accent-color';
-import { FaArrowRight } from 'react-icons/fa';
+import React from 'react';
+import { Dropdown } from '../dropdown/Dropdown';
+
+// Types.
+import { DropdownOptionsType } from '../../../utils/types/dropdown';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // SCSS.
 import './Data.scss';
-import { HomeReducerStateInterface } from '../../HomeReducer';
 
 // Pages -- home -- components -- data
 const css_prefix = 'p--h--c--d__';
 
 // Component props.
 interface DataProps {
-  state: HomeReducerStateInterface;
+  accentColor: AccentColorType;
+  dataOption: string;
+  chartOption: string;
   onClickSelectDataOption: (payload: string) => void;
   onClickSelectChartOption: (payload: string) => void;
+  dataOptions: DropdownOptionsType[];
+  chartOptions: DropdownOptionsType[];
 }
 
 const DataComponent: React.FunctionComponent<DataProps> = ({
-  state,
+  accentColor,
+  dataOption,
+  chartOption,
   onClickSelectDataOption,
   onClickSelectChartOption,
+  dataOptions,
+
+  chartOptions,
 }) => {
   return (
     <div className={`${css_prefix}main`}>
       <div className={`${css_prefix}item-main`}>
         <div className={`${css_prefix}item`}>
           <Dropdown
-            accentColor={state.accentColor}
+            accentColor={accentColor}
             title='Datasets'
-            items={AVAILABLE_DATASETS}
-            selectedOption={state.dataOption}
+            items={dataOptions}
+            selectedOption={dataOption}
             onClickSelectOption={onClickSelectDataOption}
           />
         </div>
 
         <div className={`${css_prefix}item`}>
           <Dropdown
-            accentColor={state.accentColor}
+            accentColor={accentColor}
             title='Charts'
-            items={AVAILABLE_CHARTS}
-            selectedOption={state.chartOption}
+            items={chartOptions}
+            selectedOption={chartOption}
             onClickSelectOption={onClickSelectChartOption}
           />
         </div>
