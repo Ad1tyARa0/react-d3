@@ -16,10 +16,10 @@ interface DataProps {
   accentColor: AccentColorType;
   dataOption: string;
   chartOption: string;
-  onClickSelectDataOption: (payload: string) => void;
-  onClickSelectChartOption: (payload: string) => void;
   dataOptions: DropdownOptionsType[];
   chartOptions: DropdownOptionsType[];
+  onClickSelectDataOption: (payload: string) => void;
+  onClickSelectChartOption: (payload: string) => void;
 }
 
 const DataComponent: React.FunctionComponent<DataProps> = ({

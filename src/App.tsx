@@ -9,11 +9,7 @@ import './global';
 interface AppProps {}
 
 const AppComponent: React.FC<AppProps> = () => {
-  return (
-    <>
-      <Home />
-    </>
-  );
+  return <h1>hello world</h1>;
 };
 
 export const App = AppComponent;
