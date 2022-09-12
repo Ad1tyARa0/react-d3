@@ -24,13 +24,10 @@ $class_css_prefix: '.#{$css_prefix}';
   border-radius: 1em;
   background: $color-background-dark;
 
-  //   transition: background-color 200ms ease;
-
   &:hover {
     background-color: $color-green;
     scale: 1.25;
     transition: scale 500ms ease;
-    // transition: background-color 200ms ease;
   }
 }
 
@@ -50,7 +47,6 @@ $class_css_prefix: '.#{$css_prefix}';
 
 @media only screen and (max-width: 600px) {
   #{$class_css_prefix}item-main {
-    // background-color: red;
     border-bottom: 1px solid $color-background-light;
     border-radius: 0;
     padding: 10px 15px;
@@ -76,13 +72,5 @@ $class_css_prefix: '.#{$css_prefix}';
 
   #{$class_css_prefix}main {
     display: flex;
-
-    // height: fit-content;
-    // align-items: center;
-    // background-color: yellow;
-    // justify-content: space-around;
-    // flex-wrap: wrap;
-    // padding: 0 20px;
-    // height: 50%;
   }
 }

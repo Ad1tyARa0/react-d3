@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  Fragment,
-  useEffect,
-  useReducer,
-  useCallback,
-} from 'react';
+import React, { useRef, useEffect, useReducer, useCallback } from 'react';
 import * as d3 from 'd3';
 
 // Components.
@@ -12,12 +6,13 @@ import { Layout } from '../../layout/Layout';
 import { Data } from '../../components/common/data/Data';
 import { Title } from '../../components/common/title/Title';
 import { Loader } from '../../components/common/loader/Loader';
+import { AreaChart } from '../../components/charts/area-chart/AreaChart';
 import { AccentColor } from '../../components/common/accent-color/AccentColor';
+
 // import { PieChart } from '../../components/charts/pie-chart/PieChart';
 // import { BarChart } from '../../components/charts/bar-chart/BarChart';
 // import { LineChart } from '../../components/charts/line-chart/LineChart';
-import { AreaChart } from '../../components/charts/area-chart/AreaChart';
-import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
+// import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Constants.
 import {
