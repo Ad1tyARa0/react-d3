@@ -1,15 +1,6 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
-// Components.
-import { Title } from '../../common/title/Title';
-
-// Constants.
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../../../utils/constants/charts';
-
-// data
-import { DIAMONDS_DATA as URL } from '../../../utils/constants/data';
-
 // Types.
 import { DimensionsType, ScatterPlotType } from '../../../utils/types/charts';
 
@@ -22,15 +13,11 @@ const css_prefix = 'c--c--s-p__';
 // Component props.
 interface ScatterPlotProps {
   dimensions: DimensionsType;
-  // accentColor: { title: string; value: string };
-  // svgContainer: React.MutableRefObject<HTMLDivElement | null>;
   data: ScatterPlotType[];
 }
 
 const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
   dimensions,
-  // accentColor,
-  // svgContainer,
   data,
 }) => {
   const { right, left, top, bottom } = dimensions;
@@ -46,17 +33,6 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
       .attr('preserveAspectRatio', 'xMinYMin meet')
       .select(`.${css_prefix}main-g`)
       .attr('transform', `translate(0, 0)`);
-
-    //  .attr("transform", "translate("10","10") rotate(180) scale(-1, -1)");
-
-    // d3.dsv(',', URL, d => {
-    //   return {
-    //     price: d.price,
-    //     carat: d.carat,
-    //   };
-    // }).then
-
-    // (data => {
 
     const maxPrice = Math.max(
       ...data.map(dt => (dt as unknown as ScatterPlotType).price),
@@ -94,11 +70,8 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
       .attr('cy', d => {
         return y((d as unknown as ScatterPlotType).carat);
       })
-      .attr('r', 0.5)
+      .attr('r', 1)
       .style('fill', '#F39C12');
-
-    // setLoading(false);
-    // });
   }, [bottom, data, left, right, top]);
 
   useLayoutEffect(() => {

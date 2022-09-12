@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import * as d3 from 'd3';
-import { DIAMONDS_DATA as URL } from '../../utils/constants/data';
+import { DIAMONDS_DATA_FULL as URL } from '../../utils/constants/data';
 
 // Components.
 import { Layout } from '../../layout/Layout';
@@ -25,7 +25,6 @@ interface Page2Props {}
 
 const Page2Component: React.FunctionComponent<Page2Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
-
   const [data, setData] = useState<ScatterPlotType[]>([]);
 
   const fetchScatterPlotData = useCallback(async (URL: string) => {
@@ -64,8 +63,9 @@ const Page2Component: React.FunctionComponent<Page2Props> = () => {
       <div className={`${css_prefix}main`}>
         <Title
           title='Diamond Prices'
-          subTitle='Carat VS Price in USD (50,000 data points)'
+          subTitle='Carat VS Price in USD (50,000+ data points)'
           accentColor={{ title: 'black', value: '#fff' }}
+          defaultColor='#F39C12'
         />
 
         <ScatterPlot dimensions={DEFAULT_DIMENSIONS} data={data} />

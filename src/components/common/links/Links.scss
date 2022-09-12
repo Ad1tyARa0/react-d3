@@ -46,8 +46,8 @@ $class_css_prefix: '.#{$css_prefix}';
   color: $color-background-light;
   margin-left: 10px;
   rotate: 0deg;
-  font-size: 1.2em;
-  transition: rotate 500ms ease;
+  font-size: 1.5em;
+  transition: rotate 1000ms ease;
 }
 
 @media only screen and (max-width: 600px) {
