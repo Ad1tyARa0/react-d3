@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 // Components.
 import { App } from '../App';
 import { Page2 } from '../pages/2/Page2';
+import { Page3 } from '../pages/3/Page3';
 import { Home } from '../pages/home/Home';
 
 // Component props.
@@ -18,6 +19,8 @@ export const RoutesComponent: React.FunctionComponent<RoutesProps> = () => {
         <Route path='/home' element={<Home />} />
 
         <Route path='/2' element={<Page2 />} />
+
+        <Route path='/3' element={<Page3 />} />
       </Routes>
     </BrowserRouter>
   );

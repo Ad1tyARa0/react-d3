@@ -80,11 +80,10 @@ const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
     }
   }, [draw, data]);
 
-  // ref={svgContainer}
   return (
     <div className={`${css_prefix}main`}>
       <svg className={`${css_prefix}svg`} viewBox='0 0 100 100'>
-        <g className={`${css_prefix}main-g`}></g>
+        <g className={`${css_prefix}main-g`} />
       </svg>
     </div>
   );
