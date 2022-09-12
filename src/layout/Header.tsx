@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { IoHomeOutline } from 'react-icons/io5';
 
 // SCSS.
 import './Header.scss';
@@ -18,6 +20,12 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
 }) => {
   return (
     <div className={`${css_prefix}main`}>
+      <Link to='/'>
+        <div className={`${css_prefix}header-icon`}>
+          <IoHomeOutline />
+        </div>
+      </Link>
+
       <div className={`${css_prefix}header-text`}>{title}</div>
 
       <div className={`${css_prefix}header-children`}>{children}</div>

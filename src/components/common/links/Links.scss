@@ -1,0 +1,88 @@
+@import 'src/global/colors';
+@import 'src/global/variables';
+
+$css_prefix: 'c--l__';
+$class_css_prefix: '.#{$css_prefix}';
+
+#{$class_css_prefix}main {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  height: 50%;
+}
+
+#{$class_css_prefix}item-main {
+  @include box-shadow;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 25px;
+  margin: 20px;
+  border-radius: 1em;
+  background: $color-background-dark;
+
+  //   transition: background-color 200ms ease;
+
+  &:hover {
+    background-color: $color-green;
+    scale: 1.25;
+    transition: scale 500ms ease;
+    // transition: background-color 200ms ease;
+  }
+}
+
+#{$class_css_prefix}item-title {
+  font-family: 'Noto Light';
+  font-size: 1.5em;
+}
+
+#{$class_css_prefix}item-icon {
+  @include display-flex-center-center;
+
+  color: $color-background-light;
+  margin-left: 10px;
+  rotate: 270deg;
+  font-size: 1.2em;
+}
+
+@media only screen and (max-width: 600px) {
+  #{$class_css_prefix}item-main {
+    // background-color: red;
+    border-bottom: 1px solid $color-background-light;
+    border-radius: 0;
+    padding: 10px 15px;
+    width: 100%;
+
+    margin: 0 0 15px 0;
+
+    box-shadow: none;
+
+    &:hover {
+      scale: 1;
+      background-color: $color-background-dark;
+    }
+
+    &:first-of-type {
+      margin-top: 15px;
+    }
+  }
+
+  #{$class_css_prefix}item-title {
+    flex: 1;
+  }
+
+  #{$class_css_prefix}main {
+    display: flex;
+
+    // height: fit-content;
+    // align-items: center;
+    // background-color: yellow;
+    // justify-content: space-around;
+    // flex-wrap: wrap;
+    // padding: 0 20px;
+    // height: 50%;
+  }
+}

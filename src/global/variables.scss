@@ -18,3 +18,9 @@
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
+
+@mixin box-shadow {
+  // box-shadow: 5px 5px 14px #0e0e0e, -2.5px -2.5px 14px #504f50;
+  // box-shadow: 5px 5px 10px #1d1d1d, -5px -5px 10px #272727;
+  box-shadow: 10px 10px 20px #1d1d1d, -10px -10px 20px #272727;
+}

@@ -17,7 +17,7 @@ import { AccentColor } from '../../components/common/accent-color/AccentColor';
 // import { BarChart } from '../../components/charts/bar-chart/BarChart';
 // import { LineChart } from '../../components/charts/line-chart/LineChart';
 import { AreaChart } from '../../components/charts/area-chart/AreaChart';
-// import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
+import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
 
 // Constants.
 import {
@@ -214,12 +214,12 @@ const HomeComponent: React.FC<HomeProps> = () => {
         )}
 
         {/* <div className={`${css_prefix}graph-item`}>
-            <ScatterPlot
-              svgContainer={svgContainer}
-              dimensions={dimensions}
-              accentColor={accentColor}
-            />
-          </div> */}
+          <ScatterPlot
+            svgContainer={svgContainer}
+            dimensions={DEFAULT_DIMENSIONS}
+            accentColor={state.accentColor}
+          />
+        </div> */}
 
         {/* <PieChart
             dimensions={dimensions}

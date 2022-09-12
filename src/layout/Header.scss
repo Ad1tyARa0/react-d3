@@ -18,10 +18,20 @@ $class_css_prefix: '.#{$css_prefix}';
 }
 
 #{$class_css_prefix}header-text {
-  font-size: 2em;
+  font-size: 20px;
   font-family: 'Noto Bold';
 }
 
 #{$class_css_prefix}header-children {
   flex: 1;
+}
+
+#{$class_css_prefix}header-icon {
+  @include display-flex-center-center;
+  @include box-shadow;
+
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 1.2em;
+  margin-right: 25px;
 }

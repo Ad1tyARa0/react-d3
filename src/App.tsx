@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Home } from './pages/home/Home';
+// Components.
+import { Layout } from './layout/Layout';
+import { Links } from './components/common/links/Links';
 
 // SCSS.
 import './global';
@@ -9,7 +11,11 @@ import './global';
 interface AppProps {}
 
 const AppComponent: React.FC<AppProps> = () => {
-  return <h1>hello world</h1>;
+  return (
+    <Layout headerTitle='Home' accentColor={<div />}>
+      <Links />
+    </Layout>
+  );
 };
 
 export const App = AppComponent;
