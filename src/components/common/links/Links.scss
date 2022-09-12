@@ -19,7 +19,7 @@ $class_css_prefix: '.#{$css_prefix}';
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 25px;
+  padding: 3px 20px;
   margin: 20px;
   border-radius: 1em;
   background: $color-background-dark;
@@ -28,6 +28,10 @@ $class_css_prefix: '.#{$css_prefix}';
     background-color: $color-green;
     scale: 1.25;
     transition: scale 500ms ease;
+
+    #{$class_css_prefix}item-icon {
+      rotate: 270deg;
+    }
   }
 }
 
@@ -41,8 +45,9 @@ $class_css_prefix: '.#{$css_prefix}';
 
   color: $color-background-light;
   margin-left: 10px;
-  rotate: 270deg;
+  rotate: 0deg;
   font-size: 1.2em;
+  transition: rotate 500ms ease;
 }
 
 @media only screen and (max-width: 600px) {

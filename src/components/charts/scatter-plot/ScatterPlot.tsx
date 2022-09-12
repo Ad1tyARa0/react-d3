@@ -22,94 +22,95 @@ const css_prefix = 'c--c--s-p__';
 // Component props.
 interface ScatterPlotProps {
   dimensions: DimensionsType;
-  accentColor: { title: string; value: string };
-  svgContainer: React.MutableRefObject<HTMLDivElement | null>;
+  // accentColor: { title: string; value: string };
+  // svgContainer: React.MutableRefObject<HTMLDivElement | null>;
+  data: ScatterPlotType[];
 }
 
 const ScatterPlotComponent: React.FunctionComponent<ScatterPlotProps> = ({
   dimensions,
-  accentColor,
-  svgContainer,
+  // accentColor,
+  // svgContainer,
+  data,
 }) => {
   const { right, left, top, bottom } = dimensions;
 
   // draw
   const draw = useCallback(() => {
-    const newWidth = DEFAULT_WIDTH - left - right;
-    const newHeight = DEFAULT_HEIGHT - top - bottom;
+    const newWidth = 1000 - left - right;
+    const newHeight = 300 - top - bottom;
 
     const svg = d3
       .select(`.${css_prefix}svg`)
-      .attr('width', newWidth + left + right)
-      .attr('height', newHeight + top + bottom)
+      .attr('viewBox', '0 0 1000 300')
+      .attr('preserveAspectRatio', 'xMinYMin meet')
       .select(`.${css_prefix}main-g`)
-      .attr('transform', `translare(${left}, ${top})`);
+      .attr('transform', `translate(0, 0)`);
 
-    d3.dsv(',', URL, d => {
-      return {
-        price: d.price,
-        carat: d.carat,
-      };
-    }).then(data => {
-      const maxPrice = Math.max(
-        ...data.map(dt => (dt as unknown as ScatterPlotType).price),
-        0
-      );
+    //  .attr("transform", "translate("10","10") rotate(180) scale(-1, -1)");
 
-      const maxCarat = Math.max(
-        ...data.map(dt => (dt as unknown as ScatterPlotType).carat),
-        0
-      );
+    // d3.dsv(',', URL, d => {
+    //   return {
+    //     price: d.price,
+    //     carat: d.carat,
+    //   };
+    // }).then
 
-      const x = d3.scaleLinear().domain([0, maxPrice]).range([0, newWidth]);
+    // (data => {
 
-      svg
-        .append('g')
-        // .select(`.${css_prefix}x-g`)
-        .attr('transform', `translate(50, ${newHeight + 10})`)
-        .call(d3.axisBottom(x));
+    const maxPrice = Math.max(
+      ...data.map(dt => (dt as unknown as ScatterPlotType).price),
+      0
+    );
 
-      const y = d3.scaleLinear().domain([0, maxCarat]).range([newHeight, 0]);
+    const maxCarat = Math.max(
+      ...data.map(dt => (dt as unknown as ScatterPlotType).carat),
+      0
+    );
 
-      svg
-        .append('g')
-        .attr('transform', `translate(50, 10)`)
-        .call(d3.axisLeft(y));
+    const x = d3.scaleLinear().domain([0, maxPrice]).range([0, newWidth]);
 
-      svg
-        .append('g')
-        .attr('transform', `translate(50, 0)`)
-        .selectAll('dot')
-        .data(data)
-        .enter()
-        .append('circle')
-        .attr('class', `${css_prefix}circle`)
-        .attr('cx', d => {
-          return x((d as unknown as ScatterPlotType).price);
-        })
-        .attr('cy', d => {
-          return y((d as unknown as ScatterPlotType).carat);
-        })
-        .attr('r', 0.5)
-        .style('fill', '#F39C12');
+    svg
+      .append('g')
+      // .select(`.${css_prefix}x-g`)
+      .attr('transform', `translate(50, ${newHeight + 10})`)
+      .call(d3.axisBottom(x));
 
-      // setLoading(false);
-    });
-  }, [bottom, left, right, top]);
+    const y = d3.scaleLinear().domain([0, maxCarat]).range([newHeight, 0]);
+
+    svg.append('g').attr('transform', `translate(50, 10)`).call(d3.axisLeft(y));
+
+    svg
+      .append('g')
+      .attr('transform', `translate(50, 0)`)
+      .selectAll('dot')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('class', `${css_prefix}circle`)
+      .attr('cx', d => {
+        return x((d as unknown as ScatterPlotType).price);
+      })
+      .attr('cy', d => {
+        return y((d as unknown as ScatterPlotType).carat);
+      })
+      .attr('r', 0.5)
+      .style('fill', '#F39C12');
+
+    // setLoading(false);
+    // });
+  }, [bottom, data, left, right, top]);
 
   useLayoutEffect(() => {
-    draw();
-  }, [draw]);
+    if (data) {
+      draw();
+    }
+  }, [draw, data]);
 
+  // ref={svgContainer}
   return (
-    <div className={`${css_prefix}main`} ref={svgContainer}>
-      <Title
-        title='Diamond Prices'
-        subTitle='Carat VS Price in USD (50,000 data points)'
-        accentColor={accentColor}
-      />
-
-      <svg className={`${css_prefix}svg`}>
+    <div className={`${css_prefix}main`}>
+      <svg className={`${css_prefix}svg`} viewBox='0 0 100 100'>
         <g className={`${css_prefix}main-g`}></g>
       </svg>
     </div>
