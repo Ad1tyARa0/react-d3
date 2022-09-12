@@ -1,12 +1,6 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 
-// Components.
-import { Title } from '../../common/title/Title';
-
-// Data.
-import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../../utils/constants/data';
-
 // Types and interfaces.
 import { BarChartType } from '../../../utils/types/data';
 import { DimensionsType } from '../../../utils/types/charts';
@@ -21,21 +15,24 @@ const css_prefix = 'c--c--b-c__';
 // Component props.
 interface BarChartProps {
   dimensions: DimensionsType;
-  width: number;
+
   accentColor: AccentColorType;
   svgContainer: React.MutableRefObject<HTMLDivElement | null>;
+  chartData: BarChartType[];
 }
 
 const BarChartComponent: React.FC<BarChartProps> = ({
-  width,
   dimensions,
   accentColor,
   svgContainer,
+  chartData,
 }) => {
   const { top, bottom, left, right } = dimensions;
 
+  let data = chartData.sort((a, b) => b.value - a.value);
+
   const draw = useCallback(() => {
-    const newWidth = width - left - right;
+    const newWidth = 1200 - left - right;
 
     const newHeight = 700 - top - bottom;
 
@@ -45,81 +42,80 @@ const BarChartComponent: React.FC<BarChartProps> = ({
 
     const svg = d3
       .select(`.${css_prefix}svg`)
+      .attr('transform', `translate(0, 0)`)
       .attr('width', newWidth + left + right)
       .attr('height', newHeight + top + bottom)
       .select(`.${css_prefix}main-g`)
       .attr('transform', `translate(${left}, ${top})`);
+    // .attr('viewBox', '0 0 1300 500')
+    // .attr('preserveAspectRatio', 'xMinYMin meet')
+    // .select(`.${css_prefix}main-g`)
 
-    d3.dsv(',', URL, d => {
-      return d as unknown as BarChartType;
-    }).then(data => {
-      data = data.sort((a, b) => b.value - a.value);
+    // d3.dsv(',', URL, d => {
+    //   return d as unknown as BarChartType;
+    // }).then(data => {
 
-      x.domain([
-        d3.max(data, d => {
-          return 3 + Math.max(...data.map(dt => (dt as BarChartType).value), 0);
-        }),
-        0,
-      ] as Iterable<d3.NumberValue>);
+    x.domain([
+      d3.max(data, d => {
+        return 3 + Math.max(...data.map(dt => (dt as BarChartType).value), 0);
+      }),
+      0,
+    ] as Iterable<d3.NumberValue>);
 
-      y.domain(
-        data.map(d => {
-          return d.language;
-        })
+    y.domain(
+      data.map(d => {
+        return d.language;
+      })
+    );
+
+    svg
+      .selectAll('.bar')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('transform', `translate(16, 30)`)
+      .attr('fill', `${accentColor.value}`)
+      .attr('class', `${css_prefix}bar`)
+      .attr('x', x(0))
+      .attr('y', d => y(d.language)!)
+      .transition()
+      .duration(800)
+      .attr('width', d => x(d.value))
+      .delay((d, i) => {
+        return i * 100;
+      })
+      .attr('height', y.bandwidth());
+
+    svg
+      .select(`.${css_prefix}x-g`)
+      .attr('transform', `translate(15, 30)`)
+      .call(
+        d3.axisTop(x).ticks(20) as unknown as (
+          selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
+          ...args: any[]
+        ) => void
       );
 
-      svg
-        .selectAll('.bar')
-        .data(data)
-        .enter()
-        .append('rect')
-        .attr('transform', `translate(16, 30)`)
-        .attr('fill', `${accentColor.value}`)
-        .attr('class', `${css_prefix}bar`)
-        .attr('x', x(0))
-        .attr('y', d => y(d.language)!)
-        .transition()
-        .duration(800)
-        .attr('width', d => x(d.value))
-        .delay((d, i) => {
-          return i * 100;
-        })
-        .attr('height', y.bandwidth());
-
-      svg
-        .select(`.${css_prefix}x-g`)
-        .attr('transform', `translate(15, 30)`)
-        .call(
-          d3.axisTop(x).ticks(20) as unknown as (
-            selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
-            ...args: any[]
-          ) => void
-        );
-
-      svg
-        .select(`.${css_prefix}y-g`)
-        .attr('transform', `translate(15, 30)`)
-        .call(
-          d3.axisLeft(y) as unknown as (
-            selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
-            ...args: any[]
-          ) => void
-        );
-    });
-  }, [accentColor.value, bottom, left, right, top, width]);
+    svg
+      .select(`.${css_prefix}y-g`)
+      .attr('transform', `translate(15, 30)`)
+      .call(
+        d3.axisLeft(y) as unknown as (
+          selection: d3.Selection<d3.BaseType, unknown, HTMLElement, any>,
+          ...args: any[]
+        ) => void
+      );
+    // });
+  }, [accentColor.value, bottom, data, left, right, top]);
 
   useLayoutEffect(() => {
-    draw();
-  }, [draw]);
+    if (data) {
+      draw();
+    }
+  }, [draw, data]);
 
   return (
     <div className={`${css_prefix}main`} ref={svgContainer}>
-      <Title
-        title='Most Popular Programming Languages - 2021'
-        subTitle='Stack Overflow Survey'
-        accentColor={accentColor}
-      />
-
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}>
           <g className={`${css_prefix}x-g`} />

@@ -10,18 +10,16 @@ import { Home } from '../pages/home/Home';
 // Component props.
 interface RoutesProps {}
 
-export const RoutesComponent: React.FunctionComponent<RoutesProps> = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />} />
+export const RoutesComponent: React.FunctionComponent<RoutesProps> = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<App />} />
 
-        <Route path='/home' element={<Home />} />
+      <Route path='/home' element={<Home />} />
 
-        <Route path='/2' element={<Page2 />} />
+      <Route path='/2' element={<Page2 />} />
 
-        <Route path='/3' element={<Page3 />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+      <Route path='/3' element={<Page3 />} />
+    </Routes>
+  </BrowserRouter>
+);
