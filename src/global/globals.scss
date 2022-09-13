@@ -18,6 +18,11 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
 html {
   // height: 100vh;
   font-family: 'Noto Regular';
