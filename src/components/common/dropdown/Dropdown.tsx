@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { BsFillCaretRightFill } from 'react-icons/bs';
-import { RiCheckboxBlankLine, RiCheckboxLine } from 'react-icons/ri';
+import { HiOutlineCheck } from 'react-icons/hi';
 
 // Custom hooks.
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
@@ -78,11 +78,10 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
                 <div className={`${css_prefix}item-title`}>{e.title}</div>
 
                 <div className={`${css_prefix}item-icon`}>
-                  {e.value === selectedOption ? (
-                    <RiCheckboxLine />
-                  ) : (
-                    <RiCheckboxBlankLine />
-                  )}
+                  {
+                    e.value === selectedOption ? <HiOutlineCheck /> : null
+                    // <RiCheckboxBlankLine />
+                  }
                 </div>
               </div>
             );

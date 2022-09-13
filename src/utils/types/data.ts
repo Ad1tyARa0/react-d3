@@ -4,6 +4,6 @@ export type BasicChartDataType = {
 };
 
 export type BarChartType = {
-  language: string;
+  name: string;
   value: number;
 };

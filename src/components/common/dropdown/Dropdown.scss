@@ -50,14 +50,15 @@ $class_css_prefix: '.#{$css_prefix}';
   padding: 8px;
   border-radius: 5px;
   position: absolute;
-  background-color: $color-background-dark;
+  // background-color: $color-background-dark;
+  background-color: black;
 }
 
 #{$class_css_prefix}item {
   display: flex;
   align-items: center;
   border-bottom: 1px solid $color-background-light;
-  padding: 3px 0;
+  padding: 3px 0 5px 0;
   max-width: 150px;
 
   &:last-of-type {
@@ -75,11 +76,12 @@ $class_css_prefix: '.#{$css_prefix}';
   font-size: 0.8em;
   flex: 1;
   margin-right: 10px;
+  min-width: 120px;
   text-overflow: ellipsis;
 }
 
 #{$class_css_prefix}item-icon {
   @include display-flex-center-center;
 
-  font-size: 1.5em;
+  margin-right: 5px;
 }

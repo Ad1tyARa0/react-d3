@@ -47,7 +47,10 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
       setLoading(true);
 
       let response = await d3.dsv(',', URL, d => {
-        return d as unknown as BarChartType;
+        return {
+          name: d.language,
+          value: d.value,
+        } as unknown as BarChartType;
       });
 
       setChartData(response);

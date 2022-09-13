@@ -64,7 +64,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({
 
     y.domain(
       data.map(d => {
-        return d.language;
+        return d.name;
       })
     );
 
@@ -77,7 +77,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({
       .attr('fill', `${accentColor.value}`)
       .attr('class', `${css_prefix}bar`)
       .attr('x', x(0))
-      .attr('y', d => y(d.language)!)
+      .attr('y', d => y(d.name)!)
       .transition()
       .duration(800)
       .attr('width', d => x(d.value))
