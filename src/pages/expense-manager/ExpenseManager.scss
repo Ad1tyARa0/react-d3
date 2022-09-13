@@ -1,0 +1,24 @@
+@import 'src/global/colors';
+@import 'src/global/variables';
+
+$css_prefix: 'p--e-m__';
+$class_css_prefix: '.#{$css_prefix}';
+
+#{$class_css_prefix}main {
+}
+
+#{$class_css_prefix}form-main {
+  display: flex;
+  padding: 20px;
+}
+
+#{$class_css_prefix}form-button {
+  @include button;
+
+  margin-left: 10px;
+}
+
+#{$class_css_prefix}form-input {
+  @include input;
+  //   border-bottom: 1px solid $color-background-light;
+}

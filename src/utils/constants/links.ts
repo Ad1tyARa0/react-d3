@@ -19,7 +19,7 @@ export const LINKS = [
 
   {
     id: 4,
-    path: '/4',
-    title: 'Pie Chart',
+    path: '/expense-manager',
+    title: 'Expense Manager',
   },
 ];

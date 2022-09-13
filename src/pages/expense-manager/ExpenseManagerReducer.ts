@@ -29,8 +29,8 @@ export interface ExpenseManagerReducerStateInterface {
 // Initial state
 export const EXPENSE_MANAGER_REDUCER_INITIAL_STATE: ExpenseManagerReducerStateInterface =
   {
-    total: '0',
-    expense: '0',
+    total: '',
+    expense: '',
   };
 
 export const ExpenseManagerReducer = (
@@ -38,6 +38,23 @@ export const ExpenseManagerReducer = (
   action: ExpenseManagerReducerActionType
 ): ExpenseManagerReducerStateInterface => {
   switch (action.type) {
+    case EXPENSE_MANAGER_ON_CHANGE_EXPENSE:
+      return {
+        ...state,
+        expense: action.payload,
+      };
+
+    case EXPENSE_MANAGER_ON_CHANGE_TOTAL_EARNINGS:
+      return {
+        ...state,
+        total: action.payload,
+      };
+
+    case EXPENSE_MANAGER_ON_CLICK_SUBMIT_EXPENSES:
+      return {
+        ...state,
+      };
+
     default:
       return { ...state };
   }

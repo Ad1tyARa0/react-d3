@@ -24,3 +24,28 @@
   // box-shadow: 5px 5px 10px #1d1d1d, -5px -5px 10px #272727;
   box-shadow: 10px 10px 20px #1d1d1d, -10px -10px 20px #272727;
 }
+
+@mixin button {
+  @include select-none;
+
+  display: flex;
+  align-items: center;
+  background-color: $color-background-light;
+  color: $color-background-dark;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition: background-color 500ms linear;
+  font-family: 'Noto Bold';
+}
+
+@mixin input {
+  border-bottom: 1px solid $color-background-light;
+  padding: 7px 3px;
+  color: $color-background-light;
+  font-family: 'Noto Light';
+
+  &::placeholder {
+    font-family: 'Noto Light';
+  }
+}

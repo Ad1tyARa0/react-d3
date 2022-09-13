@@ -5,8 +5,8 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { App } from '../App';
 import { Page2 } from '../pages/2/Page2';
 import { Page3 } from '../pages/3/Page3';
-import { ExpenseManager } from '../pages/4/ExpenseManager';
 import { Home } from '../pages/home/Home';
+import { ExpenseManager } from '../pages/expense-manager/ExpenseManager';
 
 // Component props.
 interface RoutesProps {}
