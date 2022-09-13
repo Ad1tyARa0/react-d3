@@ -6,3 +6,9 @@ $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
 }
+
+#{$class_css_prefix}loader-main {
+  @include display-flex-center-center;
+
+  height: 100%;
+}

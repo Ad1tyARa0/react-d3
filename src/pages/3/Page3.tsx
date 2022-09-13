@@ -83,7 +83,9 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
         />
 
         {loading ? (
-          <Loader />
+          <div className={`${css_prefix}loader-main`}>
+            <Loader />
+          </div>
         ) : (
           <BarChart
             dimensions={DEFAULT_DIMENSIONS}
