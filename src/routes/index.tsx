@@ -5,7 +5,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { App } from '../App';
 import { Page2 } from '../pages/2/Page2';
 import { Page3 } from '../pages/3/Page3';
-import { Page4 } from '../pages/4/Page4';
+import { ExpenseManager } from '../pages/4/ExpenseManager';
 import { Home } from '../pages/home/Home';
 
 // Component props.
@@ -22,7 +22,7 @@ export const RoutesComponent: React.FunctionComponent<RoutesProps> = () => (
 
       <Route path='/3' element={<Page3 />} />
 
-      <Route path='/4' element={<Page4 />} />
+      <Route path='/expense-manager' element={<ExpenseManager />} />
     </Routes>
   </BrowserRouter>
 );
