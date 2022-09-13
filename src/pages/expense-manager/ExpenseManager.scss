@@ -5,20 +5,87 @@ $css_prefix: 'p--e-m__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
+  padding: 20px;
 }
 
 #{$class_css_prefix}form-main {
   display: flex;
-  padding: 20px;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 #{$class_css_prefix}form-button {
   @include button;
+  @include display-flex-center-center;
 
+  color: $color-green;
   margin-left: 10px;
+  background-color: $color-background-dark;
+  @include box-shadow;
 }
 
 #{$class_css_prefix}form-input {
   @include input;
-  //   border-bottom: 1px solid $color-background-light;
+
+  margin-right: 10px;
+  padding: 4px 2px;
+  //   border: 1px solid $color-yellow;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+#{$class_css_prefix}expense-table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  align-items: flex-start;
+  //   margin-left: 20px;
+}
+
+#{$class_css_prefix}total-expense {
+  display: flex;
+  border: 1px solid $color-background-light;
+  margin-top: 20px;
+}
+
+#{$class_css_prefix}table-head {
+  display: flex;
+  //   border-radius: 4px;
+  border: 1px solid $color-background-light;
+}
+
+#{$class_css_prefix}item-main {
+  display: flex;
+  border-bottom: 1px solid $color-background-light;
+  border-right: 1px solid $color-background-light;
+  border-left: 1px solid $color-background-light;
+}
+
+#{$class_css_prefix}item {
+  margin-right: 10px;
+  min-width: 180px;
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid $color-background-light;
+  // text-align: ce;
+
+  &:first-of-type {
+    padding-left: 10px;
+  }
+
+  &:last-of-type {
+    border-right: none;
+    margin-right: 0;
+  }
+
+  #{$class_css_prefix}item-icon {
+    @include display-flex-center-center;
+
+    margin: 2px 5px 0 auto;
+    cursor: pointer;
+    color: $color-red;
+  }
 }
