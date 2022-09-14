@@ -84,74 +84,74 @@ const ExpenseManagerComponent: React.FunctionComponent<
   };
 
   const renderExpenseForm = () => {
-    if (state.step === 'step-2') {
-      return (
-        <div className={`${css_prefix}form-main`}>
-          <div className={`${css_prefix}form-input-main`}>
-            <input
-              placeholder='Enter Expense Item'
-              value={state.expenseItem}
-              onChange={({ currentTarget }) =>
-                onChangeExpenseItemValue(currentTarget.value)
-              }
-              type='text'
-              className={`${css_prefix}form-input`}
-              ref={inputRef}
-            />
+    // if (state.step === 'step-2') {
+    return (
+      <div className={`${css_prefix}form-main`}>
+        <div className={`${css_prefix}form-input-main`}>
+          <input
+            placeholder='Enter Expense Item'
+            value={state.expenseItem}
+            onChange={({ currentTarget }) =>
+              onChangeExpenseItemValue(currentTarget.value)
+            }
+            type='text'
+            className={`${css_prefix}form-input`}
+            ref={inputRef}
+          />
 
-            <input
-              placeholder='Enter Expense'
-              value={state.expense}
-              onChange={({ currentTarget }) =>
-                onChangeExpenseValue(currentTarget.value)
-              }
-              type='number'
-              className={`${css_prefix}form-input`}
-              onKeyDown={e => onKeyPressEnter(e)}
-            />
-          </div>
-
-          <div
-            className={`${css_prefix}form-button`}
-            onClick={onClickSubmitExpense}
-          >
-            <MdAdd />
-          </div>
+          <input
+            placeholder='Enter Expense'
+            value={state.expense}
+            onChange={({ currentTarget }) =>
+              onChangeExpenseValue(currentTarget.value)
+            }
+            type='number'
+            className={`${css_prefix}form-input`}
+            onKeyDown={e => onKeyPressEnter(e)}
+          />
         </div>
-      );
-    } else {
-      return null;
-    }
+
+        <div
+          className={`${css_prefix}form-button`}
+          onClick={onClickSubmitExpense}
+        >
+          <MdAdd />
+        </div>
+      </div>
+    );
+    // } else {
+    //   return null;
+    // }
   };
 
-  const renderTotalEarningsForm = () => {
-    if (state.step === 'step-1') {
-      return (
-        <div className={`${css_prefix}form-main`}>
-          <div className={`${css_prefix}form-input-main`}>
-            <input
-              placeholder='Enter Total Earnings'
-              value={state.total}
-              onChange={({ currentTarget }) =>
-                onChangeTotalExpenseValue(currentTarget.value)
-              }
-              type='number'
-              className={`${css_prefix}form-input`}
-            />
-          </div>
+  // const renderTotalEarningsForm = () => {
+  //   if (state.step === 'step-1') {
+  //     return (
+  //       <div className={`${css_prefix}form-main`}>
+  //         <div className={`${css_prefix}form-input-main`}>
+  //           <input
+  //             placeholder='Enter Total Earnings'
+  //             value={state.total}
+  //             onChange={({ currentTarget }) =>
+  //               onChangeTotalExpenseValue(currentTarget.value)
+  //             }
+  //             type='number'
+  //             className={`${css_prefix}form-input`}
+  //           />
+  //         </div>
 
-          <div
-            className={`${css_prefix}form-button`}
-            onClick={onClickSubmitTotal}
-          >
-            <MdAdd />
-          </div>
-        </div>
-      );
-    } else {
-      return null;
-    }
-  };
+  //         <div
+  //           className={`${css_prefix}form-button`}
+  //           onClick={onClickSubmitTotal}
+  //         >
+  //           <MdAdd />
+  //         </div>
+  //       </div>
+  //     );
+  //   } else {
+  //     return null;
+  //   }
+  // };
 
   const renderExpensesTable = () => {
     const ROWS = [
@@ -203,7 +203,7 @@ const ExpenseManagerComponent: React.FunctionComponent<
 
         {state.totalEarnings.length !== 0 ? (
           <div className={`${css_prefix}total-expense`}>
-            <div className={`${css_prefix}item`}>Total Earnings</div>
+            <div className={`${css_prefix}item`}>Total</div>
             <div className={`${css_prefix}item`}>
               <span>$ {state.totalEarnings}</span>
 
@@ -224,7 +224,7 @@ const ExpenseManagerComponent: React.FunctionComponent<
       <div className={`${css_prefix}main`}>
         {renderExpenseForm()}
 
-        {renderTotalEarningsForm()}
+        {/* {renderTotalEarningsForm()} */}
 
         {renderExpensesTable()}
 
