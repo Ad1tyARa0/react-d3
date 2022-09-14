@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useRef } from 'react';
 import { MdAdd, MdOutlineClear } from 'react-icons/md';
 import { Layout } from '../../layout/Layout';
 
@@ -24,6 +24,8 @@ interface ExpenseManagerProps {}
 const ExpenseManagerComponent: React.FunctionComponent<
   ExpenseManagerProps
 > = () => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const [state, dispatch] = useReducer(
     ExpenseManagerReducer,
     EXPENSE_MANAGER_REDUCER_INITIAL_STATE
@@ -69,6 +71,16 @@ const ExpenseManagerComponent: React.FunctionComponent<
     });
   };
 
+  const onKeyPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      dispatch({
+        type: EXPENSE_MANAGER_ON_CLICK_SUBMIT_EXPENSES,
+      });
+
+      inputRef.current?.focus();
+    }
+  };
+
   const renderExpenseForm = () => {
     if (state.step === 'step-2') {
       return (
@@ -82,6 +94,7 @@ const ExpenseManagerComponent: React.FunctionComponent<
               }
               type='text'
               className={`${css_prefix}form-input`}
+              ref={inputRef}
             />
 
             <input
@@ -92,6 +105,7 @@ const ExpenseManagerComponent: React.FunctionComponent<
               }
               type='number'
               className={`${css_prefix}form-input`}
+              onKeyDown={e => onKeyPressEnter(e)}
             />
           </div>
 
