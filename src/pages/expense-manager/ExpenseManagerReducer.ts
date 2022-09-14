@@ -42,22 +42,27 @@ export type ExpenseManagerReducerActionType =
 // Interface.
 export interface ExpenseManagerReducerStateInterface {
   total: string;
+  savedTotal: number | null;
   expense: string;
   expenseItem: string;
   step: string;
+
   totalEarnings: string;
   allExpenses: ExpenseType[];
+  pieChartData: PieTypeGeneric[];
 }
 
 // Initial state
 export const EXPENSE_MANAGER_REDUCER_INITIAL_STATE: ExpenseManagerReducerStateInterface =
   {
     total: '',
+    savedTotal: null,
     expense: '',
     expenseItem: '',
     step: 'step-1',
     totalEarnings: '',
     allExpenses: [],
+    pieChartData: [],
   };
 
 export const ExpenseManagerReducer = (
@@ -65,6 +70,8 @@ export const ExpenseManagerReducer = (
   action: ExpenseManagerReducerActionType
 ): ExpenseManagerReducerStateInterface => {
   let expenseObj = {} as ExpenseType;
+  let formattedData;
+  let expense;
   switch (action.type) {
     case EXPENSE_MANAGER_ON_CHANGE_EXPENSE:
       return {
@@ -85,20 +92,44 @@ export const ExpenseManagerReducer = (
       };
 
     case EXPENSE_MANAGER_ON_CLICK_SUBMIT_EXPENSES:
-      expenseObj = {
-        name: state.expenseItem,
-        value: Number(state.expense),
-        title: Number(state.expense).toLocaleString(),
-      };
+      if (state.expenseItem.length !== 0) {
+        expenseObj = {
+          name: state.expenseItem,
+          value: Number(state.expense),
+          title: Number(state.expense).toLocaleString(),
+        };
+
+        expense = [...state.allExpenses, expenseObj];
+      } else {
+        expense = [...state.allExpenses];
+      }
+
+      console.log(expense);
+
+      formattedData = expense.map(e => {
+        let temp = Object.assign({
+          name: e.name,
+          value: (e.value / Number(state.savedTotal)) * 100,
+        });
+
+        return temp;
+      });
+
+      // if (formattedData.reduce((a, c) => a + c, ''))
 
       return {
         ...state,
-        allExpenses:
-          state.expenseItem.length !== 0
-            ? [...state.allExpenses, expenseObj]
-            : [...state.allExpenses],
+        allExpenses: expense,
+        totalEarnings: (
+          state.savedTotal! - Number(state.expense)
+        ).toLocaleString(),
         expense: '',
         expenseItem: '',
+        pieChartData: formattedData,
+        // totalEarnings: (
+        //   Number(state.savedTotal) -
+        //   formattedData.reduce((a, c) => a + c.value, 0)
+        // ).toLocaleString(),
       };
 
     case EXPENSE_MANAGER_ON_CLICK_SUBMIT_TOTAL:
@@ -108,6 +139,7 @@ export const ExpenseManagerReducer = (
           state.total.length !== 0 ? Number(state.total).toLocaleString() : '',
         total: '',
         step: 'step-2',
+        savedTotal: Number(state.total),
       };
 
     case EXPENSE_MANAGER_ON_CLICK_REMOVE_EXPENSE:

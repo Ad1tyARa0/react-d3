@@ -2,9 +2,6 @@ import React, { useCallback, useLayoutEffect, useMemo } from 'react';
 import * as d3 from 'd3';
 import { PieArcDatum } from 'd3-shape';
 
-// Components.
-import { Title } from '../../common/title/Title';
-
 // Constants.
 import {
   PIECHART_PALETTE,
@@ -15,7 +12,6 @@ import {
 import raw_data from '../../../data/pie-chart.json';
 
 // Types.
-import { AccentColorType } from '../../../utils/types/accent-color';
 import { DimensionsType, PieTypeGeneric } from '../../../utils/types/charts';
 
 // SCSS.
@@ -28,26 +24,26 @@ const css_prefix = 'c--c--p-c__';
 interface PieChartProps {
   width: number;
   dimensions: DimensionsType;
-  accentColor: AccentColorType;
+  data: PieTypeGeneric[];
 }
 
 const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
   width,
   dimensions,
-  accentColor,
+  data,
 }) => {
   const { left, right, top, bottom } = dimensions;
 
-  const data: PieTypeGeneric[] = useMemo(
-    () =>
-      raw_data.map(e => {
-        return {
-          name: e.expense,
-          value: e.amount,
-        };
-      }),
-    []
-  );
+  // const data: PieTypeGeneric[] = useMemo(
+  //   () =>
+  //     raw_data.map(e => {
+  //       return {
+  //         name: e.expense,
+  //         value: e.amount,
+  //       };
+  //     }),
+  //   []
+  // );
 
   const draw = useCallback(() => {
     const newWidth = width - left - right;
@@ -70,8 +66,8 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
           return d.name;
         }) as unknown as string
       )
-      .range(PIECHART_PALETTE);
-    // .range(d3.schemeCategory10);
+      // .range(PIECHART_PALETTE);
+      .range(d3.schemeCategory10);
 
     const pie = d3
       .pie<PieTypeGeneric>()
@@ -95,7 +91,7 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
         return color(d.data.name) as string;
       });
 
-    arch.append('path').attr('d', path);
+    arch.append('path').attr('d', path).transition().duration(2000);
   }, [bottom, data, left, right, top, width]);
 
   useLayoutEffect(() => {
@@ -104,16 +100,10 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`}>
-      <Title
-        title='Expenses'
-        subTitle='Aug 1st 2022 - Sept 1st 2022'
-        accentColor={accentColor}
-      />
-
-      <div className={`${css_prefix}value-main`}>
-        {PIECHART_PALETTE.map(e => {
+      {/* <div className={`${css_prefix}value-main`}>
+        {data.map(e => {
           return (
-            <div key={e} className={`${css_prefix}item`}>
+            <div key={e.value} className={`${css_prefix}item`}>
               <div
                 style={{
                   backgroundColor: `${e}`,
@@ -123,11 +113,11 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
                   marginRight: '5px',
                 }}
               />
-              <span>{PIECHART_PALETTE_MAPPING[e]}</span>
+              <span></span>
             </div>
           );
         })}
-      </div>
+      </div> */}
 
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}></g>

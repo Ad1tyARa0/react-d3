@@ -1,6 +1,8 @@
 import React, { useReducer, useRef } from 'react';
 import { MdAdd, MdOutlineClear } from 'react-icons/md';
+import { PieChart } from '../../components/charts/pie-chart/PieChart';
 import { Layout } from '../../layout/Layout';
+import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
 
 // SCSS.
 import './ExpenseManager.scss';
@@ -215,6 +217,8 @@ const ExpenseManagerComponent: React.FunctionComponent<
     );
   };
 
+  console.log(state.pieChartData);
+
   return (
     <Layout headerTitle='Expense Manager' accentColor={<div />}>
       <div className={`${css_prefix}main`}>
@@ -223,6 +227,12 @@ const ExpenseManagerComponent: React.FunctionComponent<
         {renderTotalEarningsForm()}
 
         {renderExpensesTable()}
+
+        <PieChart
+          width={800}
+          dimensions={DEFAULT_DIMENSIONS}
+          data={state.pieChartData}
+        />
       </div>
     </Layout>
   );
