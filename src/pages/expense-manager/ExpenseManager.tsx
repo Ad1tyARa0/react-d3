@@ -1,21 +1,25 @@
 import React, { useReducer, useRef } from 'react';
-import { PieChart } from '../../components/charts/pie-chart/PieChart';
-import { Layout } from '../../layout/Layout';
-import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
-// SCSS.
-import './ExpenseManager.scss';
+// Components.
+import { PieChart } from '../../components/charts/pie-chart/PieChart';
+import { Layout } from '../../layout/Layout';
+
+// Constants.
+import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
+
+// Types Reducers & interfaces.
 import {
   ExpenseManagerReducer,
   EXPENSE_MANAGER_ON_CHANGE_EXPENSE,
-  EXPENSE_MANAGER_ON_CHANGE_EXPENSE_ITEM,
-  EXPENSE_MANAGER_ON_CLICK_SUBMIT_TOTAL,
-  EXPENSE_MANAGER_ON_CHANGE_TOTAL_EARNINGS,
-  EXPENSE_MANAGER_ON_CLICK_SUBMIT_EXPENSES,
   EXPENSE_MANAGER_REDUCER_INITIAL_STATE,
+  EXPENSE_MANAGER_ON_CHANGE_EXPENSE_ITEM,
   EXPENSE_MANAGER_ON_CLICK_REMOVE_EXPENSE,
+  EXPENSE_MANAGER_ON_CLICK_SUBMIT_EXPENSES,
 } from './ExpenseManagerReducer';
+
+// SCSS.
+import './ExpenseManager.scss';
 
 // Pages -- expense - manager
 const css_prefix = 'p--e-m__';
@@ -40,13 +44,6 @@ const ExpenseManagerComponent: React.FunctionComponent<
     });
   };
 
-  const onChangeTotalExpenseValue = (payload: string) => {
-    dispatch({
-      type: EXPENSE_MANAGER_ON_CHANGE_TOTAL_EARNINGS,
-      payload,
-    });
-  };
-
   const onChangeExpenseItemValue = (payload: string) => {
     dispatch({
       type: EXPENSE_MANAGER_ON_CHANGE_EXPENSE_ITEM,
@@ -67,12 +64,6 @@ const ExpenseManagerComponent: React.FunctionComponent<
     });
   };
 
-  const onClickSubmitTotal = () => {
-    dispatch({
-      type: EXPENSE_MANAGER_ON_CLICK_SUBMIT_TOTAL,
-    });
-  };
-
   const onKeyPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       dispatch({
@@ -84,7 +75,6 @@ const ExpenseManagerComponent: React.FunctionComponent<
   };
 
   const renderExpenseForm = () => {
-    // if (state.step === 'step-2') {
     return (
       <div className={`${css_prefix}form-main`}>
         <div className={`${css_prefix}form-input-main`}>
@@ -119,39 +109,7 @@ const ExpenseManagerComponent: React.FunctionComponent<
         </div>
       </div>
     );
-    // } else {
-    //   return null;
-    // }
   };
-
-  // const renderTotalEarningsForm = () => {
-  //   if (state.step === 'step-1') {
-  //     return (
-  //       <div className={`${css_prefix}form-main`}>
-  //         <div className={`${css_prefix}form-input-main`}>
-  //           <input
-  //             placeholder='Enter Total Earnings'
-  //             value={state.total}
-  //             onChange={({ currentTarget }) =>
-  //               onChangeTotalExpenseValue(currentTarget.value)
-  //             }
-  //             type='number'
-  //             className={`${css_prefix}form-input`}
-  //           />
-  //         </div>
-
-  //         <div
-  //           className={`${css_prefix}form-button`}
-  //           onClick={onClickSubmitTotal}
-  //         >
-  //           <MdAdd />
-  //         </div>
-  //       </div>
-  //     );
-  //   } else {
-  //     return null;
-  //   }
-  // };
 
   const renderExpensesTable = () => {
     const ROWS = [

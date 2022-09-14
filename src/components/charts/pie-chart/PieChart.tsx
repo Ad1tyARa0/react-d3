@@ -2,15 +2,6 @@ import React, { useCallback, useLayoutEffect, useMemo } from 'react';
 import * as d3 from 'd3';
 import { PieArcDatum } from 'd3-shape';
 
-// Constants.
-import {
-  PIECHART_PALETTE,
-  PIECHART_PALETTE_MAPPING,
-} from '../../../utils/constants/charts';
-
-// Data.
-import raw_data from '../../../data/pie-chart.json';
-
 // Types.
 import { DimensionsType, PieTypeGeneric } from '../../../utils/types/charts';
 
@@ -33,17 +24,6 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
   data,
 }) => {
   const { left, right, top, bottom } = dimensions;
-
-  // const data: PieTypeGeneric[] = useMemo(
-  //   () =>
-  //     raw_data.map(e => {
-  //       return {
-  //         name: e.expense,
-  //         value: e.amount,
-  //       };
-  //     }),
-  //   []
-  // );
 
   const draw = useCallback(() => {
     const newWidth = width - left - right;
@@ -100,25 +80,6 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
 
   return (
     <div className={`${css_prefix}main`}>
-      {/* <div className={`${css_prefix}value-main`}>
-        {data.map(e => {
-          return (
-            <div key={e.value} className={`${css_prefix}item`}>
-              <div
-                style={{
-                  backgroundColor: `${e}`,
-                  height: '18px',
-                  width: '18px',
-                  borderRadius: '3px',
-                  marginRight: '5px',
-                }}
-              />
-              <span></span>
-            </div>
-          );
-        })}
-      </div> */}
-
       <svg className={`${css_prefix}svg`}>
         <g className={`${css_prefix}main-g`}></g>
       </svg>
