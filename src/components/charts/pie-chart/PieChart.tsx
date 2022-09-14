@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useMemo } from 'react';
+import React, { useCallback, useLayoutEffect } from 'react';
 import * as d3 from 'd3';
 import { PieArcDatum } from 'd3-shape';
 
@@ -56,7 +56,7 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
 
     const path = d3
       .arc<PieArcDatum<PieTypeGeneric>>()
-      .innerRadius(50)
+      .innerRadius(85)
       .outerRadius(radius);
 
     const pieData = pie(data);

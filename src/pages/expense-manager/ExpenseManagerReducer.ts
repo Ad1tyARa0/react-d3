@@ -108,9 +108,24 @@ export const ExpenseManagerReducer = (
       };
 
     case EXPENSE_MANAGER_ON_CLICK_REMOVE_EXPENSE:
+      expense = state.allExpenses.filter(e => e.value !== action.payload);
+
+      formattedData = expense.map(e => {
+        let temp = Object.assign({
+          name: e.name,
+          value: e.value,
+        });
+
+        return temp;
+      });
+
       return {
         ...state,
-        allExpenses: state.allExpenses.filter(e => e.value !== action.payload),
+        allExpenses: expense,
+        totalEarnings: formattedData
+          .reduce((a, c) => a + c.value, 0)
+          .toLocaleString(),
+        pieChartData: formattedData,
       };
 
     default:
