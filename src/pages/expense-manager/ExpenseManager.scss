@@ -6,6 +6,13 @@ $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
   padding: 20px;
+  display: flex;
+}
+
+#{$class_css_prefix}inner-main {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
 #{$class_css_prefix}form-main {
@@ -19,7 +26,7 @@ $class_css_prefix: '.#{$css_prefix}';
   @include display-flex-center-center;
 
   color: $color-green;
-  margin-left: 10px;
+  margin-left: 25px;
   background-color: $color-background-dark;
   @include box-shadow;
 }
@@ -27,7 +34,7 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}form-input {
   @include input;
 
-  margin-right: 10px;
+  margin-right: 5px;
   padding: 4px 2px;
   //   border: 1px solid $color-yellow;
 
@@ -64,9 +71,9 @@ $class_css_prefix: '.#{$css_prefix}';
 }
 
 #{$class_css_prefix}item {
-  margin-right: 10px;
   min-width: 180px;
-  padding: 3px 0;
+  // padding: 3px 0;
+  padding: 10px;
   display: flex;
   align-items: center;
   border-right: 1px solid $color-background-light;

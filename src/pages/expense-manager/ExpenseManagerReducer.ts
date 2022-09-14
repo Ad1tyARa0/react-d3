@@ -92,8 +92,6 @@ export const ExpenseManagerReducer = (
       };
 
     case EXPENSE_MANAGER_ON_CLICK_SUBMIT_EXPENSES:
-      let value = Number(state.expense);
-
       if (state.expenseItem.length !== 0) {
         expenseObj = {
           name: state.expenseItem,
@@ -118,10 +116,13 @@ export const ExpenseManagerReducer = (
       return {
         ...state,
         allExpenses: expense,
-        totalEarnings: formattedData.reduce((a, c) => a + c.value, 0),
+        totalEarnings: formattedData
+          .reduce((a, c) => a + c.value, 0)
+          .toLocaleString(),
         expense: '',
         expenseItem: '',
         pieChartData: formattedData,
+
         // totalEarnings: (
         //   Number(state.savedTotal) -
         //   formattedData.reduce((a, c) => a + c.value, 0)

@@ -1,8 +1,8 @@
 import React, { useReducer, useRef } from 'react';
-import { MdAdd, MdOutlineClear } from 'react-icons/md';
 import { PieChart } from '../../components/charts/pie-chart/PieChart';
 import { Layout } from '../../layout/Layout';
 import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 // SCSS.
 import './ExpenseManager.scss';
@@ -115,7 +115,7 @@ const ExpenseManagerComponent: React.FunctionComponent<
           className={`${css_prefix}form-button`}
           onClick={onClickSubmitExpense}
         >
-          <MdAdd />
+          <AiOutlinePlus />
         </div>
       </div>
     );
@@ -192,7 +192,7 @@ const ExpenseManagerComponent: React.FunctionComponent<
                       className={`${css_prefix}item-icon`}
                       onClick={() => onClickRemoveExpense(e.value)}
                     >
-                      <MdOutlineClear />
+                      <AiOutlineMinus />
                     </div>
                   </div>
                 </div>
@@ -206,10 +206,6 @@ const ExpenseManagerComponent: React.FunctionComponent<
             <div className={`${css_prefix}item`}>Total</div>
             <div className={`${css_prefix}item`}>
               <span>$ {state.totalEarnings}</span>
-
-              <div className={`${css_prefix}item-icon`}>
-                <MdOutlineClear />
-              </div>
             </div>
           </div>
         ) : null}
@@ -217,16 +213,14 @@ const ExpenseManagerComponent: React.FunctionComponent<
     );
   };
 
-  console.log(state.pieChartData);
-
   return (
     <Layout headerTitle='Expense Manager' accentColor={<div />}>
       <div className={`${css_prefix}main`}>
-        {renderExpenseForm()}
+        <div className={`${css_prefix}inner-main`}>
+          {renderExpenseForm()}
 
-        {/* {renderTotalEarningsForm()} */}
-
-        {renderExpensesTable()}
+          {renderExpensesTable()}
+        </div>
 
         <PieChart
           width={800}

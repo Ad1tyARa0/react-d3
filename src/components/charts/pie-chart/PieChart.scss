@@ -9,8 +9,7 @@ $class_css_prefix: '.#{$css_prefix}';
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  margin-top: 20px;
+  flex: 1;
 }
 
 #{$class_css_prefix}value-main {
