@@ -4,6 +4,6 @@ export type HistogramDataType = {
 
 export type BarNodeType = {
   x0: number;
-  s2: number;
+  x1: number;
   length: number;
 };

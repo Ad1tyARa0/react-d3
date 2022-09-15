@@ -3,7 +3,8 @@ import * as d3 from 'd3';
 
 // SCSS.
 import './Histogram.scss';
-import { HistogramDataType } from '../../../utils/types/histogram';
+import { BarNodeType, HistogramDataType } from '../../../utils/types/histogram';
+import { AccentColorType } from '../../../utils/types/accent-color';
 
 // Components -- charts -- histogram
 const css_prefix = 'c--c--h__';
@@ -13,12 +14,14 @@ interface HistogramProps {
   width: number;
   height: number;
   data: Array<never>;
+  accentColor: AccentColorType;
 }
 
 const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
   width,
   height,
   data,
+  accentColor,
 }) => {
   const [numberOfTicks, setNumberOfTicks] = useState<number>(10);
 
@@ -69,7 +72,26 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
     const barNode = histogramChart
       .selectAll<SVGRectElement, number[]>('rect')
       .data(bins);
-  }, [data, height, numberOfTicks, width]);
+
+    barNode
+      .enter()
+      .append('rect')
+      .merge(barNode)
+      .transition()
+      .duration(750)
+      .attr('transform', d => {
+        return `translate(${xAxis(d.x0!)}, ${yAxis(d.length)})`;
+      })
+      .attr('width', d => {
+        return xAxis((d as BarNodeType).x1) - xAxis((d as BarNodeType).x0) - 1;
+      })
+      .attr('height', d => {
+        return height - yAxis(d.length);
+      })
+      .style('fill', accentColor.value);
+
+    barNode.exit().remove();
+  }, [data, height, numberOfTicks, width, accentColor.value]);
 
   useLayoutEffect(() => {
     draw();
