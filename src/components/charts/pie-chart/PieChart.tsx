@@ -86,13 +86,10 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
       .append('tspan')
       .attr('y', '12px')
       .attr('x', 0)
-      // .style('font-weight', 'bold')
       .text(d => `${d.data.name}`)
       .attr('class', 'text');
 
     arch.append('path').attr('d', path);
-
-    // .transition().duration(2000);
   }, [bottom, data, left, right, top, width]);
 
   useLayoutEffect(() => {
