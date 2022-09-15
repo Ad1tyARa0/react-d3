@@ -14,7 +14,7 @@ export const LINKS = [
   {
     id: 3,
     path: '/3',
-    title: 'Bar Graph',
+    title: 'Bar Graph & Histogram',
   },
 
   {
