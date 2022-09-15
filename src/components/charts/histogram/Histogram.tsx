@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 
 // SCSS.
 import './Histogram.scss';
+import { HistogramDataType } from '../../../utils/types/histogram';
 
 // Components -- charts -- histogram
 const css_prefix = 'c--c--h__';
@@ -11,11 +12,13 @@ const css_prefix = 'c--c--h__';
 interface HistogramProps {
   width: number;
   height: number;
+  data: Array<never>;
 }
 
 const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
   width,
   height,
+  data,
 }) => {
   const [numberOfTicks, setNumberOfTicks] = useState<number>(10);
 
@@ -44,7 +47,29 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
       .call(d3.axisBottom(xAxis));
 
     const yAxis = d3.scaleLinear().range([height, 0]);
-  }, [height, width]);
+
+    const histogram = d3
+      .bin()
+      .value(d => {
+        return (d as unknown as HistogramDataType).price;
+      })
+      .domain([0, 750])
+      .thresholds(xAxis.ticks(numberOfTicks));
+
+    const bins = histogram(data as Array<never>);
+
+    const yAxisMaxValues = d3.max(bins, d => {
+      return d.length;
+    }) as unknown as number;
+
+    yAxis.domain([0, yAxisMaxValues]);
+
+    yAxisGroupNode.transition().duration(750).call(d3.axisLeft(yAxis));
+
+    const barNode = histogramChart
+      .selectAll<SVGRectElement, number[]>('rect')
+      .data(bins);
+  }, [data, height, numberOfTicks, width]);
 
   useLayoutEffect(() => {
     draw();
