@@ -8,6 +8,7 @@ import { AccentColor } from '../../components/common/accent-color/AccentColor';
 // Constants.
 import { COLORS } from '../../utils/constants/colors';
 import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../utils/constants/data';
+import { ETH_PRICE_DATA as URL2 } from '../../utils/constants/data';
 
 // Types and interfaces.
 import { AccentColorType } from '../../utils/types/accent-color';
@@ -19,6 +20,8 @@ import { BarChartType } from '../../utils/types/data';
 import { Loader } from '../../components/common/loader/Loader';
 import { BarChart } from '../../components/charts/bar-chart/BarChart';
 import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
+import { HistogramDataType } from '../../utils/types/histogram';
+import { Histogram } from '../../components/charts/histogram/Histogram';
 
 // Page -- page 3
 const css_prefix = 'p--p3__';
@@ -37,10 +40,30 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [chartData, setChartData] = useState<BarChartType[]>([]);
+  const [histogramData, setHistogramData] = useState<Array<never>>([]);
+  const [histogramIsLoading, setHistogramIsLoading] = useState<boolean>(false);
 
   const onClickSetAccentColor = (payload: AccentColorType) => {
     setAccentColor(payload);
   };
+
+  const fetchHistogramData = useCallback(async (URL: string) => {
+    try {
+      setHistogramIsLoading(true);
+
+      let response = await d3.dsv(',', URL, d => {
+        return {
+          price: d.value,
+        };
+      });
+
+      setHistogramData(response);
+
+      setHistogramIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const fetchBarChartData = useCallback(async (URL: string) => {
     try {
@@ -61,6 +84,10 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
   }, []);
 
   useEffect(() => {
+    fetchHistogramData(URL2);
+  }, [fetchHistogramData]);
+
+  useEffect(() => {
     fetchBarChartData(URL);
   }, [fetchBarChartData]);
 
@@ -76,10 +103,18 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
       }
     >
       <div className={`${css_prefix}main`}>
-        <Title
+        {/* <Title
           title='Most Popular Programming Languages - 2021'
           subTitle='Stack Overflow Survey'
           accentColor={accentColor}
+        /> */}
+
+        <Histogram
+          width={1000}
+          height={600}
+          data={histogramData}
+          accentColor={accentColor}
+          dimensions={DEFAULT_DIMENSIONS}
         />
 
         {loading ? (

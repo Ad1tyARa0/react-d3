@@ -1,7 +1,7 @@
 @import 'src/global/colors';
 @import 'src/global/variables';
 
-$css_prefix: 'p--p2__';
+$css_prefix: 'p--p3__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
@@ -10,5 +10,5 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}loader-main {
   @include display-flex-center-center;
 
-  height: 100%;
+  height: 70vh;
 }

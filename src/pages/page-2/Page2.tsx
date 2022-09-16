@@ -18,7 +18,7 @@ import { ScatterPlotType } from '../../utils/types/charts';
 import './Page2.scss';
 
 // Pages -- page 2
-const css_prefix = 'p--p2__';
+const css_prefix = 'p--p-2__';
 
 // Component props.
 interface Page2Props {}

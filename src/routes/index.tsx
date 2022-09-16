@@ -3,8 +3,8 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 // Components.
 import { App } from '../App';
-import { Page2 } from '../pages/2/Page2';
-import { Page3 } from '../pages/3/Page3';
+import { Page2 } from '../pages/page-2/Page2';
+import { Page3 } from '../pages/page-3/Page3';
 import { Home } from '../pages/home/Home';
 import { ExpenseManager } from '../pages/expense-manager/ExpenseManager';
 

@@ -30,13 +30,11 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
 
   const [numberOfTicks, setNumberOfTicks] = useState<number>(10);
 
-  const onChangeNumberOfTicks = (
-    event: React.ChangeEvent<{}>,
-    newValue: number | number[]
-  ) => {
-    const value = newValue as number;
+  const onChangeNumberOfTicks = (event: React.ChangeEvent<{}>) => {
+    console.log(event);
+    // const value = newValue as number;
 
-    setNumberOfTicks(value);
+    // setNumberOfTicks(value);
   };
 
   const draw = useCallback(() => {
@@ -104,7 +102,37 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
 
   return (
     <div className={`${css_prefix}main`}>
-      <div>Histogram</div>
+      <div className={`${css_prefix}title`}>
+        2020 Eth Price days/price Histogram Chart
+      </div>
+
+      <svg height={height + top + bottom} width={width + left + right}>
+        <text x={left - 35} y={top - 10} fontSize={10}>
+          Days
+        </text>
+
+        <text x={width + left + 20} y={height + top + 16} fontSize={10}>
+          Price
+        </text>
+
+        <g
+          className={`${css_prefix}histogram-chart`}
+          transform={`translate(${left}, ${top})`}
+        ></g>
+      </svg>
+
+      <div className={`${css_prefix}slider-div`}>
+        <div className={`${css_prefix}ticks`}>Number of Ticks</div>
+
+        <input
+          type='range'
+          // defaultValue={numberOfTicks}
+          min={10}
+          max={85}
+          value={numberOfTicks}
+          onChange={event => onChangeNumberOfTicks(event)}
+        />
+      </div>
     </div>
   );
 };
