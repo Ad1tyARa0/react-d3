@@ -6,6 +6,7 @@ import './Histogram.scss';
 import { BarNodeType, HistogramDataType } from '../../../utils/types/histogram';
 import { AccentColorType } from '../../../utils/types/accent-color';
 import { DimensionsType } from '../../../utils/types/charts';
+import { BarChartType } from '../../../utils/types/data';
 
 // Components -- charts -- histogram
 const css_prefix = 'c--c--h__';
@@ -62,7 +63,7 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
       .domain([0, 750])
       .thresholds(xAxis.ticks(numberOfTicks));
 
-    const bins = histogram(data as Array<never>);
+    const bins = histogram(data as Array<number>);
 
     const yAxisMaxValues = d3.max(bins, d => {
       return d.length;
