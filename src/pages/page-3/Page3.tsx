@@ -40,7 +40,7 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [chartData, setChartData] = useState<BarChartType[]>([]);
-  const [histogramData, setHistogramData] = useState<Array<never>>([]);
+  const [histogramData, setHistogramData] = useState<Array<number>>([]);
   const [histogramIsLoading, setHistogramIsLoading] = useState<boolean>(false);
 
   const onClickSetAccentColor = (payload: AccentColorType) => {
@@ -57,7 +57,11 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
         };
       });
 
-      setHistogramData(response);
+      let result = response.map(e => Number(e.price));
+
+      console.log(result);
+
+      setHistogramData(result);
 
       setHistogramIsLoading(false);
     } catch (error) {

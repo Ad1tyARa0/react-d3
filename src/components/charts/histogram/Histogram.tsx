@@ -3,10 +3,11 @@ import * as d3 from 'd3';
 
 // SCSS.
 import './Histogram.scss';
-import { BarNodeType, HistogramDataType } from '../../../utils/types/histogram';
+
 import { AccentColorType } from '../../../utils/types/accent-color';
 import { DimensionsType } from '../../../utils/types/charts';
 import { BarChartType } from '../../../utils/types/data';
+import { BarNodeType, HistogramDataType } from '../../../utils/types/histogram';
 
 // Components -- charts -- histogram
 const css_prefix = 'c--c--h__';
@@ -15,7 +16,7 @@ const css_prefix = 'c--c--h__';
 interface HistogramProps {
   width: number;
   height: number;
-  data: Array<never>;
+  data: Array<number>;
   accentColor: AccentColorType;
   dimensions: DimensionsType;
 }
