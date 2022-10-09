@@ -5,6 +5,9 @@ $css_prefix: 'c--c--b-c__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 15px;
 }
 

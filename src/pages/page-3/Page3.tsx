@@ -138,7 +138,7 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
         ) : (
           <Histogram
             width={1000}
-            height={600}
+            height={350}
             data={histogramData}
             accentColor={accentColor}
             dimensions={DEFAULT_DIMENSIONS}
