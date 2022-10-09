@@ -1,14 +1,14 @@
 import React, { useState, useLayoutEffect, useCallback } from 'react';
 import * as d3 from 'd3';
 
+// Types and interfaces.
+import { Types } from './types';
+import { DimensionsType } from '../../../utils/types/charts';
+import { AccentColorType } from '../../../utils/types/accent-color';
+import { HistogramDataType } from '../../../utils/types/histogram';
+
 // SCSS.
 import './Histogram.scss';
-
-import { AccentColorType } from '../../../utils/types/accent-color';
-import { DimensionsType } from '../../../utils/types/charts';
-import { BarChartType } from '../../../utils/types/data';
-import { BarNodeType, HistogramDataType } from '../../../utils/types/histogram';
-import { Types } from './types';
 
 // Components -- charts -- histogram
 const css_prefix = 'c--c--h__';
@@ -40,9 +40,9 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
   };
 
   const draw = useCallback(() => {
-    const histogramChart = d3.selectAll(`.${css_prefix}histogramChart`);
+    const histogramChart = d3.selectAll(`.${css_prefix}histogram-chart`);
 
-    d3.selectAll(`.${css_prefix}histogramChart`).selectAll('g').remove();
+    d3.selectAll(`.${css_prefix}histogram-chart`).selectAll('g').remove();
 
     const xAxisGroupNode = histogramChart.append('g');
     const yAxisGroupNode = histogramChart.append('g');
@@ -88,6 +88,7 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
       .merge(barsNode) // get existing elements
       // .transition() // apply changes
       // .duration(750)
+      .attr('class', `${css_prefix}bars-node`)
       .attr('xAxis', 1)
       .attr('transform', function transform(d) {
         return `translate(${xAxis(
@@ -113,17 +114,17 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
   }, [draw]);
 
   return (
-    <div className={`${css_prefix}histogram`}>
+    <div className={`${css_prefix}main`}>
       <svg height={height + top + bottom} width={width + left + right}>
         <g
-          className={`${css_prefix}histogramChart`}
+          className={`${css_prefix}histogram-chart`}
           transform={`translate(${left},${top})`}
         />
       </svg>
 
       <div className={`${css_prefix}slider-div`}>
         <div className={`${css_prefix}slider-title`} id='discrete-slider'>
-          Number of ticks:
+          Number of ticks: {numberOfTicks}
         </div>
         <input
           type='range'
