@@ -17,6 +17,18 @@ $class_css_prefix: '.#{$css_prefix}';
   transition: fill 500ms linear;
 }
 
+#{$class_css_prefix}x-axis-text {
+  fill: $color-background-light;
+  transform: translate(0, 10px);
+  font-size: 12px;
+}
+
+#{$class_css_prefix}y-axis-text {
+  fill: $color-background-light;
+  transform: translate(1050px, 400px);
+  font-size: 12px;
+}
+
 input[type='range'] {
   -webkit-appearance: none;
   -moz-appearance: none;

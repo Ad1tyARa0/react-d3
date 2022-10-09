@@ -170,15 +170,17 @@ const HomeComponent: React.FC<HomeProps> = () => {
       }
     >
       <div className={`${css_prefix}main`}>
-        <Data
-          accentColor={state.accentColor}
-          chartOptions={LINE_AND_AREA_CHARTS}
-          dataOptions={DATASETS_LINE_AREA_CHARTS}
-          dataOption={state.dataOption}
-          chartOption={state.chartOption}
-          onClickSelectDataOption={onClickSelectDataOption}
-          onClickSelectChartOption={onClickSelectChartOption}
-        />
+        <div className={`${css_prefix}button-main`}>
+          <Data
+            accentColor={state.accentColor}
+            chartOptions={LINE_AND_AREA_CHARTS}
+            dataOptions={DATASETS_LINE_AREA_CHARTS}
+            dataOption={state.dataOption}
+            chartOption={state.chartOption}
+            onClickSelectDataOption={onClickSelectDataOption}
+            onClickSelectChartOption={onClickSelectChartOption}
+          />
+        </div>
 
         <Title
           title={CHART_TITLE_MAPPING[state.dataOption][0]}

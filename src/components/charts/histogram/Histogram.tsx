@@ -86,8 +86,8 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
       .enter()
       .append('rect')
       .merge(barsNode) // get existing elements
-      // .transition() // apply changes
-      // .duration(750)
+      .transition() // apply changes
+      .duration(750)
       .attr('class', `${css_prefix}bars-node`)
       .attr('xAxis', 1)
       .attr('transform', function transform(d) {
@@ -116,6 +116,10 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
   return (
     <div className={`${css_prefix}main`}>
       <svg height={height + top + bottom} width={width + left + right}>
+        <text className={`${css_prefix}x-axis-text`}>Days</text>
+
+        <text className={`${css_prefix}y-axis-text`}>Price</text>
+
         <g
           className={`${css_prefix}histogram-chart`}
           transform={`translate(${left},${top})`}
