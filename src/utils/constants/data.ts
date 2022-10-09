@@ -14,6 +14,8 @@ export const DIAMONDS_DATA = `${BASE_URL}/a6981e4cbe19aa043b5300ddc1cc6fc7/raw/a
 
 export const DIAMONDS_DATA_FULL = `${BASE_URL}/05109dee2ed408db0afda6aebc41c7f7/raw/diamonds.csv`;
 
+export const ETH_OPEN = `${BASE_URL}/3ee60f6e45e4906b716c5c85d7236936/raw/eth-open.csv`;
+
 export const OPTION_TO_URL_MAPPING: { [m: string]: string } = {
   btc: BITCOIN_PRICE_DATA,
   ba: BOEING_COMPANY_DATA,

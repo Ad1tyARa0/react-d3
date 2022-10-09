@@ -8,20 +8,20 @@ import { AccentColor } from '../../components/common/accent-color/AccentColor';
 // Constants.
 import { COLORS } from '../../utils/constants/colors';
 import { PROGRAMMING_LANGUAGES_DATA as URL } from '../../utils/constants/data';
-import { ETH_PRICE_DATA as URL2 } from '../../utils/constants/data';
+import { ETH_OPEN as URL2 } from '../../utils/constants/data';
 
 // Types and interfaces.
 import { AccentColorType } from '../../utils/types/accent-color';
 
 // SCSS.
 import './Page3.scss';
-import { Title } from '../../components/common/title/Title';
 import { BarChartType } from '../../utils/types/data';
 import { Loader } from '../../components/common/loader/Loader';
 import { BarChart } from '../../components/charts/bar-chart/BarChart';
 import { DEFAULT_DIMENSIONS } from '../../utils/constants/charts';
-import { HistogramDataType } from '../../utils/types/histogram';
 import { Histogram } from '../../components/charts/histogram/Histogram';
+import { HistogramDataType } from '../../utils/types/histogram';
+import { Title } from '../../components/common/title/Title';
 
 // Page -- page 3
 const css_prefix = 'p--p3__';
@@ -40,7 +40,10 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const [chartData, setChartData] = useState<BarChartType[]>([]);
-  const [histogramData, setHistogramData] = useState<Array<number>>([]);
+  const [histogramData, setHistogramData] = useState<Array<HistogramDataType>>([
+    { price: 0 },
+  ]);
+
   const [histogramIsLoading, setHistogramIsLoading] = useState<boolean>(false);
 
   const onClickSetAccentColor = (payload: AccentColorType) => {
@@ -51,23 +54,23 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
     try {
       setHistogramIsLoading(true);
 
-      let response = await d3.dsv(',', URL, d => {
+      let response = await d3.dsv(',', '/data/historicalPrice.csv', d => {
         return {
-          price: d.value,
+          price: d.open as unknown as number,
         };
       });
 
-      let result = response.map(e => Number(e.price));
+      console.log(response);
 
-      console.log(result);
-
-      setHistogramData(result);
+      setHistogramData(response);
 
       setHistogramIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   }, []);
+
+  console.log(histogramData);
 
   const fetchBarChartData = useCallback(async (URL: string) => {
     try {
@@ -107,11 +110,11 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
       }
     >
       <div className={`${css_prefix}main`}>
-        {/* <Title
-          title='Most Popular Programming Languages - 2021'
-          subTitle='Stack Overflow Survey'
+        <Title
+          title='2020 Eth Price days/price Histogram Chart'
+          subTitle='Yahoo Finance Data'
           accentColor={accentColor}
-        /> */}
+        />
 
         <Histogram
           width={1000}
@@ -119,6 +122,12 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
           data={histogramData}
           accentColor={accentColor}
           dimensions={DEFAULT_DIMENSIONS}
+        />
+
+        <Title
+          title='Most Popular Programming Languages - 2021'
+          subTitle='Stack Overflow Survey'
+          accentColor={accentColor}
         />
 
         {loading ? (

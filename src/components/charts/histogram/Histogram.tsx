@@ -8,6 +8,7 @@ import { AccentColorType } from '../../../utils/types/accent-color';
 import { DimensionsType } from '../../../utils/types/charts';
 import { BarChartType } from '../../../utils/types/data';
 import { BarNodeType, HistogramDataType } from '../../../utils/types/histogram';
+import { Types } from './types';
 
 // Components -- charts -- histogram
 const css_prefix = 'c--c--h__';
@@ -16,7 +17,7 @@ const css_prefix = 'c--c--h__';
 interface HistogramProps {
   width: number;
   height: number;
-  data: Array<number>;
+  data: Array<HistogramDataType>;
   accentColor: AccentColorType;
   dimensions: DimensionsType;
 }
@@ -32,105 +33,103 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
 
   const [numberOfTicks, setNumberOfTicks] = useState<number>(10);
 
-  const onChangeNumberOfTicks = (event: React.ChangeEvent<{}>) => {
-    console.log(event);
-    // const value = newValue as number;
-
-    // setNumberOfTicks(value);
+  const onChangeNumberOfTicks = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNumberOfTicks(Number(event.target.value));
   };
 
   const draw = useCallback(() => {
-    const histogramChart = d3.selectAll(`.${css_prefix}main`);
+    const histogramChart = d3.selectAll(`.${css_prefix}histogramChart`);
 
-    d3.selectAll(`.${css_prefix}main`).selectAll('g').remove();
+    d3.selectAll(`.${css_prefix}histogramChart`).selectAll('g').remove();
 
     const xAxisGroupNode = histogramChart.append('g');
-
     const yAxisGroupNode = histogramChart.append('g');
 
+    // x axis - init & scale
     const xAxis = d3.scaleLinear().domain([75, 650]).range([0, width]);
 
+    // x axis - draw
     xAxisGroupNode
-      .attr('transform', `translate(0, ${height})`)
+      .attr('transform', `translate(0,${height})`)
       .call(d3.axisBottom(xAxis));
 
+    // y axis: init & set range
     const yAxis = d3.scaleLinear().range([height, 0]);
 
     const histogram = d3
       .bin()
       .value(d => {
-        return (d as unknown as HistogramDataType).price;
+        return (d as unknown as Types.Data).price;
       })
       .domain([0, 750])
       .thresholds(xAxis.ticks(numberOfTicks));
 
-    const bins = histogram(data as Array<number>);
+    const bins = histogram(data as Array<never>);
 
     const yAxisMaxValues = d3.max(bins, d => {
       return d.length;
-    }) as unknown as number;
-
+    }) as number;
     yAxis.domain([0, yAxisMaxValues]);
 
+    // draw
     yAxisGroupNode.transition().duration(750).call(d3.axisLeft(yAxis));
 
-    const barNode = histogramChart
+    // join rect with bins
+    const barsNode = histogramChart
       .selectAll<SVGRectElement, number[]>('rect')
       .data(bins);
 
-    barNode
+    // Deal with the bars and as well as new ones on redraw
+    barsNode
       .enter()
       .append('rect')
-      .merge(barNode)
-      .transition()
-      .duration(750)
-      .attr('transform', d => {
-        return `translate(${xAxis(d.x0!)}, ${yAxis(d.length)})`;
+      .merge(barsNode) // get existing elements
+      // .transition() // apply changes
+      // .duration(750)
+      .attr('xAxis', 1)
+      .attr('transform', function transform(d) {
+        return `translate(${xAxis(
+          (d as Types.BarsNode).x0
+        )},${yAxis((d as Types.BarsNode).length)})`;
       })
-      .attr('width', d => {
-        return xAxis((d as BarNodeType).x1) - xAxis((d as BarNodeType).x0) - 1;
+      .attr('width', function widthFunc(d) {
+        return (
+          xAxis((d as Types.BarsNode).x1) - xAxis((d as Types.BarsNode).x0) - 1
+        );
       })
-      .attr('height', d => {
+      .attr('height', function heightFunc(d) {
         return height - yAxis(d.length);
       })
       .style('fill', accentColor.value);
 
-    barNode.exit().remove();
-  }, [data, height, numberOfTicks, width, accentColor.value]);
+    // Lastly, If there are extra bars because of the change, remove them;
+    barsNode.exit().remove();
+  }, [accentColor.value, data, height, numberOfTicks, width]);
 
   useLayoutEffect(() => {
     draw();
   }, [draw]);
 
   return (
-    <div className={`${css_prefix}main`}>
-      <div className={`${css_prefix}title`}>
-        2020 Eth Price days/price Histogram Chart
-      </div>
-
+    <div className={`${css_prefix}histogram`}>
       <svg height={height + top + bottom} width={width + left + right}>
-        <text x={left - 35} y={top - 10} fontSize={10}>
-          Days
-        </text>
-
-        <text x={width + left + 20} y={height + top + 16} fontSize={10}>
-          Price
-        </text>
-
         <g
-          className={`${css_prefix}histogram-chart`}
-          transform={`translate(${left}, ${top})`}
-        ></g>
+          className={`${css_prefix}histogramChart`}
+          transform={`translate(${left},${top})`}
+        />
       </svg>
 
       <div className={`${css_prefix}slider-div`}>
-        <div className={`${css_prefix}ticks`}>Number of Ticks</div>
-
+        <div className={`${css_prefix}slider-title`} id='discrete-slider'>
+          Number of ticks:
+        </div>
         <input
           type='range'
-          // defaultValue={numberOfTicks}
           min={10}
           max={85}
+          className={`${css_prefix}slider-input`}
           value={numberOfTicks}
           onChange={event => onChangeNumberOfTicks(event)}
         />
