@@ -26,8 +26,8 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
   const { left, right, top, bottom } = dimensions;
 
   const draw = useCallback(() => {
-    const newWidth = width - left - right;
-    const newHeight = 580 - top - bottom;
+    const newWidth = 1200 - left - right;
+    const newHeight = 1000 - top - bottom;
 
     const svg = d3
       .select(`.${css_prefix}svg`)
@@ -56,7 +56,7 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
     const path = d3
       .arc<PieArcDatum<PieTypeGeneric>>()
       .innerRadius(0)
-      .outerRadius(200);
+      .outerRadius(350);
 
     const pieData = pie(data);
 
@@ -70,7 +70,7 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
         return color(d.data.name) as string;
       });
 
-    const arcLabel = d3.arc().innerRadius(150).outerRadius(350);
+    const arcLabel = d3.arc().innerRadius(400).outerRadius(400);
 
     const labels = svg
       .selectAll('text')
@@ -79,18 +79,18 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
       .append('text')
       .style('text-anchor', 'middle')
       .style('alignment-baseline', 'middle')
-      .style('font-size', '20px')
+      .style('font-size', '14px')
       .attr('transform', d => `translate(${arcLabel.centroid(d as any)})`);
 
     labels
       .append('tspan')
-      .attr('y', '12px')
+      .attr('y', 0)
       .attr('x', 0)
       .text(d => `${d.data.name}`)
       .attr('class', 'text');
 
     arch.append('path').attr('d', path);
-  }, [bottom, data, left, right, top, width]);
+  }, [bottom, data, left, right, top]);
 
   useLayoutEffect(() => {
     draw();

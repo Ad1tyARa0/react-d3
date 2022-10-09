@@ -1,7 +1,13 @@
+// Constnats.
+import {
+  EXPENSE_MANAGER_INITIAL_DATA,
+  EXPENSE_MANAGER_INITIA_DATA_FORMATTED,
+} from '../../utils/constants/expense-manager';
+
 import { ExpenseType } from '../../utils/types/expenses';
 import { PieTypeGeneric } from './../../utils/types/charts';
-// Types.
 
+// Types.
 export const EXPENSE_MANAGER_ON_CHANGE_EXPENSE =
   'EXPENSE_MANAGER_ON_CHANGE_EXPENSE';
 export const EXPENSE_MANAGER_ON_CHANGE_EXPENSE_ITEM =
@@ -49,9 +55,9 @@ export const EXPENSE_MANAGER_REDUCER_INITIAL_STATE: ExpenseManagerReducerStateIn
     savedTotal: null,
     expense: '',
     expenseItem: '',
-    totalEarnings: '',
-    allExpenses: [],
-    pieChartData: [],
+    totalEarnings: '17,185.85',
+    allExpenses: EXPENSE_MANAGER_INITIAL_DATA,
+    pieChartData: EXPENSE_MANAGER_INITIA_DATA_FORMATTED,
   };
 
 export const ExpenseManagerReducer = (
