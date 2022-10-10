@@ -128,7 +128,7 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
 
       <div className={`${css_prefix}slider-div`}>
         <div className={`${css_prefix}slider-title`} id='discrete-slider'>
-          Number of ticks: {numberOfTicks}
+          Number of ticks {numberOfTicks}
         </div>
         <input
           type='range'

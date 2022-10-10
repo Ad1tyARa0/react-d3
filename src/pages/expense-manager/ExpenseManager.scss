@@ -23,12 +23,12 @@ $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}form-button {
   @include button;
+  @include box-shadow;
   @include display-flex-center-center;
 
   color: $color-green;
   margin-left: 25px;
   background-color: $color-background-dark;
-  @include box-shadow;
 }
 
 #{$class_css_prefix}form-input {
@@ -49,35 +49,30 @@ $class_css_prefix: '.#{$css_prefix}';
   margin-top: 20px;
   align-items: flex-start;
   //   margin-left: 20px;
+  transition: all 500ms linear;
 }
 
 #{$class_css_prefix}total-expense {
   display: flex;
-  border: 1px solid $color-background-light;
+  // border: 1px solid $color-background-light;
   margin-top: 20px;
 }
 
 #{$class_css_prefix}table-head {
   display: flex;
   //   border-radius: 4px;
-  border: 1px solid $color-background-light;
+  // border: 1px solid $color-background-light;
 }
 
 #{$class_css_prefix}item-main {
   display: flex;
-  border-bottom: 1px solid $color-background-light;
-  border-right: 1px solid $color-background-light;
-  border-left: 1px solid $color-background-light;
 }
 
 #{$class_css_prefix}item {
   min-width: 180px;
-  // padding: 3px 0;
   padding: 10px;
   display: flex;
   align-items: center;
-  border-right: 1px solid $color-background-light;
-  // text-align: ce;
 
   &:first-of-type {
     padding-left: 10px;

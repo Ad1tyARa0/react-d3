@@ -130,10 +130,17 @@ const ExpenseManagerComponent: React.FunctionComponent<
     return (
       <div className={`${css_prefix}expense-table`}>
         <div className={`${css_prefix}table-main`}>
-          <div className={`${css_prefix}table-head`}>
+          <div
+            className={`${css_prefix}table-head`}
+            style={{ border: `1px solid ${accentColor.value}` }}
+          >
             {ROWS.map(e => {
               return (
-                <div key={e.id} className={`${css_prefix}item`}>
+                <div
+                  key={e.id}
+                  className={`${css_prefix}item`}
+                  style={{ borderRight: `1px solid ${accentColor.value}` }}
+                >
                   {e.value}
                 </div>
               );
@@ -146,13 +153,14 @@ const ExpenseManagerComponent: React.FunctionComponent<
                 <div
                   key={e.value}
                   className={`${css_prefix}item-main`}
-                  // style={{
-                  //   borderBottom: `1px solid white`,
-                  //   borderRight: `1px solid ${accentColor}`,
-                  //   borderLeft: `1px solid ${accentColor}`,
-                  // }}
+                  style={{ border: `1px solid ${accentColor.value}` }}
                 >
-                  <div className={`${css_prefix}item`}>{e.name}</div>
+                  <div
+                    className={`${css_prefix}item`}
+                    style={{ borderRight: `1px solid ${accentColor.value}` }}
+                  >
+                    {e.name}
+                  </div>
 
                   <div className={`${css_prefix}item`}>
                     <span>$ {e.title}</span>
@@ -171,8 +179,16 @@ const ExpenseManagerComponent: React.FunctionComponent<
         </div>
 
         {state.totalEarnings.length !== 0 ? (
-          <div className={`${css_prefix}total-expense`}>
-            <div className={`${css_prefix}item`}>Total</div>
+          <div
+            className={`${css_prefix}total-expense`}
+            style={{ border: `1px solid ${accentColor.value}` }}
+          >
+            <div
+              className={`${css_prefix}item`}
+              style={{ borderRight: `1px solid ${accentColor.value}` }}
+            >
+              Total
+            </div>
             <div className={`${css_prefix}item`}>
               <span>$ {state.totalEarnings}</span>
             </div>

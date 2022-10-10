@@ -79,12 +79,14 @@ input[type='range'] {
   }
 
   @mixin thumb-style {
+    @include box-shadow;
+
     cursor: pointer;
     position: relative;
     top: -50%;
     width: 20px;
     height: 20px;
-    background-color: $color-background-light;
+    background-color: $color-background-dark;
     opacity: 0.9;
     // background-image: linear-gradient(-45deg, rgba(white, 0.8), transparent);
     border-radius: 50%;
