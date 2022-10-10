@@ -20,6 +20,7 @@ import {
 
 // SCSS.
 import './ExpenseManager.scss';
+import { RootContext } from '../../context/RootContext';
 
 // Pages -- expense - manager
 const css_prefix = 'p--e-m__';
@@ -31,6 +32,8 @@ const ExpenseManagerComponent: React.FunctionComponent<
   ExpenseManagerProps
 > = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const { accentColor } = React.useContext(RootContext);
 
   const [state, dispatch] = useReducer(
     ExpenseManagerReducer,
@@ -140,7 +143,15 @@ const ExpenseManagerComponent: React.FunctionComponent<
           <div className={`${css_prefix}table-body`}>
             {state.allExpenses.map(e => {
               return (
-                <div key={e.value} className={`${css_prefix}item-main`}>
+                <div
+                  key={e.value}
+                  className={`${css_prefix}item-main`}
+                  // style={{
+                  //   borderBottom: `1px solid white`,
+                  //   borderRight: `1px solid ${accentColor}`,
+                  //   borderLeft: `1px solid ${accentColor}`,
+                  // }}
+                >
                   <div className={`${css_prefix}item`}>{e.name}</div>
 
                   <div className={`${css_prefix}item`}>
@@ -172,21 +183,19 @@ const ExpenseManagerComponent: React.FunctionComponent<
   };
 
   return (
-    <Layout headerTitle='Expense Manager' accentColor={<div />}>
-      <div className={`${css_prefix}main`}>
-        <div className={`${css_prefix}inner-main`}>
-          {renderExpenseForm()}
+    <div className={`${css_prefix}main`}>
+      <div className={`${css_prefix}inner-main`}>
+        {renderExpenseForm()}
 
-          {renderExpensesTable()}
-        </div>
-
-        <PieChart
-          width={800}
-          dimensions={DEFAULT_DIMENSIONS}
-          data={state.pieChartData}
-        />
+        {renderExpensesTable()}
       </div>
-    </Layout>
+
+      <PieChart
+        width={800}
+        dimensions={DEFAULT_DIMENSIONS}
+        data={state.pieChartData}
+      />
+    </div>
   );
 };
 

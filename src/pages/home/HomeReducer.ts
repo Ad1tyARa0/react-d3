@@ -7,7 +7,6 @@ export const HOME_ON_CLICK_SET_CHART_OPTION = 'HOME_ON_CLICK_SET_CHART_OPTION';
 // Config.
 export const HOME_SET_WIDTH = 'HOME_SET_WIDTH';
 export const HOME_SET_HEIGHT = 'HOME_SET_HEIGHT';
-export const HOME_SET_ACCENT_COLOR = 'HOME_SET_ACCENT_COLOR';
 
 // APIs.
 export const HOME_SET_LINEAREA_CHART_DATA = 'HOME_SET_LINEAREA_CHART_DATA';
@@ -43,10 +42,6 @@ export type HomeReducerActionType =
   | {
       type: typeof HOME_SET_HEIGHT;
       payload: number;
-    }
-  | {
-      type: typeof HOME_SET_ACCENT_COLOR;
-      payload: AccentColorType;
     };
 
 // Interface.
@@ -56,7 +51,6 @@ export interface HomeReducerStateInterface {
   width: number | undefined;
   dataOption: string;
   chartOption: string;
-  accentColor: AccentColorType;
 
   // APIs.
   lineAreaChartData: { date: Date | null; value: number }[];
@@ -70,10 +64,6 @@ export const HOME_REDUCER_INITIAL_STATE: HomeReducerStateInterface = {
   height: undefined,
   dataOption: 'ba',
   chartOption: 'line',
-  accentColor: {
-    value: '#2ECC71',
-    title: 'green',
-  },
 
   // APIs.
   lineAreaChartData: [],
@@ -126,12 +116,6 @@ export const HomeReducer = (
       return {
         ...state,
         height: action.payload,
-      };
-
-    case HOME_SET_ACCENT_COLOR:
-      return {
-        ...state,
-        accentColor: action.payload,
       };
 
     default:

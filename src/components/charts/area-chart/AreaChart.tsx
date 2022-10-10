@@ -7,6 +7,7 @@ import { HomeReducerStateInterface } from '../../../pages/home/HomeReducer';
 
 // SCSS.
 import './AreaChart.scss';
+import { RootContext } from '../../../context/RootContext';
 
 // Components -- charts -- area - chart
 const css_prefix = 'c--c--a-c__';
@@ -24,6 +25,8 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
   svgContainer,
 }) => {
   const { top, bottom, left, right } = dimensions;
+
+  const { accentColor } = React.useContext(RootContext);
 
   const draw = useCallback(() => {
     const newWidth = state.width! - left - right;
@@ -83,9 +86,9 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
     svg
       .select(`.${css_prefix}path`)
       .datum(state.lineAreaChartData)
-      .attr('fill', `${state.accentColor.value}`)
+      .attr('fill', `${accentColor.value}`)
       .attr('transform', `translate(51, 9)`)
-      .attr('stroke', `${state.accentColor.value}`)
+      .attr('stroke', `${accentColor.value}`)
       .attr('stroke-width', 0.3)
       .attr(
         'd',
@@ -105,7 +108,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
     state.width,
     state.height,
     state.lineAreaChartData,
-    state.accentColor.value,
+    accentColor.value,
     left,
     right,
     top,

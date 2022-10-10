@@ -1,4 +1,5 @@
 import React from 'react';
+import { RouteProps } from 'react-router-dom';
 import { Header } from './Header';
 
 // SCSS.
@@ -9,7 +10,8 @@ const css_prefix = 'l--l__';
 
 // Component props.
 interface LayoutProps {
-  children: JSX.Element;
+  // children: JSX.Element;
+  children: RouteProps['children'];
   accentColor: JSX.Element;
   headerTitle: string;
 }

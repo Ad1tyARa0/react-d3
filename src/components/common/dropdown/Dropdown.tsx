@@ -66,7 +66,7 @@ const DropdownComponent: React.FunctionComponent<DropdownProps> = ({
       {showDropdown ? (
         <div
           className={`${css_prefix}item-main`}
-          style={{ border: `1px solid ${accentColor.value}` }}
+          style={{ border: `2.5px solid ${accentColor.value}` }}
         >
           {items.map(e => {
             return (

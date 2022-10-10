@@ -8,6 +8,7 @@ import { HomeReducerStateInterface } from '../../../pages/home/HomeReducer';
 
 // SCSS.
 import './LineChart.scss';
+import { RootContext } from '../../../context/RootContext';
 
 // Components -- charts -- line - chart
 const css_prefix = 'c--c--l-c__';
@@ -25,6 +26,8 @@ const LineChartComponent: React.FC<LineChartProps> = ({
   svgContainer,
 }) => {
   const { top, bottom, left, right } = dimensions;
+
+  const { accentColor } = React.useContext(RootContext);
 
   const draw = useCallback(() => {
     const newWidth = state.width! - left - right;
@@ -88,7 +91,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({
       .select(`.${css_prefix}path`)
       .datum(state.lineAreaChartData)
       .attr('fill', 'none')
-      .attr('stroke', `${state.accentColor.value}`)
+      .attr('stroke', `${accentColor.value}`)
       .attr('stroke-width', 1.5)
       .attr('transform', `translate(31, 0)`)
       .attr(
@@ -117,7 +120,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({
     bottom,
     left,
     right,
-    state.accentColor.value,
+    accentColor.value,
     state.height,
     state.lineAreaChartData,
     state.width,

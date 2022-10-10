@@ -56,7 +56,7 @@ $class_css_prefix: '.#{$css_prefix}';
 #{$class_css_prefix}item {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid $color-background-light;
+  border-bottom: 0.5px solid $color-background-light;
   padding: 3px 0 5px 0;
   max-width: 150px;
 

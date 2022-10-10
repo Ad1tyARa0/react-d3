@@ -28,6 +28,7 @@ import { HistogramDataType } from '../../utils/types/histogram';
 
 // SCSS.
 import './Page3.scss';
+import { RootContext } from '../../context/RootContext';
 
 // Page -- page 3
 const css_prefix = 'p--p3__';
@@ -38,20 +39,14 @@ interface Page3Props {}
 const Page3Component: React.FunctionComponent<Page3Props> = () => {
   const svgContainer = useRef<HTMLDivElement | null>(null);
 
-  const [accentColor, setAccentColor] = useState<AccentColorType>({
-    title: 'green',
-    value: '#2ECC71',
-  });
+  const { accentColor } = React.useContext(RootContext);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [chartData, setChartData] = useState<BarChartType[]>([]);
   const [histogramIsLoading, setHistogramIsLoading] = useState<boolean>(false);
   const [histogramData, setHistogramData] = useState<Array<HistogramDataType>>([
     { price: 0 },
   ]);
-
-  const onClickSetAccentColor = (payload: AccentColorType) => {
-    setAccentColor(payload);
-  };
 
   const fetchHistogramData = useCallback(async (URL: string) => {
     try {
@@ -149,22 +144,11 @@ const Page3Component: React.FunctionComponent<Page3Props> = () => {
   };
 
   return (
-    <Layout
-      headerTitle='Bar Charts'
-      accentColor={
-        <AccentColor
-          colors={COLORS}
-          onClickSetAccentColor={onClickSetAccentColor}
-          title='Set accent color'
-        />
-      }
-    >
-      <div className={`${css_prefix}main`}>
-        {_renderHistogramChart()}
+    <div className={`${css_prefix}main`}>
+      {_renderHistogramChart()}
 
-        {_renderBarChart()}
-      </div>
-    </Layout>
+      {_renderBarChart()}
+    </div>
   );
 };
 

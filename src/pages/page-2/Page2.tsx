@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 import { DIAMONDS_DATA_FULL as URL } from '../../utils/constants/data';
 
 // Components.
-import { Layout } from '../../layout/Layout';
 import { Title } from '../../components/common/title/Title';
 import { Loader } from '../../components/common/loader/Loader';
 import { ScatterPlot } from '../../components/charts/scatter-plot/ScatterPlot';
@@ -59,18 +58,16 @@ const Page2Component: React.FunctionComponent<Page2Props> = () => {
   }
 
   return (
-    <Layout headerTitle='Scatter Plots' accentColor={<div />}>
-      <div className={`${css_prefix}main`}>
-        <Title
-          title='Diamond Prices'
-          subTitle='Carat VS Price in USD (50,000+ data points)'
-          accentColor={{ title: 'black', value: '#fff' }}
-          defaultColor='#F39C12'
-        />
+    <div className={`${css_prefix}main`}>
+      <Title
+        title='Diamond Prices'
+        subTitle='Carat VS Price in USD (50,000+ data points)'
+        accentColor={{ title: 'black', value: '#fff' }}
+        defaultColor='#F39C12'
+      />
 
-        <ScatterPlot dimensions={DEFAULT_DIMENSIONS} data={data} />
-      </div>
-    </Layout>
+      <ScatterPlot dimensions={DEFAULT_DIMENSIONS} data={data} />
+    </div>
   );
 };
 

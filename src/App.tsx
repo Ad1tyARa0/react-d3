@@ -1,21 +1,15 @@
 import React from 'react';
 
-// Components.
-import { Layout } from './layout/Layout';
-import { Links } from './components/common/links/Links';
-
 // SCSS.
 import './global';
+import RootProvider from './context/RootContext';
+import { Links } from './components/common/links/Links';
 
 // Component props.
 interface AppProps {}
 
 const AppComponent: React.FC<AppProps> = () => {
-  return (
-    <Layout headerTitle='Home' accentColor={<div />}>
-      <Links />
-    </Layout>
-  );
+  return <Links />;
 };
 
 export const App = AppComponent;

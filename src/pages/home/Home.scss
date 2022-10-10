@@ -10,10 +10,6 @@ $class_css_prefix: '.#{$css_prefix}';
   height: calc(100% - 100px);
 }
 
-#{$class_css_prefix}button-main {
-  margin-left: auto;
-}
-
 #{$class_css_prefix}loader-main {
   @include display-flex-center-center;
 
