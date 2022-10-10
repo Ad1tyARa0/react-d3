@@ -23,8 +23,8 @@ $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}form-button {
   @include button;
-  @include box-shadow;
   @include display-flex-center-center;
+  @include box-shadow;
 
   color: $color-green;
   margin-left: 25px;
@@ -36,7 +36,6 @@ $class_css_prefix: '.#{$css_prefix}';
 
   margin-right: 5px;
   padding: 4px 2px;
-  //   border: 1px solid $color-yellow;
 
   &:last-of-type {
     margin-right: 0;
@@ -48,31 +47,35 @@ $class_css_prefix: '.#{$css_prefix}';
   flex-direction: column;
   margin-top: 20px;
   align-items: flex-start;
-  //   margin-left: 20px;
-  transition: all 500ms linear;
 }
 
 #{$class_css_prefix}total-expense {
   display: flex;
-  // border: 1px solid $color-background-light;
+  border: 1px solid $color-background-light;
   margin-top: 20px;
 }
 
 #{$class_css_prefix}table-head {
   display: flex;
   //   border-radius: 4px;
-  // border: 1px solid $color-background-light;
+  border: 1px solid $color-background-light;
 }
 
 #{$class_css_prefix}item-main {
   display: flex;
+  border-bottom: 1px solid $color-background-light;
+  border-right: 1px solid $color-background-light;
+  border-left: 1px solid $color-background-light;
 }
 
 #{$class_css_prefix}item {
   min-width: 180px;
+  // padding: 3px 0;
   padding: 10px;
   display: flex;
   align-items: center;
+  border-right: 1px solid $color-background-light;
+  // text-align: ce;
 
   &:first-of-type {
     padding-left: 10px;

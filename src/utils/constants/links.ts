@@ -22,4 +22,10 @@ export const LINKS = [
     path: '/expense-manager',
     title: 'Expense Manager',
   },
+
+  {
+    id: 5,
+    path: '/world-map',
+    title: 'World Maps',
+  },
 ];

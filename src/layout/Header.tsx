@@ -4,6 +4,7 @@ import { IoHomeOutline } from 'react-icons/io5';
 
 // SCSS.
 import './Header.scss';
+import { RootContext } from '../context/RootContext';
 
 // layout -- header
 const css_prefix = 'l--h__';
@@ -18,6 +19,8 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
   children,
   title,
 }) => {
+  const { accentColor } = React.useContext(RootContext);
+
   return (
     <div className={`${css_prefix}main`}>
       <Link to='/'>
@@ -26,7 +29,12 @@ const HeaderComponent: React.FunctionComponent<HeaderProps> = ({
         </div>
       </Link>
 
-      <div className={`${css_prefix}header-text`}>{title}</div>
+      <div
+        className={`${css_prefix}header-text`}
+        style={{ color: accentColor.value }}
+      >
+        {title}
+      </div>
 
       <div className={`${css_prefix}header-children`}>{children}</div>
     </div>

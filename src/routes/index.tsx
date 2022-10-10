@@ -1,5 +1,11 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  BrowserRouter,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 
 // Components.
 import { App } from '../App';
@@ -24,7 +30,6 @@ export const RoutesComponent: React.FunctionComponent<RoutesProps> = () => {
         <Route
           element={
             <Layout
-              headerTitle='Home'
               accentColor={
                 <AccentColor
                   onClickSetAccentColor={onClickSetAccentColor}
