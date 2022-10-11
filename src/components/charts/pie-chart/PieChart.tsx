@@ -90,6 +90,8 @@ const PieChartComponent: React.FunctionComponent<PieChartProps> = ({
       .attr('class', 'text');
 
     arch.append('path').attr('d', path);
+
+    svg.selectAll('path').transition().duration(800);
   }, [bottom, data, left, right, top]);
 
   useLayoutEffect(() => {
