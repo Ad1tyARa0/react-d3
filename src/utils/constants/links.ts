@@ -6,12 +6,6 @@ export const LINKS = [
   },
 
   {
-    id: 2,
-    path: '/2',
-    title: 'Scatter Plot',
-  },
-
-  {
     id: 3,
     path: '/3',
     title: 'Bar Graph & Histogram',
@@ -27,5 +21,11 @@ export const LINKS = [
     id: 5,
     path: '/world-map',
     title: 'World Maps',
+  },
+
+  {
+    id: 2,
+    path: '/2',
+    title: 'Scatter Plot',
   },
 ];

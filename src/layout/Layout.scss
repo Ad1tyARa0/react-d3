@@ -5,10 +5,4 @@ $css_prefix: 'l--l__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
-  // height: 100vh;
-}
-
-#{$class_css_prefix}inner-main {
-  height: 100vh;
-  padding-top: 50px;
 }

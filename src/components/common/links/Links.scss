@@ -6,11 +6,12 @@ $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
   padding: 0 20px;
-  height: 50%;
+
+  // height: calc(100vh - 70px);
 }
 
 #{$class_css_prefix}item-main {
@@ -50,13 +51,12 @@ $class_css_prefix: '.#{$css_prefix}';
   transition: rotate 1000ms ease;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   #{$class_css_prefix}item-main {
     border-bottom: 1px solid $color-background-light;
     border-radius: 0;
     padding: 10px 15px;
     width: 100%;
-
     margin: 0 0 15px 0;
 
     box-shadow: none;
@@ -75,7 +75,9 @@ $class_css_prefix: '.#{$css_prefix}';
     flex: 1;
   }
 
-  #{$class_css_prefix}main {
-    display: flex;
+  #{$class_css_prefix}item-icon {
+    @include display-flex-center-center;
+
+    rotate: 270deg;
   }
 }

@@ -31,7 +31,7 @@ const AreaChartComponent: React.FC<AreaChartProps> = ({
   const draw = useCallback(() => {
     const newWidth = state.width! - left - right;
 
-    const newHeight = 500 - top - bottom;
+    const newHeight = state.height! - top - bottom;
 
     const svg = d3
       .select(`.${css_prefix}svg`)

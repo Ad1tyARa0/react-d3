@@ -5,10 +5,11 @@ $css_prefix: 'c--c--s-p__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // background-color: red;
 }
 
 #{$class_css_prefix}circle {

@@ -11,7 +11,7 @@ $class_css_prefix: '.#{$css_prefix}';
   border-bottom: 1px solid slategray;
   align-items: center;
   padding: 0 15px;
-  position: fixed;
+  position: sticky;
   // position: fixed;
   top: 0;
   z-index: 10;

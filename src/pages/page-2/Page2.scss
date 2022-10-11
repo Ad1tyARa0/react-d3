@@ -4,8 +4,12 @@
 $css_prefix: 'p--p-2__';
 $class_css_prefix: '.#{$css_prefix}';
 
+#{$class_css_prefix}main {
+  height: calc(100vh - 70px);
+}
+
 #{$class_css_prefix}loader-main {
   @include display-flex-center-center;
 
-  height: 100%;
+  height: calc(100vh - 70px);
 }

@@ -5,9 +5,18 @@ $css_prefix: 'p--h__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
+  // display: flex;
+  // flex-direction: column;
+  // background-color: red;
+  // height: calc(100% - 100px);
+  // height: 100%;
+  // flex: 1;
+  // height: calc(100% - 140px);
+  // height: 100%;
+  // background-color: red;
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
-  height: calc(100% - 100px);
 }
 
 #{$class_css_prefix}loader-main {
@@ -17,7 +26,8 @@ $class_css_prefix: '.#{$css_prefix}';
 }
 
 #{$class_css_prefix}graph-main {
-  height: 100%;
+  flex: 1;
+  // height: 100%;
 }
 
 #{$class_css_prefix}options-main {

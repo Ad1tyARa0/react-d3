@@ -30,11 +30,12 @@ const LayoutComponent: React.FunctionComponent<LayoutProps> = ({
   };
 
   return (
-    <div className={`${css_prefix}main`}>
-      <Header title={TITLE_MAP[location.pathname]}>{accentColor}</Header>
-
-      <main className={`${css_prefix}inner-main`}>{children}</main>
-    </div>
+    <>
+      <div className={`${css_prefix}main`}>
+        <Header title={TITLE_MAP[location.pathname]}>{accentColor}</Header>
+        {children}
+      </div>
+    </>
   );
 };
 
