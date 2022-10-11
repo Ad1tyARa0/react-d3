@@ -33,7 +33,7 @@ const LayoutComponent: React.FunctionComponent<LayoutProps> = ({
     <div className={`${css_prefix}main`}>
       <Header title={TITLE_MAP[location.pathname]}>{accentColor}</Header>
 
-      {children}
+      <main className={`${css_prefix}inner-main`}>{children}</main>
     </div>
   );
 };

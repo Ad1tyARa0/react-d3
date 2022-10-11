@@ -115,29 +115,32 @@ const HistogramComponent: React.FunctionComponent<HistogramProps> = ({
 
   return (
     <div className={`${css_prefix}main`}>
-      <svg height={height + top + bottom} width={width + left + right}>
-        <text className={`${css_prefix}x-axis-text`}>Days</text>
+      <div>
+        <div className={`${css_prefix}slider-div`}>
+          <input
+            type='range'
+            min={10}
+            max={85}
+            className={`${css_prefix}slider-input`}
+            value={numberOfTicks}
+            onChange={event => onChangeNumberOfTicks(event)}
+          />
 
-        <text className={`${css_prefix}y-axis-text`}>Price</text>
-
-        <g
-          className={`${css_prefix}histogram-chart`}
-          transform={`translate(${left},${top})`}
-        />
-      </svg>
-
-      <div className={`${css_prefix}slider-div`}>
-        <div className={`${css_prefix}slider-title`} id='discrete-slider'>
-          Number of ticks {numberOfTicks}
+          <div className={`${css_prefix}slider-title`} id='discrete-slider'>
+            {numberOfTicks}
+          </div>
         </div>
-        <input
-          type='range'
-          min={10}
-          max={85}
-          className={`${css_prefix}slider-input`}
-          value={numberOfTicks}
-          onChange={event => onChangeNumberOfTicks(event)}
-        />
+
+        <svg height={height + top + bottom} width={width + left + right}>
+          <text className={`${css_prefix}x-axis-text`}>Days</text>
+
+          <text className={`${css_prefix}y-axis-text`}>Price</text>
+
+          <g
+            className={`${css_prefix}histogram-chart`}
+            transform={`translate(${left},${top})`}
+          />
+        </svg>
       </div>
     </div>
   );

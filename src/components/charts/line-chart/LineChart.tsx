@@ -32,7 +32,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({
   const draw = useCallback(() => {
     const newWidth = state.width! - left - right;
 
-    const newHeight = state.height! - top - bottom;
+    const newHeight = 500 - top - bottom;
 
     const svg = d3
       .select(`.${css_prefix}svg`)
