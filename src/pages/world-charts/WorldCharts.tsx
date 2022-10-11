@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { feature } from 'topojson-client';
+import { geoEqualEarth, geoPath } from 'd3-geo';
 import { Feature, FeatureCollection, Geometry } from 'geojson';
+
+// Contexts.
+import { RootContext } from '../../context/RootContext';
 
 // SCSS.
 import './WorldCharts.scss';
-import { feature } from 'topojson-client';
-import { geoEqualEarth, geoPath } from 'd3-geo';
 
 // Pages -- world - chart
 const css_prefix = 'p--w-c__';
@@ -19,6 +22,8 @@ const cy: number = 150;
 interface WorldChartsProps {}
 
 const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
+  const { accentColor } = React.useContext(RootContext);
+
   const [geographies, setGeographies] = useState<
     [] | Array<Feature<Geometry | null>>
   >();
@@ -60,10 +65,11 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
               <path
                 key={`path-${uuid()}`}
                 d={geoPath().projection(projection)(d) as string}
-                fill={`rgba(38, 50, 56, ${
-                  (1 / (geographies ? geographies.length : 0)) * i
-                })`}
-                stroke='aliceblue'
+                // fill={`rgba(38, 50, 56, ${
+                //   (1 / (geographies ? geographies.length : 0)) * i
+                // })`}
+                fill={accentColor.value}
+                stroke='white'
                 strokeWidth={0.5}
               />
             );
