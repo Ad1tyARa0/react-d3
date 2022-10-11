@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteProps, useLocation } from 'react-router-dom';
+import { LINKS_TITLE_MAP } from '../utils/constants/links';
 import { Header } from './Header';
 
 // SCSS.
@@ -21,18 +22,12 @@ const LayoutComponent: React.FunctionComponent<LayoutProps> = ({
 }) => {
   const location = useLocation();
 
-  const TITLE_MAP: { [m: string]: string } = {
-    '/expense-manager': 'Expense Manager',
-    '/': 'Home',
-    '/home': 'Line & Area Charts',
-    '/2': 'Scatter Plot',
-    '/3': 'Bar Graph & Histogram',
-  };
-
   return (
     <>
       <div className={`${css_prefix}main`}>
-        <Header title={TITLE_MAP[location.pathname]}>{accentColor}</Header>
+        <Header title={LINKS_TITLE_MAP[location.pathname]}>
+          {accentColor}
+        </Header>
         {children}
       </div>
     </>

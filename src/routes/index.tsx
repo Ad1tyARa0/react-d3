@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Routes,
-  Route,
-  BrowserRouter,
-  Outlet,
-  useLocation,
-} from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom';
 
 // Components.
 import { App } from '../App';
@@ -17,6 +11,7 @@ import { Layout } from '../layout/Layout';
 import { AccentColor } from '../components/common/accent-color/AccentColor';
 import { COLORS } from '../utils/constants/colors';
 import { RootContext } from '../context/RootContext';
+import { WorldCharts } from '../pages/world-charts/WorldCharts';
 
 // Component props.
 interface RoutesProps {}
@@ -51,6 +46,8 @@ export const RoutesComponent: React.FunctionComponent<RoutesProps> = () => {
           <Route path='/3' element={<Page3 />} />
 
           <Route path='/expense-manager' element={<ExpenseManager />} />
+
+          <Route path='/world-map' element={<WorldCharts />} />
         </Route>
       </Routes>
     </BrowserRouter>

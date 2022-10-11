@@ -29,3 +29,12 @@ export const LINKS = [
     title: 'Scatter Plot',
   },
 ];
+
+export const LINKS_TITLE_MAP: { [m: string]: string } = {
+  '/expense-manager': 'Expense Manager',
+  '/': 'Home',
+  '/home': 'Line & Area Charts',
+  '/2': 'Scatter Plot',
+  '/3': 'Bar Graph & Histogram',
+  '/world-map': 'World Charts',
+};
