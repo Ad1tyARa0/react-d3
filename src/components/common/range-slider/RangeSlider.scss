@@ -1,0 +1,54 @@
+@import 'src/global/colors';
+@import 'src/global/variables';
+
+$css_prefix: 'c--c--r-s__';
+$class_css_prefix: '.#{$css_prefix}';
+
+#{$class_css_prefix}slider-div {
+  display: flex;
+  // width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0 10px 25px;
+}
+
+#{$class_css_prefix}slider-title-main {
+  display: flex;
+  align-items: center;
+  // font-size: 1.3em;
+
+  #{$class_css_prefix}text {
+    font-family: 'Noto Thin';
+  }
+
+  #{$class_css_prefix}icon {
+    @include display-flex-center-center;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 3px;
+  }
+}
+
+#{$class_css_prefix}slider-input {
+  width: 200px;
+  height: 40px;
+  padding: 20px;
+  background: $color-background-dark;
+  border-radius: 10px;
+
+  &::-webkit-slider-runnable-track {
+    @include track-style;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb-style;
+  }
+
+  &::-moz-range-track {
+    @include track-style;
+  }
+
+  &::-moz-range-thumb {
+    @include thumb-style;
+  }
+}

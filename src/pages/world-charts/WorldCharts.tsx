@@ -7,15 +7,18 @@ import {
   geoStereographic,
 } from 'd3-geo';
 import { Feature, FeatureCollection, Geometry } from 'geojson';
+import { TbCircle } from 'react-icons/tb';
+
+// Components.
+import { Dropdown } from '../../components/common/dropdown/Dropdown';
 
 // Contexts.
 import { RootContext } from '../../context/RootContext';
 
 // SCSS.
 import './WorldCharts.scss';
-import { Data } from '../../components/common/data/Data';
-import { Dropdown } from '../../components/common/dropdown/Dropdown';
 import { DropdownOptionsType } from '../../utils/types/dropdown';
+import { RangeSlider } from '../../components/common/range-slider/RangeSlider';
 
 // Pages -- world - chart
 const css_prefix = 'p--w-c__';
@@ -60,6 +63,18 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
     WORLD_MAPS_TYPES[0].value
   );
 
+  const [lambdaAngle, setLambdaAngle] = useState<number>(10);
+
+  const [phiAngle, setPhiAngle] = useState<number>(10);
+
+  const onChangeLambdaAngle = (payload: number) => {
+    setLambdaAngle(payload);
+  };
+
+  const onChangePhiAngle = (payload: number) => {
+    setPhiAngle(payload);
+  };
+
   const onChnageSelectedMap = (payload: string) => {
     setSelectedMap(payload);
   };
@@ -90,77 +105,105 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
   const orthoProjection = geoOrthographic()
     .scale(scale)
     .translate([cx, cy])
-    .rotate([0, 0]);
+    .rotate([lambdaAngle, phiAngle]);
 
   const equalEarthProjection = geoEqualEarth()
     .scale(scale)
     .translate([cx, cy])
-    .rotate([0, 0]);
+    .rotate([lambdaAngle, phiAngle]);
 
   const StereographicProjection = geoStereographic()
     .scale(scale)
     .translate([cx, cy])
-    .rotate([0, 0]);
+    .rotate([lambdaAngle, phiAngle]);
 
   return (
     <div className={`${css_prefix}main`}>
-      <Dropdown
-        items={WORLD_MAPS_TYPES}
-        title='Select Maps'
-        accentColor={accentColor}
-        selectedOption={selectedMap}
-        onClickSelectOption={onChnageSelectedMap}
-      />
+      <div className={`${css_prefix}settings-main`}>
+        <Dropdown
+          items={WORLD_MAPS_TYPES}
+          title='Select Maps'
+          accentColor={accentColor}
+          selectedOption={selectedMap}
+          onClickSelectOption={onChnageSelectedMap}
+        />
 
-      <svg width={scale * 6} height={scale * 6} viewBox='0 0 800 450'>
-        <g>
-          {(geographies as [])?.map((d, i) => {
-            return (
-              <>
-                {selectedMap === 'geoOrthographic' ? (
-                  <path
-                    key={`path-${uuid()}`}
-                    d={geoPath().projection(orthoProjection)(d) as string}
-                    // fill={`rgba(38, 50, 56, ${
-                    //   (1 / (geographies ? geographies.length : 0)) * i
-                    // })`}
-                    fill={accentColor.value}
-                    stroke='white'
-                    strokeWidth={0.5}
-                    className={`${css_prefix}path`}
-                  />
-                ) : selectedMap === 'geoEqualEarth' ? (
-                  <path
-                    key={`path-${uuid()}`}
-                    d={geoPath().projection(equalEarthProjection)(d) as string}
-                    // fill={`rgba(38, 50, 56, ${
-                    //   (1 / (geographies ? geographies.length : 0)) * i
-                    // })`}
-                    fill={accentColor.value}
-                    stroke='white'
-                    strokeWidth={0.5}
-                    className={`${css_prefix}path`}
-                  />
-                ) : selectedMap === 'geoStereographic' ? (
-                  <path
-                    key={`path-${uuid()}`}
-                    d={
-                      geoPath().projection(StereographicProjection)(d) as string
-                    }
-                    // fill={`rgba(38, 50, 56, ${
-                    //   (1 / (geographies ? geographies.length : 0)) * i
-                    // })`}
-                    fill={accentColor.value}
-                    stroke='white'
-                    strokeWidth={0.5}
-                    className={`${css_prefix}path`}
-                  />
-                ) : null}
-              </>
-            );
-          })}
-        </g>
-      </svg>
+        <div className={`${css_prefix}container`}>
+          <RangeSlider
+            min={0}
+            max={360}
+            value={lambdaAngle}
+            onChangeValue={onChangeLambdaAngle}
+            icon={<TbCircle />}
+          />
+        </div>
+
+        <div className={`${css_prefix}container`}>
+          <RangeSlider
+            min={0}
+            max={360}
+            value={phiAngle}
+            onChangeValue={onChangePhiAngle}
+            icon={<TbCircle />}
+          />
+        </div>
+      </div>
+
+      <div className={`${css_prefix}svg`}>
+        <svg width={scale * 6} height={scale * 6} viewBox='0 0 800 450'>
+          <g>
+            {(geographies as [])?.map((d, i) => {
+              return (
+                <>
+                  {selectedMap === 'geoOrthographic' ? (
+                    <path
+                      key={`path-${uuid()}`}
+                      d={geoPath().projection(orthoProjection)(d) as string}
+                      fill={`rgba(38, 50, 56, ${
+                        (1 / (geographies ? geographies.length : 0)) * i
+                      })`}
+                      // fill='aliceblue'
+                      stroke='white'
+                      strokeWidth={0.5}
+                      className={`${css_prefix}path`}
+                    />
+                  ) : selectedMap === 'geoEqualEarth' ? (
+                    <path
+                      key={`path-${uuid()}`}
+                      d={
+                        geoPath().projection(equalEarthProjection)(d) as string
+                      }
+                      fill={`rgba(38, 50, 56, ${
+                        (1 / (geographies ? geographies.length : 0)) * i
+                      })`}
+                      // fill={accentColor.value}
+                      stroke='white'
+                      strokeWidth={0.5}
+                      className={`${css_prefix}path`}
+                    />
+                  ) : selectedMap === 'geoStereographic' ? (
+                    <path
+                      key={`path-${uuid()}`}
+                      d={
+                        geoPath().projection(StereographicProjection)(
+                          d
+                        ) as string
+                      }
+                      fill={`rgba(38, 50, 56, ${
+                        (1 / (geographies ? geographies.length : 0)) * i
+                      })`}
+                      // fill={accentColor.value}
+                      stroke='white'
+                      strokeWidth={0.5}
+                      className={`${css_prefix}path`}
+                    />
+                  ) : null}
+                </>
+              );
+            })}
+          </g>
+        </svg>
+      </div>
     </div>
   );
 };

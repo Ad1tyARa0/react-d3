@@ -4,10 +4,14 @@
 $css_prefix: 'p--w-c__';
 $class_css_prefix: '.#{$css_prefix}';
 
-#{$class_css_prefix}main {
-  padding: 20px;
+#{$class_css_prefix}settings-main {
+  display: flex;
+  align-items: center;
+  margin: 20px 15px;
 }
 
-#{$class_css_prefix}path {
-  transition: fill 500ms linear;
+#{$class_css_prefix}svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
