@@ -23,6 +23,25 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
+input[type='range'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &::-moz-range-thumb {
+    border: none;
+  }
+}
+
 html {
   // height: 100vh;
   font-family: 'Noto Regular';

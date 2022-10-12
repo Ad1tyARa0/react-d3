@@ -5,5 +5,9 @@ $css_prefix: 'p--w-c__';
 $class_css_prefix: '.#{$css_prefix}';
 
 #{$class_css_prefix}main {
-  //   background-color: aliceblue;
+  padding: 20px;
+}
+
+#{$class_css_prefix}path {
+  transition: fill 500ms linear;
 }
