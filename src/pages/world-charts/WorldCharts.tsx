@@ -117,8 +117,8 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
     .translate([cx, cy])
     .rotate([lambdaAngle, phiAngle]);
 
-  return (
-    <div className={`${css_prefix}main`}>
+  const _renderSettings = () => {
+    return (
       <div className={`${css_prefix}settings-main`}>
         <Dropdown
           items={WORLD_MAPS_TYPES}
@@ -148,6 +148,12 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
           />
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div className={`${css_prefix}main`}>
+      {_renderSettings()}
 
       <div className={`${css_prefix}svg`}>
         <svg width={scale * 6} height={scale * 6} viewBox='0 0 800 450'>
@@ -162,8 +168,7 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
                       fill={`rgba(38, 50, 56, ${
                         (1 / (geographies ? geographies.length : 0)) * i
                       })`}
-                      // fill='aliceblue'
-                      stroke='white'
+                      stroke={accentColor.value}
                       strokeWidth={0.5}
                       className={`${css_prefix}path`}
                     />
@@ -176,8 +181,7 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
                       fill={`rgba(38, 50, 56, ${
                         (1 / (geographies ? geographies.length : 0)) * i
                       })`}
-                      // fill={accentColor.value}
-                      stroke='white'
+                      stroke={accentColor.value}
                       strokeWidth={0.5}
                       className={`${css_prefix}path`}
                     />
@@ -192,8 +196,7 @@ const WorldChartsComponent: React.FunctionComponent<WorldChartsProps> = () => {
                       fill={`rgba(38, 50, 56, ${
                         (1 / (geographies ? geographies.length : 0)) * i
                       })`}
-                      // fill={accentColor.value}
-                      stroke='white'
+                      stroke={accentColor.value}
                       strokeWidth={0.5}
                       className={`${css_prefix}path`}
                     />
