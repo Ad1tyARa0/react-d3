@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { feature } from 'topojson-client';
+import { TbCircle } from 'react-icons/tb';
 import {
   geoPath,
   geoEqualEarth,
@@ -7,7 +8,6 @@ import {
   geoStereographic,
 } from 'd3-geo';
 import { Feature, FeatureCollection, Geometry } from 'geojson';
-import { TbCircle } from 'react-icons/tb';
 
 // Components.
 import { Dropdown } from '../../components/common/dropdown/Dropdown';
